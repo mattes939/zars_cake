@@ -1,0 +1,142 @@
+table > thead > tr > th > h1 {
+  font-size: 24px;
+  margin: 0;
+  padding-bottom: 5px;
+  font-weight: 300;
+}
+
+table > tbody {
+  font-size: 12px;
+}
+
+table > tbody > tr > th > span.text-muted {
+  font-weight: normal;
+}
+
+table.table-reservations {
+	
+}
+
+table.table-reservations > thead > tr > th {
+  background-color: #9CC11A;
+}
+
+table.table-reservations > thead > tr > th > h3 {
+  font-size: 14px;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin: 5px;
+  color: #fff;
+}
+
+table.table-reservations > tbody {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+table.table-reservations > tbody > tr > td > span.glyphicon {
+	margin-right: 10px;
+}
+
+table.table-reservations > tbody > tr > td > span.glyphicon-ok {
+	color: #009833;
+}
+
+table.table-reservations > tbody > tr > td > span.glyphicon-remove {
+	color: #D9534F;
+}
+
+div.primary-actions > a.btn > span.glyphicon {
+	font-size: 24px;
+}
+
+div.primary-actions > a.btn > span.glyphicon-envelope {
+	color: #FFAD01;
+}
+
+div.primary-actions > a.btn > span.glyphicon-print {
+	color: #999;
+}
+
+div.primary-actions > a.btn > span.glyphicon-heart {
+	color: #D9534F;
+}
+
+div.primary-actions > a.btn > span:last-child {
+	font-weight: 300;
+	font-size: 12px;
+}
+
+.tab-pane {
+	padding: 15px 0;
+}
+
+.tab-pane > p {
+	text-align: justify;
+	margin-bottom: 15px;
+}
+
+.tab-pane > embed {
+  width: 100%;
+  height: 300px;
+  border: 0;
+  margin-bottom: 10px;
+}
+
+.tab-pane table > thead > tr > th {
+	background-color: #F5F5F5;
+}
+
+.tab-pane > .panel > .panel-heading > span:first-child {
+  margin-right: 10px;
+}
+
+.tab-pane > .panel > .panel-heading > span.glyphicon-star {
+  color: #FFAD01;
+}
+
+.tab-pane > .panel > .panel-heading > span.glyphicon-star-empty {
+  color: #999;
+}
+
+.tab-pane > .panel > .panel-body ul.list-unstyled > li > span.glyphicon-plus {
+  color: #719F0D;
+}
+
+.tab-pane > .panel > .panel-body ul.list-unstyled > li > span.glyphicon-minus {
+  color: #F00000;
+}
+
+
+table > tbody > tr > th > span.glyphicon-info-sign {
+  color: #00BDFD;
+  margin-left: 5px;
+}
+
+.well-sale {
+  color: red;
+  background-color: #FFFFE8;
+}
+
+.well-sale a {
+  color: #333;
+}
+
+.sale-label {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  background-color: #FFDB31;  
+  z-index: 999;
+  padding: 10px;
+}
+
+.sale-label a {
+  font-size: 16px;
+  font-weight: 600;
+  color: red;
+}
+
+.sale-label a:hover {
+  text-decoration: none;
+}

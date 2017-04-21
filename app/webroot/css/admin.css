@@ -1,0 +1,50 @@
+div.row.checkbox{
+    margin-left: 30px;
+}
+.checkbox input[type="checkbox"]{
+    margin-left: 0;
+}
+checkbox.checkbox-right{
+    float:right;
+    display:block;
+    position:relative;
+}
+.form-control-inline {
+    min-width: 0;
+    width: auto;
+    display: inline;
+    margin-left: 15px;
+}
+.form-control-inline.number{
+    width: 50px;
+}
+label{
+    font-weight: normal;
+}
+.fixed-submit{
+    position: fixed;
+    bottom: 15px;
+    right: 5px;
+    /*border-radius: 85px;*/
+    padding: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.fixed-nav{
+    list-style-type: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+}
+.fixed-nav li{
+    margin-top: 5px;
+    
+}
+.fixed-nav li a.btn{
+    border-radius: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 70px;
+}
