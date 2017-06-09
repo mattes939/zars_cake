@@ -30,3 +30,6 @@ ehthumbs.db
 Thumbs.db
 /app/webroot/files/
 /app/webroot/js/tinymce/
+/app/webroot/img/cottages/
+/app/webroot/img/carousel/
+/app/webroot/img/categories/

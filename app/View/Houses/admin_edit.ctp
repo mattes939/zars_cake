@@ -28,7 +28,7 @@ echo $this->Html->nestedList([
                 echo $this->Form->input('id');
                 echo $this->Form->input('name', ['label' => 'Název']);
                 echo $this->Form->input('code', ['label' => 'Číslo objektu', 'type' => 'text']);
-
+                echo $this->Form->input('parent_id', ['label' => 'Nadřazený objekt', 'empty' => '----']);
                 echo $this->Form->input('region_id', ['label' => 'Kraj']);
                 echo $this->Form->input('district_id', ['label' => 'Okres']);
 

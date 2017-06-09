@@ -26,7 +26,7 @@
 		<td><?php echo h($region['Region']['html_keywords']); ?>&nbsp;</td>
 		<td><?php echo h($region['Region']['html_description']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $region['Region']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $region['Region']['slug'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $region['Region']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $region['Region']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $region['Region']['id']))); ?>
 		</td>

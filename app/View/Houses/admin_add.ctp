@@ -3,7 +3,7 @@
 <fieldset>
     <legend><?php echo __('Admin Add House'); ?></legend>
     <?php
-    echo $this->Form->input('id',['type' => 'text']);
+//    echo $this->Form->input('id',['type' => 'text']);
     echo $this->Form->input('user_id');
     echo $this->Form->input('region_id');
     echo $this->Form->input('district_id');

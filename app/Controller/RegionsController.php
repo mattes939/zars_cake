@@ -34,13 +34,35 @@ class RegionsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
-		if (!$this->Region->exists($id)) {
-			throw new NotFoundException(__('Invalid region'));
-		}
-		$options = array('conditions' => array('Region.' . $this->Region->primaryKey => $id));
-		$this->set('region', $this->Region->find('first', $options));
-	}
+public function view($slug = null) {
+        $region = $this->Region->find('first', [
+            'conditions' => [
+                'Region.slug' => $slug
+            ],
+            'contain' => [
+                'House' => [
+                    'fields' => ['id', 'name', 'created', 'code', 'slug'],
+                    'Area' => [
+                        'fields' => ['id','name']
+                    ],
+                    'Media' => [
+                        'fields' => ['file'],
+                        'order' => ['lft' => 'ASC'],
+                        'limit' => 1
+                    ],
+                    'Room' => [
+                        'conditions' => [
+                            'NOT' => ['total_beds' => null]
+                        ],
+                        'fields' => 'total_beds',
+                    ]
+                ]
+            ]
+        ]);
+
+//        debug($region);
+        $this->set(compact('region'));
+    }
 
 /**
  * add method

@@ -18,7 +18,7 @@ class HousesController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session', 'Flash');
-    public $helpers = ['Media.Media'];
+    public $helpers = ['Media.Media', 'Code'];
 
     /**
      * index method
@@ -31,6 +31,61 @@ class HousesController extends AppController {
 
         $medias = array();
         $i = 0;
+        $houses = $this->House->find('all', [
+            'conditions' => [
+                'active' => 1,
+                'hot' => 1
+            ],
+            'fields' => ['name', 'created', 'code', 'slug'],
+            'contain' => [
+                'Area' => [
+                    'fields' => ['name']
+                ],
+                'Media' => [
+                    'fields' => ['file'],
+                    'order' => ['lft' => 'ASC'],
+                    'limit' => 1
+                ],
+                'Room' => [
+                    'conditions' => [
+                        'NOT' => ['total_beds' => null]
+                    ],
+                    'fields' => 'total_beds',
+                ]
+            ]
+        ]);
+
+        $travelDates = $this->House->HouseDate->TravelDate->travelDatesList();
+        $areas = $this->House->Area->find('list', [
+            'order' => ['name' => 'asc'],
+//            'conditions' => ['country_id' => 1]
+            'fields' => ['id', 'name', 'country_id']
+        ]);
+        $countries = $this->House->Address->Country->find('list');
+//debug($areas);
+
+        $this->set(compact('houses', 'travelDates', 'countries', 'areas'));
+//        $wifi = $this->House->Value->find('list', [
+//            'conditions' => [
+//                'property_id' => 142,
+//                'switch' => true
+//            ],
+//            'fields' => ['id', 'house_id']
+//        ]);
+//        $new = $this->House->Value->find('list', [
+//            'conditions' => [
+//                'property_id' => 77,
+//                'switch' => true
+//            ],
+//            'fields' => ['id', 'house_id']
+//        ]);
+//        $intersect = array_intersect($wifi, $new);
+////        debug($intersect);
+//        $houses = $this->House->find('all', [
+//            'conditions' => ['id' => $intersect],
+//            'fields' => ['id', 'name']
+//        ]);
+//        debug($houses);
 //        foreach ($this->House->fotky as $fotka) {
 ////                $medias[$i]['Media']['ref'] = 'House';
 ////                $medias[$i]['Media']['ref_id'] = $fotka['cid'];
@@ -57,6 +112,23 @@ class HousesController extends AppController {
 //                debug($this->House->saveAll($houses));
     }
 
+    public function search() {
+//        $this->convertGetQueryString2named($this->request->query);
+//        debug($this->request->query);
+
+
+        $houses = $this->House->search($this->request->query['country'], $this->request->query['area'], $this->request->query['travelDate'], $this->request->query['persons'], $this->request->query['bedrooms']);
+        $travelDates = $this->House->HouseDate->TravelDate->travelDatesList();
+        $areas = $this->House->Area->find('list', [
+            'order' => ['name' => 'asc'],
+            'conditions' => ['country_id' => 1]
+        ]);
+        $countries = $this->House->Address->Country->find('list');
+
+
+        $this->set(compact('houses', 'travelDates', 'countries', 'areas'));
+    }
+
     /**
      * view method
      *
@@ -64,41 +136,104 @@ class HousesController extends AppController {
      * @param string $id
      * @return void
      */
-    public function view($area = null, $region = NULL, $district = NULL, $slug = NULL) {
+//    public function view($area = null, $region = NULL, $district = NULL, $slug = NULL) {
+    public function view($slug = NULL, $print = null) {
 //        if (!$this->House->exists($id)) {
 //            throw new NotFoundException(__('Invalid house'));
 //        }
-                    $options = array(
-                'conditions' => array('House.slug' => $slug),
-                'contain' => [
+        $options = array(
+            'conditions' => array('House.slug' => $slug),
+            'contain' => [
 //                    'User' => ['fields' => ['id', 'username']],
-                    'Region' => ['fields' => ['id', 'name']],
-                    'District' => ['fields' => ['id', 'name']],
-                    'Area',
-                    'Value' => [
-                        'order' => ['Value.property_id' => 'ASC'],
-                        'Property' => [
-                            'fields' => ['id', 'name'],
-                            'order' => ['property_type_id' => 'ASC'],
-                            'PropertyType'
-                        ]
-                    ],
-                    'Room',
-                    'Media',
-                    'HouseDate' => [
-                        'order' => ['travel_date_id' => 'asc'],
-                        'TravelDate' => [
-                            'conditions' => ['hidden' => false],
-                            
-                        ],
-                        'DateCondition'
-                    ],
+                'Region' => ['fields' => ['id', 'name']],
+                'District' => ['fields' => ['id', 'name']],
+                'Area',
+//                'Value' => [
+//                    'order' => ['Value.property_id' => 'ASC'],
+//                    'Property' => [
+//                        'fields' => ['id', 'name'],
+//                        'order' => ['property_type_id' => 'ASC'],
+//                        'PropertyType' => [
+//                            'fields' => ['id', 'name'],
+//                        ]
+//                    ]
+//                ],
+                'Room',
+                'Media' => [
+                    'fields' => ['id','file']
+                ],
+                'Thumb',
+//                'HouseDate' => [
+//                    'order' => ['travel_date_id' => 'asc'],
+//                    'TravelDate' => [
+//                        'conditions' => ['hidden' => false],
+//                    ],
+//                    'DateCondition'
+//                ],
 //                    'SpecialOffer' => [
 //                        'Portal'
 //                    ]
+            ],
+        );
+        $house = $this->House->find('first', $options);
+//debug($house['Thumb']);
+//        $properties = $this->House->Value->Property->find('all', [
+//            'fields' => ['name', 'property_type_id'],
+//            'order' => ['Property_type_id' => 'ASC'],
+//            'contain' =>[
+//                'PropertyType' => [
+//                  'fields' => ['name']  
+//                ],
+//                'Value' => [
+//                    'conditions' => ['house_id' => $house['House']['id']],
+//                    'fields' => ['switch', 'value', 'value2']
+//                ]
+//            ]
+//        ]);
+        $properties = $this->House->Value->Property->PropertyType->find('all', [
+            'fields' => ['name'],
+            'order' => ['id' => 'ASC'],
+            'contain' => [
+                'Property' => [
+                    'fields' => ['name'],
+                    'Value' => [
+                        'conditions' => ['house_id' => $house['House']['id']],
+                        'fields' => ['switch', 'value', 'value2']
+                    ]
                 ],
-            );
-        $this->set('house', $this->House->find('first', $options));
+            ]
+        ]);
+//        $propertyCategories = Hash::sort($properties, '{n}.Property.property_type_id', 'asc');
+//        debug($properties);
+        $travelDates = $this->House->HouseDate->TravelDate->find('all', [
+            'conditions' => ['hidden' => false, 'start >= CURDATE()'],
+            'order' => ['start' => 'ASC'],
+            'fields' => ['start', 'end', 'travel_date_type_id'],
+            'contain' => [
+                'HouseDate' => [
+                    'conditions' => ['house_id' => $house['House']['id']],
+                    'fields' => ['date_condition_id'],
+                    'limit' => 1,
+                    'DateCondition'
+                ],
+                'TravelDateType' => [
+                    'fields' => ['name']
+                ]
+            ]
+        ]);
+
+        $beds = $this->House->Room->find('all', [
+            'conditions' => ['house_id' => $house['House']['id']],
+            'fields' => ['SUM(total_beds)', 'SUM(extra_beds)'],
+            'group' => ['house_id'],
+        ]);
+//        debug($travelDates);
+        $this->set('beds', $beds[0][0]);
+        $this->set(compact('house', 'travelDates', 'properties'));
+        
+        if($print == 'tisk'){
+            $this->render('print', 'print');
+        }
     }
 
     /**
@@ -252,15 +387,16 @@ class HousesController extends AppController {
 //        $travelDates = $this->House->TravelDate->find('list');
         $this->set(compact('users', 'regions', 'districts', 'areas', 'portals', 'travelDates', 'properties'));
     }
-    
-    public function admin_attributes($id){
+
+    public function admin_attributes($id) {
         ini_set('max_input_vars', 2000);
         ini_set('suhosin.post.max_vars', 2000);
         ini_set('suhosin.request.max_vars', 2000);
 //        phpinfo();
-         if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(array('post', 'put'))) {
 //             debug($_POST);
-              debug($this->request->data);die;
+            debug($this->request->data);
+            die;
             if ($this->House->saveAll($this->request->data)) {
                 $this->Flash->success(__('The house has been saved.'));
                 return $this->redirect(array('action' => 'index'));
@@ -295,10 +431,11 @@ class HousesController extends AppController {
                 ],
             );
             $this->request->data = $this->House->find('first', $options);
-            debug($this->request->data);die;
+            debug($this->request->data);
+            die;
             $properties = $this->House->Value->Property->find('all', [
-            'fields' => ['Property.id', 'Property.name']
-        ]);
+                'fields' => ['Property.id', 'Property.name']
+            ]);
             $this->set(compact('properties'));
         }
     }
@@ -311,7 +448,7 @@ class HousesController extends AppController {
      * @return void
      */
     public function admin_edit($id = null) {
-      
+
         if (!$this->House->exists($id)) {
             throw new NotFoundException(__('Invalid house'));
         }
@@ -346,7 +483,6 @@ class HousesController extends AppController {
                         'order' => ['travel_date_id' => 'asc'],
                         'TravelDate' => [
                             'conditions' => ['hidden' => false],
-                            
                         ],
                         'DateCondition'
                     ],
@@ -362,6 +498,10 @@ class HousesController extends AppController {
         $districts = $this->House->District->find('list');
         $areas = $this->House->Area->find('list');
         $dateConditions = $this->House->HouseDate->DateCondition->find('list');
+        $parents = $this->House->generateTreeList([
+            'parent_id' => null
+        ]);
+//        debug($parentHouses);
 //        $portals = $this->House->Portal->find('list');
 //        $travelDates = $this->House->TravelDate->find('list');
 //        $values = [];
@@ -395,7 +535,7 @@ class HousesController extends AppController {
 //            'contain' => $containValues
 //        ]);    
 //        debug($values);die;
-        $this->set(compact('regions', 'districts', 'areas', 'id', 'dateConditions'));
+        $this->set(compact('regions', 'districts', 'areas', 'id', 'dateConditions', 'parents'));
 //          $this->render('admin_edit2');
     }
 
@@ -418,6 +558,29 @@ class HousesController extends AppController {
             $this->Flash->error(__('The house could not be deleted. Please, try again.'));
         }
         return $this->redirect(array('action' => 'index'));
+    }
+
+    protected function convertGetQueryString2named($param_names = null) {
+//            debug($param_names);
+        $parameters_strings = array();
+        if (is_array($param_names)) {
+            foreach ($param_names as $i => $param_name) {
+//                debug($param_name);
+                if (!empty($this->request->query[$i])) {
+                    $parameters_strings[$i] = $this->request->query[$i];
+                }
+//                debug($parameters_strings);
+            }
+        } else {
+            $parameters_strings = $this->request->query;
+            unset($parameters_strings['url']);
+        }
+//        debug($parameters_strings);die;
+        if (!empty($parameters_strings)) {
+
+            $parameters_strings = array_merge($this->request->params['named'], $parameters_strings);
+            $this->redirect($parameters_strings, null, true);
+        }
     }
 
 }
