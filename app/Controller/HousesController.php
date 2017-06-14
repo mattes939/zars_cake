@@ -160,7 +160,7 @@ class HousesController extends AppController {
 //                ],
                 'Room',
                 'Media' => [
-                    'fields' => ['id','file']
+                    'fields' => ['id', 'file']
                 ],
                 'Thumb',
 //                'HouseDate' => [
@@ -205,6 +205,8 @@ class HousesController extends AppController {
         ]);
 //        $propertyCategories = Hash::sort($properties, '{n}.Property.property_type_id', 'asc');
 //        debug($properties);
+
+
         $travelDates = $this->House->HouseDate->TravelDate->find('all', [
             'conditions' => ['hidden' => false, 'start >= CURDATE()'],
             'order' => ['start' => 'ASC'],
@@ -212,7 +214,7 @@ class HousesController extends AppController {
             'contain' => [
                 'HouseDate' => [
                     'conditions' => ['house_id' => $house['House']['id']],
-                    'fields' => ['date_condition_id'],
+                    'fields' => ['date_condition_id', 'id'],
                     'limit' => 1,
                     'DateCondition'
                 ],
@@ -221,17 +223,45 @@ class HousesController extends AppController {
                 ]
             ]
         ]);
+        if ($house['House']['composition']) {
+            $children = Hash::extract($this->House->children($house['House']['id'], true, ['id']), '{n}.House.id');
+            $childrenTravelDates = $this->House->HouseDate->TravelDate->composition($children);
 
-        $beds = $this->House->Room->find('all', [
-            'conditions' => ['house_id' => $house['House']['id']],
-            'fields' => ['SUM(total_beds)', 'SUM(extra_beds)'],
-            'group' => ['house_id'],
-        ]);
-//        debug($travelDates);
-        $this->set('beds', $beds[0][0]);
+            $beds = $this->House->Room->find('all', [
+                'conditions' => ['house_id' => $children],
+                'fields' => ['SUM(total_beds)', 'SUM(extra_beds)'],
+                'group' => ['house_id'],
+            ]);
+            $totalBeds = ['SUM(total_beds)' => 0, 'SUM(extra_beds)' => 0];
+            foreach ($beds as $value) {
+                $totalBeds['SUM(total_beds)'] += $value[0]['SUM(total_beds)'];
+                $totalBeds['SUM(extra_beds)'] += $value[0]['SUM(extra_beds)'];
+            }
+
+            $this->set(compact('childrenTravelDates'));
+            $this->set('beds', $totalBeds);
+            if(count($travelDates) != count($childrenTravelDates)){
+                throw new ErrorException('Špatně zadané termíny!');
+            }
+        } else {
+
+            $beds = $this->House->Room->find('all', [
+                'conditions' => ['house_id' => $house['House']['id']],
+                'fields' => ['SUM(total_beds)', 'SUM(extra_beds)'],
+                'group' => ['house_id'],
+            ]);
+            $this->set('beds', $beds[0][0]);
+        }
+
+//        $this->House->HouseDate->generate($house['House']['id']);
+//            debug($travelDates);
+
+
         $this->set(compact('house', 'travelDates', 'properties'));
-        
-        if($print == 'tisk'){
+
+
+
+        if ($print == 'tisk') {
             $this->render('print', 'print');
         }
     }

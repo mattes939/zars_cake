@@ -25,6 +25,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->Html->css([
             'http://fonts.googleapis.com/css?family=Open+Sans:700,300,400&subset=latin,latin-ext',
             'http://fonts.googleapis.com/css?family=Capriola&subset=latin,latin-ext',
+             '../plugins/datepicker/datepicker3.css',
             'main',
             'blog',
             'lightbox.min',
@@ -58,9 +59,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     </div>
 
                 </div>
-                                <div class="hidden-xs banner">
-                                   
-                                </div>
+                <div class="hidden-xs banner">
+
+                </div>
 
                 <?php echo $this->Flash->render(); ?>
 
@@ -84,6 +85,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         echo $this->Html->script([
 //            '//cdn.datatables.net/plug-ins/1.10.13/i18n/Czech.json',
 //                './tinymce/jscripts/tiny_mce/tiny_mce',
+            '../plugins/datepicker/bootstrap-datepicker.js',
+            '../plugins/datepicker/locales/bootstrap-datepicker.cs.js',
             'jquery.backstretch.min',
             'jquery.chained.min',
             'lightbox.min',

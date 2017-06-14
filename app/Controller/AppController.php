@@ -56,7 +56,7 @@ class AppController extends Controller {
 
     protected function _authorize() {
 //        $this->Auth->allow();
-          // password hasher
+        // password hasher
         $this->Auth->authenticate = array(
             'Form' => array(
                 'passwordHasher' => 'Blowfish'));
@@ -80,21 +80,11 @@ class AppController extends Controller {
         $this->Auth->allow(array(
             'index',
             'view',
-            'products',
             'search',
-            'searchjson',
-            'sitemap',
-            'changeLanguage',
             'tree',
             'login',
-            'logout',
-            'carousel',
-            'hotItem',
-            'listBrands',
-            'news',
-            'display'
+            'add'
         ));
-
     }
 
     protected function _setLayout() {

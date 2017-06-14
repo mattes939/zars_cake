@@ -21,7 +21,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <?php
         echo $this->Html->meta('icon');
 
-		echo $this->Html->css('admin');
+        echo $this->Html->css([
+            '../plugins/datepicker/datepicker3.css',
+            'admin',
+        ]);
 
         echo $this->fetch('meta');
         echo $this->fetch('css');
@@ -45,6 +48,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <ul class="nav navbar-nav">
                         <!--<li><?php echo $this->Html->link('Objednávky', ['controller' => 'orders', 'action' => 'index']); ?></li>-->
                         <li><?php echo $this->Html->link('Objekty', ['controller' => 'houses', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Objednávky', ['controller' => 'orders', 'action' => 'index']); ?></li>
                         <!--                        <li class="dropdown">
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                                                     <ul class="dropdown-menu">
@@ -59,8 +63,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                                 </li>-->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      
-                        <li><?php echo $this->Html->link('Odhlásit se', ['controller' => 'users', 'action' => 'logout', 'admin' => FALSE]);?></li>
+
+                        <li><?php echo $this->Html->link('Odhlásit se', ['controller' => 'users', 'action' => 'logout', 'admin' => FALSE]); ?></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -85,6 +89,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <?php
             echo $this->Html->script([
                 '//cdn.datatables.net/plug-ins/1.10.13/i18n/Czech.json',
+                '../plugins/datepicker/bootstrap-datepicker.js',
+                '../plugins/datepicker/locales/bootstrap-datepicker.cs.js',
 //                './tinymce/jscripts/tiny_mce/tiny_mce',
                 'misc'
             ]);

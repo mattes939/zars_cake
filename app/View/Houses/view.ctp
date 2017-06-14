@@ -22,6 +22,25 @@
                     <div id="thumbs-detail-property"></div>
                 </div>
             </div>
+            <?php
+            if ($house['House']['composition']) {
+                ?>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h5>Do areálu patří následující objekty:</h5>
+                        <?php
+//                        debug($travelDates[0]['HouseDate']);
+                        $list = array();
+                        foreach ($childrenTravelDates[0]['HouseDate'] as $houseDate) {
+                            $list[] = $this->Html->link($houseDate['House']['code'] . '-' . $houseDate['House']['name'], ['controller' => 'houses', 'action' => 'view', $houseDate['House']['slug']], ['target' => 'blank']);
+                        }
+                        echo $this->Html->nestedList($list);
+                        ?>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
         </div>
 
         <div class="col-xs-12 col-lg-6">
@@ -63,16 +82,21 @@
                     </tr>
                 </tbody>
             </table>
+            <?php
+//            if ($house['House']['composition']) {
+//                
+//            } else {
+            ?>
             <table class="table table-condensed table-bordered table-reservations">
                 <thead>
                     <tr>
                         <th colspan="3">
-                            <h3>Náhled obsazenosti objektu 
+                            <h5>Náhled obsazenosti objektu 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="#tab-tab5" id="open-tab5" title="Termíny léto" onclick="ga('send', 'event', 'ux', 'click', 'leto');"><strong>léto</strong></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp; <a href="#tab-tab5" id="open-tab5" title="Termíny zima" onclick="ga('send', 'event', 'ux', 'click', 'zima');"><strong>zima</strong></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp; <a href="#tab-tab5" id="open-tab5" title="Termíny Silvestr" onclick="ga('send', 'event', 'ux', 'click', 'silvestr');"><strong>silvestr</strong></a>
-                            </h3>
+                            </h5>
                         </th>
                     </tr>
                 </thead>
@@ -118,11 +142,17 @@
                     </tr>
                 </tfoot>
             </table>
+            <?php
+//            }
+            ?>
+
+
             <div class="primary-actions">
                 <a href="#tab-tab5" id="open-tab5" title="Rezervace" class="btn btn-primary" onclick="ga('send', 'event', 'ux', 'click', 'objednat');"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span><br><span>OBJEDNAT</span></a>
                 <a href="#" title="Poslat přátelům" class="btn btn-default" onclick="ga('send', 'event', 'ux', 'click', 'poslat pratelum');"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><br><span>POSLAT PŘÁTELŮM</span></a>
-                <?php // echo $this->Html->link('<span class="glyphicon glyphicon-print" aria-hidden="true"></span><br><span>VYTISKNOUT</span>', ['controller' => 'houses', 'action' => 'view', $house['House']['slug'], 'tisk'], ['class' => 'btn btn-default', 'escape' => false, 'onclick' => 'ga(\'send\', \'event\', \'ux\', \'click\', \'vytisknout\');', 'target' => 'blank']); 
-                echo $this->Html->link('<span class="glyphicon glyphicon-print" aria-hidden="true"></span><br><span>VYTISKNOUT</span>', ['controller' => 'houses', 'action' => 'view', $house['House']['slug'], 'tisk'], ['class' => 'btn btn-default', 'escape' => false, 'target' => 'blank']); 
+                <?php
+                // echo $this->Html->link('<span class="glyphicon glyphicon-print" aria-hidden="true"></span><br><span>VYTISKNOUT</span>', ['controller' => 'houses', 'action' => 'view', $house['House']['slug'], 'tisk'], ['class' => 'btn btn-default', 'escape' => false, 'onclick' => 'ga(\'send\', \'event\', \'ux\', \'click\', \'vytisknout\');', 'target' => 'blank']); 
+                echo $this->Html->link('<span class="glyphicon glyphicon-print" aria-hidden="true"></span><br><span>VYTISKNOUT</span>', ['controller' => 'houses', 'action' => 'view', $house['House']['slug'], 'tisk'], ['class' => 'btn btn-default', 'escape' => false, 'target' => 'blank']);
                 ?>
 <!--                <a href="#" title="Vytisknout" class="btn btn-default" onclick="ga('send', 'event', 'ux', 'click', 'vytisknout');"><span class="glyphicon glyphicon-print" aria-hidden="true"></span><br><span>VYTISKNOUT</span></a>-->
                 <a href="javascript:AddCookieId('zapamatovane',80)" title="Uložit do oblíbených objektů" class="btn btn-default" onclick="ga('send', 'event', 'ux', 'click', 'oblibene');"><span class="glyphicon glyphicon-heart" aria-hidden="true" onclick="ga('send', 'event', 'ux', 'click', 'oblibene');"></span><br><span>OBLÍBENÉ</span></a>
@@ -144,246 +174,56 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-
-            <ul class="nav nav-tabs properties" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab" onClick="ga('send', 'event', 'ux', 'click', 'tab-1 - zakladni informace');"><b><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Základní informace</b></a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab" id="tab-tab2" onClick="ga('send', 'event', 'ux', 'click', 'tab-2 - cenik');"><b><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Ceník</b></a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab" onClick="ga('send', 'event', 'ux', 'click', 'tab-3 - vybaveni');"><b><span class="glyphicon glyphicon-lamp" aria-hidden="true"></span> Vybavení</b></a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab" onClick="ga('send', 'event', 'ux', 'click', 'tab-4 - lokalita');"><b><span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span> Aktivity v okolí</b></a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab5" aria-controls="tab5" role="tab" data-toggle="tab" id="tab-tab5"  onClick="ga('send', 'event', 'ux', 'click', 'tab-5 - objednavka');"><b><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Objednávka termínu</b></a>
-                </li>
-                <li role="presentation">
-                    <a href="#tab6" aria-controls="tab6" role="tab" data-toggle="tab" onClick="ga('send', 'event', 'ux', 'click', 'tab-6 - recenze');" ><b><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Recenze</b></a>
-                </li>
-
-                <li role="presentation" >
-                    <a href="#tab7" aria-controls="tab7" role="tab" data-toggle="tab" id="tab-tab7" onClick="ga('send', 'event', 'ux', 'click', 'tab-7 - blog');" ><b><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Články z blogu </b></a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="tab1">
-                    <p><?php echo $house['House']['text_description']; ?></p>
-                    <div class="row">
-                        <div class="col-xs-12 col-lg-6">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Obecné</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Typ ubytování:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[1]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>K dispozici:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[2]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Objekt je možno využívat:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[3]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Majitel:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[4]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Konstrukce objektu:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[5]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Pozemek u ubytování:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[6]['Property']); ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-xs-12 col-lg-6">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Důležité informace</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Nástup a ukončení pobytu:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[24]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Čas nástupu:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[25]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Bezbariérový přístup:</b></td>
-                                        <td><?php echo $this->Code->getProperty($properties[24]['Property'][2]); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Parkování:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[26]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Domácí zvíře v objektu:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[27]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Výše kauce:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[28]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Kouření uvnitř ubytování:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[29]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Povlečení na lůžkoviny:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[30]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Dřevo k dispozici:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[31]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Voda:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[32]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Komunikace s rekreanty možná v cizím jazyce:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[33]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Důležité vzdálenosti (km):</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[34]['Property']); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Další služby:</b></td>
-                                        <td><?php echo $this->Code->getProperty($properties[0]['Property'][3], false); ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!--CENÍK-->
-                <div role="tabpanel" class="tab-pane" id="tab2">
-                    <div class="row">
-                        <div class="col-xs-12 col-lg-6">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr><th colspan="3">Léto</th></tr>
-                                    <tr>
-                                        <th></th>
-                                        <th> objekt/týden (Kč)</th>
-                                        <th> kratší pobyty na min. $row[19] noci
-                                            <br /><span class="text-muted">pro min. $row[20] osob (os/noc)</span></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Hlavní sezóna</b></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Mimosezóna</b></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Poznámky</b></td>
-                                        <td colspan="2"></td>                                    
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3"><b>Doplatky na místě</b></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-xs-12 col-lg-6">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr><th colspan="3">Zima</th></tr>
-                                    <tr>
-                                        <th></th>
-                                        <th> objekt/týden (Kč)</th>
-                                        <th> kratší pobyty na min. $row[19] noci
-                                            <br /><span class="text-muted">pro min. $row[20] osob (os/noc)</span></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Hlavní sezóna</b></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Mimosezóna</b></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Vánoce 7 nocí</b></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Silvestr 7 nocí</b></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Velikonoce</b></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Poznámky</b></td>
-                                        <td colspan="2"></td>                                    
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3"><b>Doplatky na místě</b></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!--VYBAVENÍ-->
-                <div role="tabpanel" class="tab-pane" id="tab3">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p><?php echo $house['House']['text_equipment']; ?></p>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr><th colspan="2">Vybavení</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Vybavení interiéru:</b></td>
-                                        <td><?php echo $this->Code->generateList($properties[10]['Property'], false); ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+            <table class="table table-bordered table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>Sezóna</th>
+                        <th>Od</th>
+                        <th>Do</th>
+                        <th>Stav</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($house['House']['composition']) {
+                        foreach ($childrenTravelDates as $i=> $childrenTravelDate) {
+                            ?>
+                            <tr>
+                                <td><?php echo $travelDates[$i]['TravelDateType']['name']; ?></td>
+                                <td><?php echo $travelDates[$i]['TravelDate']['start']; ?></td>
+                                <td><?php echo $travelDates[$i]['TravelDate']['end']; ?></td>
+                                <td><?php
+                                    echo $this->Code->getCompositionVacancy($childrenTravelDate['HouseDate'], $travelDates[$i]['HouseDate'][0]['id']);
+//                                    foreach ($travelDate['HouseDate'] as $houseDate) {
+//                                        echo $this->Html->link($houseDate['House']['code'].'-'.$houseDate['House']['name'], ['controller' => 'houses','action' => 'view', $houseDate['House']['slug']], ['target' => 'blank']);
+//                                        echo ': ' . $houseDate['DateCondition']['name'] . '<br>';
+//                                    }
+//                                else {
+//                                    echo $travelDate['HouseDate'][0]['DateCondition']['name'];
+//                                }
+                                    ?></td>
+                            </tr>
+                            <?php
+                        }
+                    } else {
+//                        debug($travelDates);
+                        foreach ($travelDates as $travelDate) {
+                            ?>
+                            <tr>
+                                <td><?php echo $travelDate['TravelDateType']['name']; ?></td>
+                                <td><?php echo $travelDate['TravelDate']['start']; ?></td>
+                                <td><?php echo $travelDate['TravelDate']['end']; ?></td>
+                                <td><?php 
+                                echo $this->Code->orderCell($travelDate['HouseDate'][0]['date_condition_id'], $travelDate['HouseDate'][0]['id']);
+//                                echo $travelDate['HouseDate']['DateCondition']['name']; ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
-<?php
-//debug($house['HouseDate']);

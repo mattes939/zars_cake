@@ -260,4 +260,7 @@ class HouseDatesController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
+    public function admin_add_for_house($house_id = null){
+        
+    }
 }

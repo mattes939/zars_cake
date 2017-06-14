@@ -1,6 +1,8 @@
 <?php $this->request->data['Value'] = $this->request->data['Value']; ?>
 
 <?php
+//debug($this->request->data);
+
 echo $this->Html->nestedList([
     $this->Html->link('Nahoru', '#nahoru', ['class' => 'btn btn-primary']),
     $this->Html->link('Základní', '#zaklad', ['class' => 'btn btn-primary']),

@@ -204,5 +204,7 @@ class User extends AppModel {
         ));
     }
 
-    
+    public function hideOldCustomers($email = null){
+        return $this->updateAll(['active' => 0], ['email' => $email, 'group_id' => 5]);
+    }
 }

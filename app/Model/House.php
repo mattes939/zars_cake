@@ -99,19 +99,19 @@ class House extends AppModel {
             'finderQuery' => '',
             'counterQuery' => ''
         ),
-        'Order' => array(
-            'className' => 'Order',
-            'foreignKey' => 'house_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        ),
+//        'Order' => array(
+//            'className' => 'Order',
+//            'foreignKey' => 'house_id',
+//            'dependent' => false,
+//            'conditions' => '',
+//            'fields' => '',
+//            'order' => '',
+//            'limit' => '',
+//            'offset' => '',
+//            'exclusive' => '',
+//            'finderQuery' => '',
+//            'counterQuery' => ''
+//        ),
         'Review' => array(
             'className' => 'Review',
             'foreignKey' => 'house_id',
