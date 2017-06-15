@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',        
+        language: 'cs',
+        autoclose: true,
+        todayHighlight: true,
+        weekStart: 1
+    });
 //    $('table.dt').DataTable({
 //        "language": {
 //            "sEmptyTable": "Tabulka neobsahuje žádná data",
@@ -56,10 +63,10 @@ $(document).ready(function () {
     var state_province = $('#HouseArea option, #HouseArea optgroup');
     state_province.hide();
     $("#HouseArea optgroup[label='" + $('#HouseCountry').find(':selected').val() + "']")
-                .children()
-                .andSelf()
-                .show();
-    
+            .children()
+            .andSelf()
+            .show();
+
 
     $('#HouseCountry').change(function () {
         console.log($(this).find(':selected').val());
@@ -70,4 +77,6 @@ $(document).ready(function () {
                 .show();
     });
     $('select').selectpicker({hideDisabled: false});
+
+
 });

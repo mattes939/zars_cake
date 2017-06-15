@@ -105,7 +105,7 @@ class HouseDate extends AppModel {
 
         if (!empty($children)) {
             $ids = Hash::extract($children, '{n}.House.id');
-            debug($this->updateAll(['HouseDate.date_condition_id' => $condition], ['HouseDate.house_id' => $ids, 'HouseDate.travel_date_id' => $houseDate['HouseDate']['travel_date_id']]));
+            $this->updateAll(['HouseDate.date_condition_id' => $condition], ['HouseDate.house_id' => $ids, 'HouseDate.travel_date_id' => $houseDate['HouseDate']['travel_date_id']]);
         }
 
         return $this->updateAll(['HouseDate.date_condition_id' => $condition], ['HouseDate.id' => $id]);

@@ -307,7 +307,9 @@ class OrdersController extends AppController {
                 'conditions' => ['Order.id' => $id],
                 'contain' => [
                     'HouseDate' => [
-                        'House',
+                        'House' => [
+                            'User'
+                        ],
                         'TravelDate'
                     ],
                     'User' => [
@@ -328,6 +330,9 @@ class OrdersController extends AppController {
         $travelDates = $this->Order->HouseDate->TravelDate->find('list');
         $countries = $this->Order->User->Address->Country->find('list');
         $depositTypes = $this->Order->Deposit->DepositType->find('list');
+
+
+
         $this->set(compact('companies', 'users', 'houses', 'travelDates', 'countries', 'depositTypes'));
     }
 
@@ -344,6 +349,9 @@ class OrdersController extends AppController {
             throw new NotFoundException(__('Invalid order'));
         }
         $this->request->allowMethod('post', 'delete');
+//        debug($this->Order->field('house_date_id'));
+        $this->Order->HouseDate->setCondition($this->Order->field('house_date_id'), 1);
+//        die;
         if ($this->Order->delete()) {
             $this->Flash->success(__('The order has been deleted.'));
         } else {
