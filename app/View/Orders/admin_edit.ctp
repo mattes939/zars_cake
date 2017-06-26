@@ -126,7 +126,7 @@
         <fieldset>
             <legend>Ceny</legend>
             <div class="row">
-                <div class="col-xs-4 col-md-2"><?php echo $this->Form->input('price', ['label' => 'Standartní cena']); ?></div>
+                <div class="col-xs-4 col-md-2"><?php echo $this->Form->input('price', ['label' => 'Katalogová cena']); ?></div>
                 <div class="col-xs-4 col-md-2"><?php echo $this->Form->input('discount', ['label' => 'Sleva']); ?></div>
                 <div class="col-xs-4 col-md-2"><?php echo $this->Form->input('final_price', ['label' => 'Výsledná cena']); ?></div>
 
@@ -192,7 +192,7 @@
             <?php
             echo $this->Html->link('Náhled/tisk výzvy k platbě - zákazník', ['controller' => 'orders', 'action' => 'confirmation', $id, 'platba'], ['escape' => false, 'class' => 'btn btn-primary', 'target' => '_blank']);
             echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Email výzvy k platbě - zákazník', ['controller' => 'orders', 'action' => 'confirmation', $id, 'platba-email'], ['escape' => false, 'class' => 'btn btn-primary', 'target' => 'blank']);
-            echo $this->Html->link('Náhled/tisk výzvy k platbě - ZARS', ['controller' => 'orders', 'action' => 'confirmation', $id, 'zars'], ['escape' => false, 'class' => 'btn btn-primary', 'target' => '_blank']);
+            echo $this->Html->link('Náhled/tisk faktury - ZARS pro účetní', ['controller' => 'orders', 'action' => 'confirmation', $id, 'zars'], ['escape' => false, 'class' => 'btn btn-default', 'target' => '_blank']);
             if (!empty($this->request->data['Order']['customer_confirmation_sent'])) {
                 echo '<p class="">Výzva k platbě odeslána ' . $this->Time->format($this->request->data['Order']['customer_confirmation_sent'], '%e. %-m. %Y') . '</p>';
             }

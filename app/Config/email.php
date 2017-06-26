@@ -45,7 +45,7 @@ class EmailConfig {
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('info-zars@email.cz' => 'Cestovní kancelář ZARS'),
+		'from' => array('info-zars@email.cz' => 'ZARS'),
 		'host' => 'smtp.teranet.cz',
 		'port' => 25,
 		'timeout' => 30,
