@@ -42,6 +42,27 @@ class Deposit extends AppModel {
         )
     );
 
+    /**
+     * hasMany associations
+     *
+     * @var array
+     */
+    public $hasMany = [
+        'Reminder' => array(
+            'className' => 'Reminder',
+            'foreignKey' => 'deposit_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ),
+    ];
+
     public function initialize($deposit, $confirmed, $startDate, $billingPrice) {
         $diff = $startDate->diff($confirmed, false)->days;
 

@@ -18,10 +18,10 @@
                 'data-language' => 'cs',
 //                        'label' => 'Datum ukončení'
             ]);
-            echo $this->Form->input('User.Address.street');
-            echo $this->Form->input('User.Address.city');
-            echo $this->Form->input('User.Address.psc');
-            echo $this->Form->input('User.Address.country_id');
+            echo $this->Form->input('User.Address.0.street');
+            echo $this->Form->input('User.Address.0.city');
+            echo $this->Form->input('User.Address.0.psc');
+            echo $this->Form->input('User.Address.0.country_id');
             echo $this->Form->input('User.email');
             echo $this->Form->input('User.phone1');
 

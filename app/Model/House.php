@@ -32,6 +32,8 @@ class House extends AppModel {
      * @var string
      */
     public $displayField = 'name';
+    
+    public $virtualFields = ['full_name' => 'CONCAT(House.name, " - ", House.code)'];
 
 
     // The Associations below have been created with all possible keys, those that are not needed can be removed

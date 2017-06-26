@@ -77,19 +77,6 @@ class Order extends AppModel {
      * @var array
      */
     public $hasMany = array(
-        'Reminder' => array(
-            'className' => 'Reminder',
-            'foreignKey' => 'order_id',
-            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        ),
         'Deposit' => array(
             'className' => 'Deposit',
             'foreignKey' => 'order_id',
@@ -125,7 +112,7 @@ class Order extends AppModel {
 //        $order['Deposit'][3]['order_id'] = $this->id;
 //        debug($order);
 //        die;
-        return $this->saveAll($order);
+        return $this->saveAll($order, ['deep' => true]);
     }
 
     public function cancel($id) {
@@ -178,12 +165,14 @@ class Order extends AppModel {
 
 //         debug($order);
         $order['Deposit'] = $this->Deposit->initialize($order['Deposit'], $confirmed, $startDate, $order['Order']['billing_price']);
+        $ownerDeadline = new DateTime($order['Order']['start_day']);
+        $order['Order']['owner_deadline'] = $ownerDeadline->modify('-36 days')->format('Y-m-d');
 
 //        $this->generateCode($order['Order']['id'], $order['Order']['created'], $order['Order']['company_id']);
 //       debug($order);
 //       
 //        die;
-        return $this->saveAll($order);
+        return $this->saveAll($order, ['deep' => true]);
     }
 
     public function generateCode($id, $created, $company) {
@@ -215,6 +204,72 @@ class Order extends AppModel {
         }
 
         return true;
+    }
+
+    public function overdueOrders() {
+        $orders = $this->find('all', [
+            'conditions' => [
+                'order_status_id' => 1,
+                'NOT' => [
+                    'confirmed' => null
+                ]
+            ],
+            'order' => [
+                'confirmed' => 'ASC'
+            ],
+            'contain' => [
+                'HouseDate' => [
+                    'TravelDate' => ['fields' => ['name']],
+                    'House' => [
+                        'fields' => ['full_name']
+                    ]
+                ],
+                'User' => [
+                    'fields' => ['full_name']
+                ],
+                'Deposit' => [
+                    'DepositType',
+                    'Reminder' => [
+                        'ReminderType'
+                    ],
+                ],
+            ]
+        ]);
+        $processedOrders = [];
+        foreach ($orders as $o => $order) {
+            $depositOverdue = false;
+            foreach ($order['Deposit'] as $d => $deposit) {
+                if (!empty($deposit['maturity']) && empty($deposit['pay_date'])) {
+                    $maturity = new DateTime($deposit['maturity'] . '23:59:59');
+//                    $diff = $maturity->diff(new DateTime());
+                    if ($maturity < new DateTime()) {
+                        $order['Deposit'][$d]['overdue'] = $maturity->diff(new DateTime())->d;
+                        $depositOverdue = true;
+                    }
+//                    debug($diff);
+//                    if ($diff->format('%R%a') > 0) {
+//                        $order['Deposit'][$d]['overdue'] =  $diff->d;
+//                        $depositOverdue = true;
+//                    }
+                }
+            }
+//            debug($depositOverdue);
+            if ($depositOverdue) {
+                $processedOrders['depositOverdue'][] = $order;
+//                $depositOverdue = false;
+            }
+
+            $deadline = new DateTime($order['Order']['owner_deadline'] . '23:59:59');
+            if ($deadline < new DateTime()) {
+                $order['Order']['owner_overdue'] = $deadline->diff(new DateTime())->d;
+                $processedOrders['ownerOverdue'][] = $order;
+            }
+        }
+//        die;
+//        $processedOrders['all'] = $orders;
+        return $processedOrders;
+//        debug($processedOrders);
+//        die;
     }
 
 //public function afterDelete() {

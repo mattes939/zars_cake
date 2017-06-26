@@ -41,10 +41,11 @@ class AppController extends Controller {
         ),
         'Session',
         'Tools.Common',
+        'TinymceElfinder.TinymceElfinder',
 //        'DebugKit.Toolbar',
 //        'Security'
     );
-    public $helpers = array('Tools.Common', 'Tools.Tree');
+    public $helpers = array('Tools.Common', 'Tools.Tree', 'TinymceElfinder.TinymceElfinder');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -83,7 +84,8 @@ class AppController extends Controller {
             'search',
             'tree',
             'login',
-            'add'
+            'add',
+            'finished'
         ));
     }
 
@@ -97,6 +99,14 @@ class AppController extends Controller {
 
     public function canUploadMedias($model, $id) {
         return true;
+    }
+
+    public function elfinder() {
+        $this->TinymceElfinder->elfinder();
+    }
+
+    public function connector() {
+        $this->TinymceElfinder->connector();
     }
 
 }

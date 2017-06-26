@@ -496,13 +496,13 @@ class HousesController extends AppController {
                 'conditions' => array('House.' . $this->House->primaryKey => $id),
                 'contain' => [
 //                    'User' => ['fields' => ['id', 'username']],
-                    'Region' => ['fields' => ['id', 'name']],
-                    'District' => ['fields' => ['id', 'name']],
+                    'Region' => ['fields' => ['id', 'Region.name']],
+                    'District' => ['fields' => ['id', 'District.name']],
                     'Area',
                     'Value' => [
                         'order' => ['Value.property_id' => 'ASC'],
                         'Property' => [
-                            'fields' => ['id', 'name'],
+                            'fields' => ['id', 'Property.name'],
                             'order' => ['property_type_id' => 'ASC'],
                             'PropertyType'
                         ]

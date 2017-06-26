@@ -20,6 +20,10 @@ class User extends AppModel {
      * @var string
      */
     public $displayField = 'username';
+    public $virtualFields = [
+        'full_name' => 'CONCAT(first_name, " ", last_name)',
+        'account' => 'CONCAT(User.bank_account, "/", User.bank_code)'
+    ];
 
 
     // The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -204,7 +208,8 @@ class User extends AppModel {
         ));
     }
 
-    public function hideOldCustomers($email = null){
+    public function hideOldCustomers($email = null) {
         return $this->updateAll(['active' => 0], ['email' => $email, 'group_id' => 5]);
     }
+
 }

@@ -1,6 +1,13 @@
 $(document).ready(function () {
+    //    $('table.datatable').DataTable();
+    $('.datatable').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Czech.json"
+        }
+    });
+
     $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd',        
+        format: 'yyyy-mm-dd',
         language: 'cs',
         autoclose: true,
         todayHighlight: true,

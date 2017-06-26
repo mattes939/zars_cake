@@ -1,14 +1,20 @@
 <div class="reminders form">
-<?php echo $this->Form->create('Reminder'); ?>
+<?php echo $this->Form->create('Reminder', [
+    'inputDefaults' => [
+        'div' => ['class' => 'form-group'],
+        'class' => 'form-control'
+    ]
+]); ?>
 	<fieldset>
 		<legend><?php echo __('Admin Add Reminder'); ?></legend>
 	<?php
-		echo $this->Form->input('order_id');
-		echo $this->Form->input('reminder_type_id');
-		echo $this->Form->input('date');
+		
+		echo $this->Form->input('reminder_type_id', ['label' => 'Typ upomínky']);
+                echo $this->Form->input('subject', ['value' => $text['subject']]);
+		echo $this->Form->input('text', ['value' => $text['text'], 'rows' => 10]);
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Odeslat a uložit email')); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
