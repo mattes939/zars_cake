@@ -1,3 +1,4 @@
+<?php $today = new DateTime(); ?>
 <div class="row">
     <div class="col-xs-12">
         <ul class="nav nav-tabs">
@@ -25,7 +26,7 @@ if (!empty($overdueOrders['depositOverdue'])) {
                         <th><?php echo 'Kontrola'; ?></th>
                         <th><?php echo 'Zpoždění'; ?></th>
 
-        <!--<th class="actions">Upomínky</th>-->
+            <!--<th class="actions">Upomínky</th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +42,11 @@ if (!empty($overdueOrders['depositOverdue'])) {
                                 echo $this->Time->format($order['Order']['start_day'], '%e. %m. %y') . ' - ' . $this->Time->format($order['Order']['end_day'], '%e. %m. %y');
                                 ?>
                             </td>
-                            <td></td>
+                            <td><?php
+                                $startDay = new DateTime($order['Order']['start_day']);
+
+                                echo $today->diff($startDay)->format('%R%a');
+                                ?></td>
                             <td><?php
                                 foreach ($order['Deposit'] as $deposit) {
                                     if (!empty($deposit['overdue'])) {
@@ -64,7 +69,7 @@ if (!empty($overdueOrders['depositOverdue'])) {
                                             }
                                             echo $this->Html->link('Zaslat upomínku', ['controller' => 'reminders', 'action' => 'add', $deposit['id']], ['target' => '_blank', 'class' => 'btn btn-xs btn-primary']);
                                             ?></span>
-                                            <?php
+                                        <?php
                                     }
                                 }
                                 ?></td>
@@ -93,8 +98,9 @@ if (!empty($overdueOrders['ownerOverdue'])) {
                         <th><?php echo 'Zákazník'; ?></th>
                         <th><?php echo 'Objekt'; ?></th>
                         <th><?php echo 'Termín'; ?></th>
-                        <th><?php echo 'Zpoždění'; ?></th>
                         <th><?php echo 'Do nástupu'; ?></th>
+                        <th><?php echo 'Zpoždění'; ?></th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -111,9 +117,14 @@ if (!empty($overdueOrders['ownerOverdue'])) {
                                 ?>
                             </td>
                             <td><?php
-                        echo $order['Order']['owner_overdue'];
+                                $startDay = new DateTime($order['Order']['start_day']);
+
+                                echo $today->diff($startDay)->format('%R%a');
                                 ?></td>
-                            <td></td>
+                            <td><?php
+                                echo $order['Order']['owner_overdue'];
+                                ?></td>
+
                         </tr>
                         <?php
                     }

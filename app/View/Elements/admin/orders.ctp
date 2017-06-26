@@ -15,7 +15,7 @@
                     <th><?php echo $this->Paginator->sort('billing_price', 'Cena'); ?></th>
                     <th><?php echo $this->Paginator->sort('modified', 'Naposledy upraveno'); ?></th>
                     <th class="actions"></th>
-                    <th>Kontroly</th>
+                    <!--<th>Kontroly</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@
                             <?php echo $this->Html->link(__('Otevřít'), array('action' => 'edit', $order['Order']['id']), ['class' => 'btn btn-xs btn-primary', 'escape' => false]); ?>
                             <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $order['Order']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $order['Order']['id']))); ?>
                         </td>
-                        <td><?php
+<!--                        <td><?php
                             foreach ($order['Deposit'] as $deposit) {
                                 if (!empty($deposit['maturity']) && empty($deposit['pay_date'])) {
                                     $maturity = new DateTime($deposit['maturity']);
@@ -76,7 +76,7 @@
                             if($deadline < new DateTime()){
                                 echo 'Majiteli <b>'.$deadline->diff(new DateTime())->format('%a').'</b>';
                             }
-                            ?></td>
+                            ?></td>-->
                     </tr>
                 <?php endforeach; ?>
             </tbody>

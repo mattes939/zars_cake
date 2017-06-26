@@ -14,8 +14,8 @@
                 <?php echo empty($this->request->data['Order']['code']) ? '<small><i>(nepotvrzená)</i></small>' : 'č. <samp>', $this->request->data['Order']['code'] . '</samp>'; ?>
                 <span class="pull-right">
                 <?php 
-        echo $this->Html->link('Stornovat', ['controller' => 'orders', 'action' => 'changeStatus', 2], ['class' => 'btn btn-danger btn-sm']) . '&nbsp';
-        echo $this->Html->link('Archivovat', ['controller' => 'orders', 'action' => 'changeStatus', 3], ['class' => 'btn btn-warning btn-sm']) . '&nbsp';
+        echo $this->Html->link('Stornovat', ['controller' => 'orders', 'action' => 'changeStatus', $id, 2], ['class' => 'btn btn-danger btn-sm']) . '&nbsp';
+        echo $this->Html->link('Archivovat', ['controller' => 'orders', 'action' => 'changeStatus', $id, 3], ['class' => 'btn btn-warning btn-sm']) . '&nbsp';
         ?></span>
             </legend>
             <?php

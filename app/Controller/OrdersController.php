@@ -150,7 +150,7 @@ class OrdersController extends AppController {
                         ->subject('ZARS - nová objednávka');
                 $email->send('Nová objednávka na portálu zars');
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('controller' => 'houses', 'action' => 'finished', $houseDate['House']['slug']));
+                return $this->redirect(array('controller' => 'orders', 'action' => 'finished', $houseDate['House']['slug']));
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
@@ -493,7 +493,7 @@ class OrdersController extends AppController {
             throw new NotFoundException(__('Invalid order'));
         }
         
-        if($this->Order->updateAll(['Order.status' => $status], ['Order.id' => $id])){
+        if($this->Order->updateAll(['Order.order_status_id' => $status], ['Order.id' => $id])){
             return $this->redirect($this->referer());
         }
     }
