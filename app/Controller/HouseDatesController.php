@@ -17,7 +17,7 @@ class HouseDatesController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
 
     /**
      * index method
@@ -91,7 +91,7 @@ class HouseDatesController extends AppController {
         if (!$this->HouseDate->exists($id)) {
             throw new NotFoundException(__('Invalid house date'));
         }
-        $options = array('conditions' => array('HouseDate.' . $this->HouseDate->primaryKey => $id));
+        $options = ['conditions' => ['HouseDate.' . $this->HouseDate->primaryKey => $id]];
         $this->set('houseDate', $this->HouseDate->find('first', $options));
     }
 
@@ -105,7 +105,7 @@ class HouseDatesController extends AppController {
             $this->HouseDate->create();
             if ($this->HouseDate->save($this->request->data)) {
                 $this->Flash->success(__('The house date has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house date could not be saved. Please, try again.'));
             }
@@ -127,15 +127,15 @@ class HouseDatesController extends AppController {
         if (!$this->HouseDate->exists($id)) {
             throw new NotFoundException(__('Invalid house date'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->HouseDate->save($this->request->data)) {
                 $this->Flash->success(__('The house date has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house date could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('HouseDate.' . $this->HouseDate->primaryKey => $id));
+            $options = ['conditions' => ['HouseDate.' . $this->HouseDate->primaryKey => $id]];
             $this->request->data = $this->HouseDate->find('first', $options);
         }
         $houses = $this->HouseDate->House->find('list');
@@ -162,7 +162,7 @@ class HouseDatesController extends AppController {
         } else {
             $this->Flash->error(__('The house date could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     /**
@@ -186,7 +186,7 @@ class HouseDatesController extends AppController {
         if (!$this->HouseDate->exists($id)) {
             throw new NotFoundException(__('Invalid house date'));
         }
-        $options = array('conditions' => array('HouseDate.' . $this->HouseDate->primaryKey => $id));
+        $options = ['conditions' => ['HouseDate.' . $this->HouseDate->primaryKey => $id]];
         $this->set('houseDate', $this->HouseDate->find('first', $options));
     }
 
@@ -200,7 +200,7 @@ class HouseDatesController extends AppController {
             $this->HouseDate->create();
             if ($this->HouseDate->save($this->request->data)) {
                 $this->Flash->success(__('The house date has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house date could not be saved. Please, try again.'));
             }
@@ -222,15 +222,15 @@ class HouseDatesController extends AppController {
         if (!$this->HouseDate->exists($id)) {
             throw new NotFoundException(__('Invalid house date'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->HouseDate->save($this->request->data)) {
                 $this->Flash->success(__('The house date has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house date could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('HouseDate.' . $this->HouseDate->primaryKey => $id));
+            $options = ['conditions' => ['HouseDate.' . $this->HouseDate->primaryKey => $id]];
             $this->request->data = $this->HouseDate->find('first', $options);
         }
         $houses = $this->HouseDate->House->find('list');
@@ -257,7 +257,7 @@ class HouseDatesController extends AppController {
         } else {
             $this->Flash->error(__('The house date could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function admin_add_for_house($house_id = null){

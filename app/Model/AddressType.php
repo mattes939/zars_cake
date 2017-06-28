@@ -22,8 +22,8 @@ class AddressType extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'Address' => array(
+	public $hasMany = [
+		'Address' => [
 			'className' => 'Address',
 			'foreignKey' => 'address_type_id',
 			'dependent' => false,
@@ -35,7 +35,7 @@ class AddressType extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

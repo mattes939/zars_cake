@@ -15,7 +15,7 @@ class ReviewsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class ReviewsController extends AppController {
 		if (!$this->Review->exists($id)) {
 			throw new NotFoundException(__('Invalid review'));
 		}
-		$options = array('conditions' => array('Review.' . $this->Review->primaryKey => $id));
+		$options = ['conditions' => ['Review.' . $this->Review->primaryKey => $id]];
 		$this->set('review', $this->Review->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class ReviewsController extends AppController {
 			$this->Review->create();
 			if ($this->Review->save($this->request->data)) {
 				$this->Flash->success(__('The review has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The review could not be saved. Please, try again.'));
 			}
@@ -73,15 +73,15 @@ class ReviewsController extends AppController {
 		if (!$this->Review->exists($id)) {
 			throw new NotFoundException(__('Invalid review'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Review->save($this->request->data)) {
 				$this->Flash->success(__('The review has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The review could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Review.' . $this->Review->primaryKey => $id));
+			$options = ['conditions' => ['Review.' . $this->Review->primaryKey => $id]];
 			$this->request->data = $this->Review->find('first', $options);
 		}
 		$houses = $this->Review->House->find('list');
@@ -107,7 +107,7 @@ class ReviewsController extends AppController {
 		} else {
 			$this->Flash->error(__('The review could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -131,7 +131,7 @@ class ReviewsController extends AppController {
 		if (!$this->Review->exists($id)) {
 			throw new NotFoundException(__('Invalid review'));
 		}
-		$options = array('conditions' => array('Review.' . $this->Review->primaryKey => $id));
+		$options = ['conditions' => ['Review.' . $this->Review->primaryKey => $id]];
 		$this->set('review', $this->Review->find('first', $options));
 	}
 
@@ -145,7 +145,7 @@ class ReviewsController extends AppController {
 			$this->Review->create();
 			if ($this->Review->save($this->request->data)) {
 				$this->Flash->success(__('The review has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The review could not be saved. Please, try again.'));
 			}
@@ -166,15 +166,15 @@ class ReviewsController extends AppController {
 		if (!$this->Review->exists($id)) {
 			throw new NotFoundException(__('Invalid review'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Review->save($this->request->data)) {
 				$this->Flash->success(__('The review has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The review could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Review.' . $this->Review->primaryKey => $id));
+			$options = ['conditions' => ['Review.' . $this->Review->primaryKey => $id]];
 			$this->request->data = $this->Review->find('first', $options);
 		}
 		$houses = $this->Review->House->find('list');
@@ -200,6 +200,6 @@ class ReviewsController extends AppController {
 		} else {
 			$this->Flash->error(__('The review could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

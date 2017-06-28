@@ -16,9 +16,9 @@ if(!empty($order['Order']['children'])){
 ?>
 <br><b>termín:</b> <?php echo $this->Time->format($order['Order']['start_day'], '%e. %-m. %Y') . ' - ' . $this->Time->format($order['Order']['end_day'], '%e. %-m. %Y');?><br><br>
 <?php
-if(!empty($order['Order']['owner_deposit'])){
-    echo '<b>záloha majiteli:</b> '.$order['Order']['owner_deposit'].' Kč, <b>zaplacena dne:</b> '.$order['Order']['owner_deposit_date'];
-}
+//if(!empty($order['Order']['owner_deposit'])){
+//    echo '<b>záloha majiteli:</b> '.$order['Order']['owner_deposit'].' Kč, <b>zaplacena dne:</b> '.$order['Order']['owner_deposit_date'];
+//}
 if(!empty($order['Order']['owner_payment'])){
     echo '<b>platba majiteli:</b> '.$order['Order']['owner_payment'].' Kč, <b>zaplacena dne:</b> '.$order['Order']['owner_payment_date'];
 }

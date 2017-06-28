@@ -18,7 +18,7 @@ class RemindersController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
 
     /**
      * admin_index method
@@ -41,11 +41,11 @@ class RemindersController extends AppController {
         if (!$this->Reminder->exists($id)) {
             throw new NotFoundException(__('Invalid reminder'));
         }
-        $options = array('conditions' => array('Reminder.' . $this->Reminder->primaryKey => $id),
+        $options = ['conditions' => ['Reminder.' . $this->Reminder->primaryKey => $id],
             'contain' => [
                 'ReminderType'
             ]
-            );
+            ];
         $this->set('reminder', $this->Reminder->find('first', $options));
     }
 
@@ -76,7 +76,7 @@ class RemindersController extends AppController {
                         ->subject($this->request->data['Reminder']['subject'] . ' ('. $reminderTypes[$this->request->data['Reminder']['reminder_type_id']].')');
                 $email->send();
                 $this->Flash->success(__('The reminder has been saved.'));
-                return $this->redirect(array('controller' => 'orders','action' => 'index'));
+                return $this->redirect(['controller' => 'orders','action' => 'index']);
             } else {
                 $this->Flash->error(__('The reminder could not be saved. Please, try again.'));
             }
@@ -97,15 +97,15 @@ class RemindersController extends AppController {
         if (!$this->Reminder->exists($id)) {
             throw new NotFoundException(__('Invalid reminder'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->Reminder->save($this->request->data)) {
                 $this->Flash->success(__('The reminder has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The reminder could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('Reminder.' . $this->Reminder->primaryKey => $id));
+            $options = ['conditions' => ['Reminder.' . $this->Reminder->primaryKey => $id]];
             $this->request->data = $this->Reminder->find('first', $options);
         }
         $reminderTypes = $this->Reminder->ReminderType->find('list');
@@ -131,7 +131,7 @@ class RemindersController extends AppController {
         } else {
             $this->Flash->error(__('The reminder could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
 }

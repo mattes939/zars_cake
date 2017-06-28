@@ -32,10 +32,25 @@
             echo $this->Form->input('comment', ['type' => 'textarea']);
             echo $this->Form->input('animals');
             echo $this->Form->input('animals_details');
+            echo $this->Form->input('employer_contribution', ['label' => 'Požadavek FKSP', 'class' => '']);
+?>
+             <fieldset id="fksp" class="">
+            <legend>FKSP</legend>
+            <?php
+            echo $this->Form->input('fksp_name', ['label' => 'Název firmy']);
+            echo $this->Form->input('fksp_address', ['label' => 'Adresa firmy']);
+            ?>
+            <div class="row">
+                <div class="col-xs-6"><?php echo $this->Form->input('fksp_ico', ['label' => 'IČO firmy']); ?></div>
+                <div class="col-xs-6"><?php echo $this->Form->input('fksp_dic', ['label' => 'DIČ firmy']); ?></div>
+            </div>
+            <?php
+            echo $this->Form->input('fksp_price', ['label' => 'Výše hrazení']);
+            echo $this->Form->input('fksp_text', ['label' => 'Text do faktury']);
+            ?>
 
-//            echo $this->Form->input('Deposit.0.deposit_type_id');
-//            echo $this->Form->input('Deposit.1.deposit_type_id');
-//            echo $this->Form->input('Deposit.2.deposit_type_id');
+        </fieldset>
+            <?php
 
             echo $this->Form->end(__('Submit'));
             ?>

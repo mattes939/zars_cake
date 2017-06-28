@@ -18,23 +18,23 @@
                 <tr>
                     <td><?php echo h($house['House']['code']); ?></td>
                     <td><?php 
-                    echo $this->Html->link(h($house['House']['name']), array('action' => 'edit', $house['House']['id']));
+                    echo $this->Html->link(h($house['House']['name']), ['action' => 'edit', $house['House']['id']]);
                     
                     ?></td>
                     <td>
-                        <?php echo $this->Html->link($house['User']['username'], array('controller' => 'users', 'action' => 'view', $house['User']['id'])); ?>
+                        <?php echo $this->Html->link($house['User']['username'], ['controller' => 'users', 'action' => 'view', $house['User']['id']]); ?>
                     </td>
                     <td>
-                        <?php echo $this->Html->link($house['Region']['name'], array('controller' => 'regions', 'action' => 'view', $house['Region']['id'])); ?>
+                        <?php echo $this->Html->link($house['Region']['name'], ['controller' => 'regions', 'action' => 'view', $house['Region']['id']]); ?>
                     </td>
                     <td>
-                        <?php echo $this->Html->link($house['District']['name'], array('controller' => 'districts', 'action' => 'view', $house['District']['id'])); ?>
+                        <?php echo $this->Html->link($house['District']['name'], ['controller' => 'districts', 'action' => 'view', $house['District']['id']]); ?>
                     </td>
                     <td>
                             <?php echo $house['House']['modified'];?>
                     </td>
 <!--                    <td class="actions">                      
-                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $house['House']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $house['House']['id']))); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $house['House']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $house['House']['id'])]); ?>
                     </td>-->
                 </tr>
             <?php endforeach; ?>

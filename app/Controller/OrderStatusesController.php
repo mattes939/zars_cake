@@ -15,7 +15,7 @@ class OrderStatusesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * admin_index method
@@ -38,7 +38,7 @@ class OrderStatusesController extends AppController {
 		if (!$this->OrderStatus->exists($id)) {
 			throw new NotFoundException(__('Invalid order status'));
 		}
-		$options = array('conditions' => array('OrderStatus.' . $this->OrderStatus->primaryKey => $id));
+		$options = ['conditions' => ['OrderStatus.' . $this->OrderStatus->primaryKey => $id]];
 		$this->set('orderStatus', $this->OrderStatus->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class OrderStatusesController extends AppController {
 			$this->OrderStatus->create();
 			if ($this->OrderStatus->save($this->request->data)) {
 				$this->Flash->success(__('The order status has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The order status could not be saved. Please, try again.'));
 			}
@@ -70,15 +70,15 @@ class OrderStatusesController extends AppController {
 		if (!$this->OrderStatus->exists($id)) {
 			throw new NotFoundException(__('Invalid order status'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->OrderStatus->save($this->request->data)) {
 				$this->Flash->success(__('The order status has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The order status could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('OrderStatus.' . $this->OrderStatus->primaryKey => $id));
+			$options = ['conditions' => ['OrderStatus.' . $this->OrderStatus->primaryKey => $id]];
 			$this->request->data = $this->OrderStatus->find('first', $options);
 		}
 	}
@@ -101,6 +101,6 @@ class OrderStatusesController extends AppController {
 		} else {
 			$this->Flash->error(__('The order status could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

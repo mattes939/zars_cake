@@ -22,13 +22,13 @@ class UnavailableDay extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'HouseDate' => array(
+	public $belongsTo = [
+		'HouseDate' => [
 			'className' => 'HouseDate',
 			'foreignKey' => 'house_date_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 }

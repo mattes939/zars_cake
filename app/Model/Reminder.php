@@ -17,21 +17,21 @@ class Reminder extends AppModel {
      *
      * @var array
      */
-    public $belongsTo = array(
-        'Deposit' => array(
+    public $belongsTo = [
+        'Deposit' => [
             'className' => 'Deposit',
             'foreignKey' => 'deposit_id',
             'conditions' => '',
             'fields' => '',
-        ),
-        'ReminderType' => array(
+        ],
+        'ReminderType' => [
             'className' => 'ReminderType',
             'foreignKey' => 'reminder_type_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     public function sendReminder($orderId, $reminderTypeId) {
         $order = $this->Order->find('first', [

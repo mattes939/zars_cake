@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('Property Type'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($property['PropertyType']['name'], array('controller' => 'property_types', 'action' => 'view', $property['PropertyType']['id'])); ?>
+			<?php echo $this->Html->link($property['PropertyType']['name'], ['controller' => 'property_types', 'action' => 'view', $property['PropertyType']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Important'); ?></dt>
@@ -46,16 +46,16 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Property'), array('action' => 'edit', $property['Property']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Property'), array('action' => 'delete', $property['Property']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $property['Property']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Properties'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Property'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Property Types'), array('controller' => 'property_types', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Property Type'), array('controller' => 'property_types', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Selections'), array('controller' => 'selections', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Selection'), array('controller' => 'selections', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Values'), array('controller' => 'values', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Value'), array('controller' => 'values', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Property'), ['action' => 'edit', $property['Property']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Property'), ['action' => 'delete', $property['Property']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $property['Property']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Properties'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Property'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Property Types'), ['controller' => 'property_types', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Property Type'), ['controller' => 'property_types', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Selections'), ['controller' => 'selections', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Selection'), ['controller' => 'selections', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Values'), ['controller' => 'values', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Value'), ['controller' => 'values', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -90,9 +90,9 @@
 			<td><?php echo $selection['created']; ?></td>
 			<td><?php echo $selection['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'selections', 'action' => 'view', $selection['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'selections', 'action' => 'edit', $selection['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'selections', 'action' => 'delete', $selection['id']), array('confirm' => __('Are you sure you want to delete # %s?', $selection['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'selections', 'action' => 'view', $selection['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'selections', 'action' => 'edit', $selection['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'selections', 'action' => 'delete', $selection['id']], ['confirm' => __('Are you sure you want to delete # %s?', $selection['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -101,7 +101,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Selection'), array('controller' => 'selections', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Selection'), ['controller' => 'selections', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -129,9 +129,9 @@
 			<td><?php echo $value['created']; ?></td>
 			<td><?php echo $value['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'values', 'action' => 'view', $value['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'values', 'action' => 'edit', $value['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'values', 'action' => 'delete', $value['id']), array('confirm' => __('Are you sure you want to delete # %s?', $value['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'values', 'action' => 'view', $value['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'values', 'action' => 'edit', $value['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'values', 'action' => 'delete', $value['id']], ['confirm' => __('Are you sure you want to delete # %s?', $value['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -140,7 +140,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Value'), array('controller' => 'values', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Value'), ['controller' => 'values', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

@@ -17,7 +17,7 @@ class UsersController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
 
     /**
      * index method
@@ -41,7 +41,7 @@ class UsersController extends AppController {
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('Invalid user'));
         }
-        $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+        $options = ['conditions' => ['User.' . $this->User->primaryKey => $id]];
         $this->set('user', $this->User->find('first', $options));
     }
 
@@ -54,11 +54,11 @@ class UsersController extends AppController {
 //        $this->autoRender = false;
         ini_set('max_execution_time', 0);
         if ($this->request->is('post')) {
-            $this->User->Behaviors->attach('Tools.Passwordable', array('require' => false, 'confirm' => false));
+            $this->User->Behaviors->attach('Tools.Passwordable', ['require' => false, 'confirm' => false]);
             $this->User->create();
             if ($this->User->save($this->data)) {
                 $this->Common->flashMessage(__('Uživatel vytvořen.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Common->flashMessage(__('Chyba při ukládání uživatele.'));
                 unset($this->request->data['User']['pwd']);
@@ -190,15 +190,15 @@ class UsersController extends AppController {
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('Invalid user'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->User->save($this->request->data)) {
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+            $options = ['conditions' => ['User.' . $this->User->primaryKey => $id]];
             $this->request->data = $this->User->find('first', $options);
         }
         $groups = $this->User->Group->find('list');
@@ -223,7 +223,7 @@ class UsersController extends AppController {
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     /**
@@ -247,7 +247,7 @@ class UsersController extends AppController {
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('Invalid user'));
         }
-        $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+        $options = ['conditions' => ['User.' . $this->User->primaryKey => $id]];
         $this->set('user', $this->User->find('first', $options));
     }
 
@@ -258,20 +258,20 @@ class UsersController extends AppController {
      */
     public function admin_add() {
         if ($this->request->is('post') || $this->request->is('put')) {
-            $this->User->Behaviors->attach('Tools.Passwordable', array('require' => false, 'confirm' => false));
+            $this->User->Behaviors->attach('Tools.Passwordable', ['require' => false, 'confirm' => false]);
             $this->User->create();
             if ($this->User->save($this->data)) {
                 $this->Common->flashMessage(__('Uživatel vytvořen.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Common->flashMessage(__('Chyba při ukládání uživatele.'));
                 unset($this->request->data['User']['pwd']);
                 //    unset($this->request->data['User']['pwd_repeat']);
             }
         }
-        $groups = $this->User->Group->find('list', array(
+        $groups = $this->User->Group->find('list', [
 //            'conditions' => array('Group.id >' => 1)
-        ));
+        ]);
         $this->set(compact('groups'));
     }
 
@@ -286,15 +286,15 @@ class UsersController extends AppController {
         if (!$this->User->exists($id)) {
             throw new NotFoundException(__('Invalid user'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->User->save($this->request->data)) {
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+            $options = ['conditions' => ['User.' . $this->User->primaryKey => $id]];
             $this->request->data = $this->User->find('first', $options);
         }
         $groups = $this->User->Group->find('list');
@@ -319,7 +319,7 @@ class UsersController extends AppController {
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function initACL() {
@@ -378,7 +378,7 @@ class UsersController extends AppController {
         //$this->Common->flashMessage('Nashledanou.');
         $this->Auth->logout();
         $this->layout = 'login';
-        $this->redirect(array('action' => 'login'));
+        $this->redirect(['action' => 'login']);
     }
 
 }

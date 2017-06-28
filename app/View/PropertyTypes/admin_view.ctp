@@ -16,12 +16,12 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Property Type'), array('action' => 'edit', $propertyType['PropertyType']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Property Type'), array('action' => 'delete', $propertyType['PropertyType']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $propertyType['PropertyType']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Property Types'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Property Type'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Properties'), array('controller' => 'properties', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Property'), array('controller' => 'properties', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Property Type'), ['action' => 'edit', $propertyType['PropertyType']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Property Type'), ['action' => 'delete', $propertyType['PropertyType']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $propertyType['PropertyType']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Property Types'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Property Type'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Properties'), ['controller' => 'properties', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Property'), ['controller' => 'properties', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -50,9 +50,9 @@
 			<td><?php echo $property['html_keywords']; ?></td>
 			<td><?php echo $property['html_description']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'properties', 'action' => 'view', $property['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'properties', 'action' => 'edit', $property['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'properties', 'action' => 'delete', $property['id']), array('confirm' => __('Are you sure you want to delete # %s?', $property['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'properties', 'action' => 'view', $property['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'properties', 'action' => 'edit', $property['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'properties', 'action' => 'delete', $property['id']], ['confirm' => __('Are you sure you want to delete # %s?', $property['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -61,7 +61,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Property'), array('controller' => 'properties', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Property'), ['controller' => 'properties', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

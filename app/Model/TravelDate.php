@@ -13,9 +13,9 @@ class TravelDate extends AppModel {
 
     // The Associations below have been created with all possible keys, those that are not needed can be removed
 
-    public $virtualFields = array(
+    public $virtualFields = [
         'name' => 'CONCAT(TravelDate.start, " - ", TravelDate.end)'
-    );
+    ];
     public $displayField = 'name';
 
     /**
@@ -23,23 +23,23 @@ class TravelDate extends AppModel {
      *
      * @var array
      */
-    public $belongsTo = array(
-        'TravelDateType' => array(
+    public $belongsTo = [
+        'TravelDateType' => [
             'className' => 'TravelDateType',
             'foreignKey' => 'travel_date_type_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'HouseDate' => array(
+    public $hasMany = [
+        'HouseDate' => [
             'className' => 'HouseDate',
             'foreignKey' => 'travel_date_id',
             'dependent' => false,
@@ -51,7 +51,7 @@ class TravelDate extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
+        ],
 //        'Order' => array(
 //            'className' => 'Order',
 //            'foreignKey' => 'travel_date_id',
@@ -65,7 +65,7 @@ class TravelDate extends AppModel {
 //            'finderQuery' => '',
 //            'counterQuery' => ''
 //        )
-    );
+    ];
 
     public function travelDatesList() {
         $travelDates = $this->find('all', [

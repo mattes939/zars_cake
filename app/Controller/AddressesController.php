@@ -15,7 +15,7 @@ class AddressesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class AddressesController extends AppController {
 		if (!$this->Address->exists($id)) {
 			throw new NotFoundException(__('Invalid address'));
 		}
-		$options = array('conditions' => array('Address.' . $this->Address->primaryKey => $id));
+		$options = ['conditions' => ['Address.' . $this->Address->primaryKey => $id]];
 		$this->set('address', $this->Address->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class AddressesController extends AppController {
 			$this->Address->create();
 			if ($this->Address->save($this->request->data)) {
 				$this->Flash->success(__('The address has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The address could not be saved. Please, try again.'));
 			}
@@ -75,15 +75,15 @@ class AddressesController extends AppController {
 		if (!$this->Address->exists($id)) {
 			throw new NotFoundException(__('Invalid address'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Address->save($this->request->data)) {
 				$this->Flash->success(__('The address has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The address could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Address.' . $this->Address->primaryKey => $id));
+			$options = ['conditions' => ['Address.' . $this->Address->primaryKey => $id]];
 			$this->request->data = $this->Address->find('first', $options);
 		}
 		$addressTypes = $this->Address->AddressType->find('list');
@@ -111,7 +111,7 @@ class AddressesController extends AppController {
 		} else {
 			$this->Flash->error(__('The address could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -135,7 +135,7 @@ class AddressesController extends AppController {
 		if (!$this->Address->exists($id)) {
 			throw new NotFoundException(__('Invalid address'));
 		}
-		$options = array('conditions' => array('Address.' . $this->Address->primaryKey => $id));
+		$options = ['conditions' => ['Address.' . $this->Address->primaryKey => $id]];
 		$this->set('address', $this->Address->find('first', $options));
 	}
 
@@ -149,7 +149,7 @@ class AddressesController extends AppController {
 			$this->Address->create();
 			if ($this->Address->save($this->request->data)) {
 				$this->Flash->success(__('The address has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The address could not be saved. Please, try again.'));
 			}
@@ -172,15 +172,15 @@ class AddressesController extends AppController {
 		if (!$this->Address->exists($id)) {
 			throw new NotFoundException(__('Invalid address'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Address->save($this->request->data)) {
 				$this->Flash->success(__('The address has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The address could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Address.' . $this->Address->primaryKey => $id));
+			$options = ['conditions' => ['Address.' . $this->Address->primaryKey => $id]];
 			$this->request->data = $this->Address->find('first', $options);
 		}
 		$addressTypes = $this->Address->AddressType->find('list');
@@ -208,6 +208,6 @@ class AddressesController extends AppController {
 		} else {
 			$this->Flash->error(__('The address could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

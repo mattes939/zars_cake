@@ -36,14 +36,14 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Country'), array('action' => 'edit', $country['Country']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Country'), array('action' => 'delete', $country['Country']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $country['Country']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Countries'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Country'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Addresses'), array('controller' => 'addresses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Address'), array('controller' => 'addresses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Regions'), array('controller' => 'regions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Region'), array('controller' => 'regions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Country'), ['action' => 'edit', $country['Country']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Country'), ['action' => 'delete', $country['Country']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $country['Country']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Countries'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Country'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Addresses'), ['controller' => 'addresses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Address'), ['controller' => 'addresses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Regions'), ['controller' => 'regions', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Region'), ['controller' => 'regions', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -76,9 +76,9 @@
 			<td><?php echo $address['created']; ?></td>
 			<td><?php echo $address['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'addresses', 'action' => 'view', $address['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'addresses', 'action' => 'edit', $address['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'addresses', 'action' => 'delete', $address['id']), array('confirm' => __('Are you sure you want to delete # %s?', $address['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'addresses', 'action' => 'view', $address['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'addresses', 'action' => 'edit', $address['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'addresses', 'action' => 'delete', $address['id']], ['confirm' => __('Are you sure you want to delete # %s?', $address['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -87,7 +87,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Address'), array('controller' => 'addresses', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Address'), ['controller' => 'addresses', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -115,9 +115,9 @@
 			<td><?php echo $region['html_keywords']; ?></td>
 			<td><?php echo $region['html_description']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'regions', 'action' => 'view', $region['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'regions', 'action' => 'edit', $region['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'regions', 'action' => 'delete', $region['id']), array('confirm' => __('Are you sure you want to delete # %s?', $region['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'regions', 'action' => 'view', $region['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'regions', 'action' => 'edit', $region['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'regions', 'action' => 'delete', $region['id']], ['confirm' => __('Are you sure you want to delete # %s?', $region['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -126,7 +126,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Region'), array('controller' => 'regions', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Region'), ['controller' => 'regions', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

@@ -12,7 +12,8 @@
  */
 class CodeHelper extends AppHelper {
 
-    public $helpers = array('Html');
+    public $helpers = ['Html'];
+
 //    public $settings = null;
 //    public $view = null;
 //
@@ -83,38 +84,37 @@ class CodeHelper extends AppHelper {
         return $result;
     }
 
-    public function getCompositionVacancy($houseDates, $houseDateId){
+    public function getCompositionVacancy($houseDates, $houseDateId) {
         $sameConditions = true;
-        for($i = 1; $i < count($houseDates); $i++){
-            if($houseDates[$i]['date_condition_id'] != $houseDates[$i-1]['date_condition_id']){
+        for ($i = 1; $i < count($houseDates); $i++) {
+            if ($houseDates[$i]['date_condition_id'] != $houseDates[$i - 1]['date_condition_id']) {
                 $sameConditions = FALSE;
                 break;
             }
         }
-        if($sameConditions){
+        if ($sameConditions) {
             return $this->orderCell($houseDates[0]['date_condition_id'], $houseDateId);
-        } else{
+        } else {
 //            debug($houseDates);
             $table = '<table class="table table-bordered table-condensed table-hover">';
             $table .= '<thead><tr>';
-            foreach($houseDates as $houseDate){
-                $table .= '<th>'.$this->Html->link($houseDate['House']['code'].'-'.$houseDate['House']['name'], ['controller' => 'houses','action' => 'view', $houseDate['House']['slug']], ['target' => 'blank']).'</th>';
-                if(!isset($order)){
-                    $order = '<td>'.$this->orderCell($houseDate['date_condition_id'], $houseDate['id']).'</td>';
-                } else{
-                    $order .= '<td>'.$this->orderCell($houseDate['date_condition_id'], $houseDate['id']).'</td>';
+            foreach ($houseDates as $houseDate) {
+                $table .= '<th>' . $this->Html->link($houseDate['House']['code'] . '-' . $houseDate['House']['name'], ['controller' => 'houses', 'action' => 'view', $houseDate['House']['slug']], ['target' => 'blank']) . '</th>';
+                if (!isset($order)) {
+                    $order = '<td>' . $this->orderCell($houseDate['date_condition_id'], $houseDate['id']) . '</td>';
+                } else {
+                    $order .= '<td>' . $this->orderCell($houseDate['date_condition_id'], $houseDate['id']) . '</td>';
                 }
-                
             }
-            $table .= '</tr></thead><tbody><tr>'.$order.'</tr></tbody></table>';
-            
+            $table .= '</tr></thead><tbody><tr>' . $order . '</tr></tbody></table>';
+
             return $table;
         }
     }
-    
-    public function orderCell($dateConditionId, $houseDateId){
+
+    public function orderCell($dateConditionId, $houseDateId) {
         $order = '';
-        switch ($dateConditionId){
+        switch ($dateConditionId) {
             case 1:
                 $order = $this->Html->link('Objednat pobyt', ['controller' => 'orders', 'action' => 'add', $houseDateId], ['class' => ['btn btn-xs btn-success']]);
                 break;
@@ -126,4 +126,10 @@ class CodeHelper extends AppHelper {
         }
         return $order;
     }
+
+    public function classDisabled($field = null) {
+
+        return empty($field) ? ' disabled' : '';
+    }
+
 }

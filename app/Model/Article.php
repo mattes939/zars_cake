@@ -9,9 +9,9 @@ App::uses('AppModel', 'Model');
  */
 class Article extends AppModel {
     
-    public $actsAs = array('Media.Media' => array(
+    public $actsAs = ['Media.Media' => [
             'path' => './files/images/articles/%id/%f'
-    ), 'Tree');
+    ], 'Tree'];
 
 /**
  * Display field
@@ -28,23 +28,23 @@ class Article extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'ParentArticle' => array(
+	public $belongsTo = [
+		'ParentArticle' => [
 			'className' => 'Article',
 			'foreignKey' => 'parent_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 
 /**
  * hasMany associations
  *
  * @var array
  */
-	public $hasMany = array(
-		'ChildArticle' => array(
+	public $hasMany = [
+		'ChildArticle' => [
 			'className' => 'Article',
 			'foreignKey' => 'parent_id',
 			'dependent' => false,
@@ -56,8 +56,8 @@ class Article extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 
 /**
@@ -65,8 +65,8 @@ class Article extends AppModel {
  *
  * @var array
  */
-	public $hasAndBelongsToMany = array(
-		'Area' => array(
+	public $hasAndBelongsToMany = [
+		'Area' => [
 			'className' => 'Area',
 			'joinTable' => 'areas_articles',
 			'foreignKey' => 'article_id',
@@ -78,7 +78,7 @@ class Article extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		)
-	);
+		]
+	];
 
 }

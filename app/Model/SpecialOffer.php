@@ -18,30 +18,30 @@ class SpecialOffer extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'ParentSpecialOffer' => array(
+	public $belongsTo = [
+		'ParentSpecialOffer' => [
 			'className' => 'SpecialOffer',
 			'foreignKey' => 'parent_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'House' => array(
+		],
+		'House' => [
 			'className' => 'House',
 			'foreignKey' => 'house_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 
 /**
  * hasMany associations
  *
  * @var array
  */
-	public $hasMany = array(
-		'ChildSpecialOffer' => array(
+	public $hasMany = [
+		'ChildSpecialOffer' => [
 			'className' => 'SpecialOffer',
 			'foreignKey' => 'parent_id',
 			'dependent' => false,
@@ -53,8 +53,8 @@ class SpecialOffer extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 
 /**
@@ -62,8 +62,8 @@ class SpecialOffer extends AppModel {
  *
  * @var array
  */
-	public $hasAndBelongsToMany = array(
-		'Portal' => array(
+	public $hasAndBelongsToMany = [
+		'Portal' => [
 			'className' => 'Portal',
 			'joinTable' => 'portals_special_offers',
 			'foreignKey' => 'special_offer_id',
@@ -75,7 +75,7 @@ class SpecialOffer extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		)
-	);
+		]
+	];
 
 }

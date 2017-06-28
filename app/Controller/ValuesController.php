@@ -17,7 +17,7 @@ class ValuesController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
 
     /**
      * index method
@@ -67,7 +67,7 @@ class ValuesController extends AppController {
         if (!$this->Value->exists($id)) {
             throw new NotFoundException(__('Invalid value'));
         }
-        $options = array('conditions' => array('Value.' . $this->Value->primaryKey => $id));
+        $options = ['conditions' => ['Value.' . $this->Value->primaryKey => $id]];
         $this->set('value', $this->Value->find('first', $options));
     }
 
@@ -81,7 +81,7 @@ class ValuesController extends AppController {
             $this->Value->create();
             if ($this->Value->save($this->request->data)) {
                 $this->Flash->success(__('The value has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The value could not be saved. Please, try again.'));
             }
@@ -102,15 +102,15 @@ class ValuesController extends AppController {
         if (!$this->Value->exists($id)) {
             throw new NotFoundException(__('Invalid value'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->Value->save($this->request->data)) {
                 $this->Flash->success(__('The value has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The value could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('Value.' . $this->Value->primaryKey => $id));
+            $options = ['conditions' => ['Value.' . $this->Value->primaryKey => $id]];
             $this->request->data = $this->Value->find('first', $options);
         }
         $houses = $this->Value->House->find('list');
@@ -136,7 +136,7 @@ class ValuesController extends AppController {
         } else {
             $this->Flash->error(__('The value could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     /**
@@ -160,7 +160,7 @@ class ValuesController extends AppController {
         if (!$this->Value->exists($id)) {
             throw new NotFoundException(__('Invalid value'));
         }
-        $options = array('conditions' => array('Value.' . $this->Value->primaryKey => $id));
+        $options = ['conditions' => ['Value.' . $this->Value->primaryKey => $id]];
         $this->set('value', $this->Value->find('first', $options));
     }
 
@@ -174,7 +174,7 @@ class ValuesController extends AppController {
             $this->Value->create();
             if ($this->Value->save($this->request->data)) {
                 $this->Flash->success(__('The value has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The value could not be saved. Please, try again.'));
             }
@@ -196,10 +196,10 @@ class ValuesController extends AppController {
             throw new NotFoundException(__('Invalid value'));
         }
 
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->Value->Property->saveAll($this->request->data)) {
                 $this->Flash->success(__('The value has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The value could not be saved. Please, try again.'));
             }
@@ -224,7 +224,7 @@ class ValuesController extends AppController {
                     $propertyTypeId = [];
                     break;
             }
-            $options = array(
+            $options = [
                 'conditions' => ['Property.property_type_id' => $propertyTypeId],
                 'contain' => [
                     'PropertyType',
@@ -235,7 +235,7 @@ class ValuesController extends AppController {
 //                        'House'
                     ]
                 ]
-            );
+            ];
             $this->request->data = $this->Value->Property->find('all', $options);
 //            debug($this->request->data);
         }
@@ -263,7 +263,7 @@ class ValuesController extends AppController {
         } else {
             $this->Flash->error(__('The value could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
 }

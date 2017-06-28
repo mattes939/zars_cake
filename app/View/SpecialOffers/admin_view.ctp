@@ -18,12 +18,12 @@
 		</dd>
 		<dt><?php echo __('Parent Special Offer'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($specialOffer['ParentSpecialOffer']['id'], array('controller' => 'special_offers', 'action' => 'view', $specialOffer['ParentSpecialOffer']['id'])); ?>
+			<?php echo $this->Html->link($specialOffer['ParentSpecialOffer']['id'], ['controller' => 'special_offers', 'action' => 'view', $specialOffer['ParentSpecialOffer']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('House'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($specialOffer['House']['name'], array('controller' => 'houses', 'action' => 'view', $specialOffer['House']['id'])); ?>
+			<?php echo $this->Html->link($specialOffer['House']['name'], ['controller' => 'houses', 'action' => 'view', $specialOffer['House']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Content'); ?></dt>
@@ -71,16 +71,16 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Special Offer'), array('action' => 'edit', $specialOffer['SpecialOffer']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Special Offer'), array('action' => 'delete', $specialOffer['SpecialOffer']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $specialOffer['SpecialOffer']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Special Offers'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Special Offer'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Special Offers'), array('controller' => 'special_offers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Special Offer'), array('controller' => 'special_offers', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Portals'), array('controller' => 'portals', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Portal'), array('controller' => 'portals', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Special Offer'), ['action' => 'edit', $specialOffer['SpecialOffer']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Special Offer'), ['action' => 'delete', $specialOffer['SpecialOffer']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $specialOffer['SpecialOffer']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Special Offers'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Special Offer'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Special Offers'), ['controller' => 'special_offers', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Parent Special Offer'), ['controller' => 'special_offers', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Portals'), ['controller' => 'portals', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Portal'), ['controller' => 'portals', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -119,9 +119,9 @@
 			<td><?php echo $childSpecialOffer['html_keywords']; ?></td>
 			<td><?php echo $childSpecialOffer['html_description']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'special_offers', 'action' => 'view', $childSpecialOffer['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'special_offers', 'action' => 'edit', $childSpecialOffer['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'special_offers', 'action' => 'delete', $childSpecialOffer['id']), array('confirm' => __('Are you sure you want to delete # %s?', $childSpecialOffer['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'special_offers', 'action' => 'view', $childSpecialOffer['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'special_offers', 'action' => 'edit', $childSpecialOffer['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'special_offers', 'action' => 'delete', $childSpecialOffer['id']], ['confirm' => __('Are you sure you want to delete # %s?', $childSpecialOffer['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -130,7 +130,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Child Special Offer'), array('controller' => 'special_offers', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Child Special Offer'), ['controller' => 'special_offers', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -148,9 +148,9 @@
 			<td><?php echo $portal['id']; ?></td>
 			<td><?php echo $portal['name']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'portals', 'action' => 'view', $portal['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'portals', 'action' => 'edit', $portal['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'portals', 'action' => 'delete', $portal['id']), array('confirm' => __('Are you sure you want to delete # %s?', $portal['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'portals', 'action' => 'view', $portal['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'portals', 'action' => 'edit', $portal['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'portals', 'action' => 'delete', $portal['id']], ['confirm' => __('Are you sure you want to delete # %s?', $portal['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -159,7 +159,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Portal'), array('controller' => 'portals', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Portal'), ['controller' => 'portals', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

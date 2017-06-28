@@ -16,12 +16,12 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Travel Date Type'), array('action' => 'edit', $travelDateType['TravelDateType']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Travel Date Type'), array('action' => 'delete', $travelDateType['TravelDateType']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $travelDateType['TravelDateType']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Travel Date Types'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Travel Date Type'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Travel Dates'), array('controller' => 'travel_dates', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Travel Date'), array('controller' => 'travel_dates', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Travel Date Type'), ['action' => 'edit', $travelDateType['TravelDateType']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Travel Date Type'), ['action' => 'delete', $travelDateType['TravelDateType']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $travelDateType['TravelDateType']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Travel Date Types'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Travel Date Type'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Travel Dates'), ['controller' => 'travel_dates', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Travel Date'), ['controller' => 'travel_dates', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -42,9 +42,9 @@
 			<td><?php echo $travelDate['from']; ?></td>
 			<td><?php echo $travelDate['to']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'travel_dates', 'action' => 'view', $travelDate['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'travel_dates', 'action' => 'edit', $travelDate['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'travel_dates', 'action' => 'delete', $travelDate['id']), array('confirm' => __('Are you sure you want to delete # %s?', $travelDate['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'travel_dates', 'action' => 'view', $travelDate['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'travel_dates', 'action' => 'edit', $travelDate['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'travel_dates', 'action' => 'delete', $travelDate['id']], ['confirm' => __('Are you sure you want to delete # %s?', $travelDate['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -53,7 +53,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Travel Date'), array('controller' => 'travel_dates', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Travel Date'), ['controller' => 'travel_dates', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

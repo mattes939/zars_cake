@@ -15,7 +15,7 @@ class ReminderTypesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class ReminderTypesController extends AppController {
 		if (!$this->ReminderType->exists($id)) {
 			throw new NotFoundException(__('Invalid reminder type'));
 		}
-		$options = array('conditions' => array('ReminderType.' . $this->ReminderType->primaryKey => $id));
+		$options = ['conditions' => ['ReminderType.' . $this->ReminderType->primaryKey => $id]];
 		$this->set('reminderType', $this->ReminderType->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class ReminderTypesController extends AppController {
 			$this->ReminderType->create();
 			if ($this->ReminderType->save($this->request->data)) {
 				$this->Flash->success(__('The reminder type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The reminder type could not be saved. Please, try again.'));
 			}
@@ -70,15 +70,15 @@ class ReminderTypesController extends AppController {
 		if (!$this->ReminderType->exists($id)) {
 			throw new NotFoundException(__('Invalid reminder type'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->ReminderType->save($this->request->data)) {
 				$this->Flash->success(__('The reminder type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The reminder type could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('ReminderType.' . $this->ReminderType->primaryKey => $id));
+			$options = ['conditions' => ['ReminderType.' . $this->ReminderType->primaryKey => $id]];
 			$this->request->data = $this->ReminderType->find('first', $options);
 		}
 	}
@@ -101,7 +101,7 @@ class ReminderTypesController extends AppController {
 		} else {
 			$this->Flash->error(__('The reminder type could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -125,7 +125,7 @@ class ReminderTypesController extends AppController {
 		if (!$this->ReminderType->exists($id)) {
 			throw new NotFoundException(__('Invalid reminder type'));
 		}
-		$options = array('conditions' => array('ReminderType.' . $this->ReminderType->primaryKey => $id));
+		$options = ['conditions' => ['ReminderType.' . $this->ReminderType->primaryKey => $id]];
 		$this->set('reminderType', $this->ReminderType->find('first', $options));
 	}
 
@@ -139,7 +139,7 @@ class ReminderTypesController extends AppController {
 			$this->ReminderType->create();
 			if ($this->ReminderType->save($this->request->data)) {
 				$this->Flash->success(__('The reminder type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The reminder type could not be saved. Please, try again.'));
 			}
@@ -157,15 +157,15 @@ class ReminderTypesController extends AppController {
 		if (!$this->ReminderType->exists($id)) {
 			throw new NotFoundException(__('Invalid reminder type'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->ReminderType->save($this->request->data)) {
 				$this->Flash->success(__('The reminder type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The reminder type could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('ReminderType.' . $this->ReminderType->primaryKey => $id));
+			$options = ['conditions' => ['ReminderType.' . $this->ReminderType->primaryKey => $id]];
 			$this->request->data = $this->ReminderType->find('first', $options);
 		}
 	}
@@ -188,6 +188,6 @@ class ReminderTypesController extends AppController {
 		} else {
 			$this->Flash->error(__('The reminder type could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

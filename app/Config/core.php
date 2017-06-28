@@ -51,11 +51,11 @@
  *
  * @see ErrorHandler for more information on error handling and configuration.
  */
-	Configure::write('Error', array(
+	Configure::write('Error', [
 		'handler' => 'ErrorHandler::handleError',
 		'level' => E_ALL & ~E_DEPRECATED,
 		'trace' => true
-	));
+	]);
 
 /**
  * Configure the Exception handler used for uncaught exceptions. By default,
@@ -79,11 +79,11 @@
  *
  * @see ErrorHandler for more information on exception handling and configuration.
  */
-	Configure::write('Exception', array(
+	Configure::write('Exception', [
 		'handler' => 'ErrorHandler::handleException',
 		'renderer' => 'ExceptionRenderer',
 		'log' => true
-	));
+	]);
 
 /**
  * Application wide charset encoding
@@ -153,7 +153,7 @@
  *	`admin_index()` and `/admin/controller/index`
  *	`manager_index()` and `/manager/controller/index`
  */
-Configure::write('Routing.prefixes', array('admin', 'majitel'));
+Configure::write('Routing.prefixes', ['admin', 'majitel']);
 
 /**
  * Turn off all caching application-wide.
@@ -218,9 +218,9 @@ Configure::write('Routing.prefixes', array('admin', 'majitel'));
  * To use database sessions, run the app/Config/Schema/sessions.php schema using
  * the cake shell command: cake schema create Sessions
  */
-	Configure::write('Session', array(
+	Configure::write('Session', [
 		'defaults' => 'php'
-	));
+	]);
 
 /**
  * A random string used in security hashing methods.
@@ -368,22 +368,22 @@ $prefix = 'myapp_';
  * Configure the cache used for general framework caching. Path information,
  * object listings, and translation cache files are stored with this configuration.
  */
-Cache::config('_cake_core_', array(
+Cache::config('_cake_core_', [
 	'engine' => $engine,
 	'prefix' => $prefix . 'cake_core_',
 	'path' => CACHE . 'persistent' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
-));
+]);
 
 /**
  * Configure the cache for model and datasource caches. This cache configuration
  * is used to store schema descriptions, and table listings in connections.
  */
-Cache::config('_cake_model_', array(
+Cache::config('_cake_model_', [
 	'engine' => $engine,
 	'prefix' => $prefix . 'cake_model_',
 	'path' => CACHE . 'models' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
-));
+]);

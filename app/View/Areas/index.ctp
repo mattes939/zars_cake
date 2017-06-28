@@ -24,9 +24,9 @@
 		<td><?php echo h($area['Area']['html_description']); ?>&nbsp;</td>
 		<td><?php echo h($area['Area']['html_keywords']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $area['Area']['slug'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $area['Area']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $area['Area']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $area['Area']['id']))); ?>
+			<?php echo $this->Html->link(__('View'), ['action' => 'view', $area['Area']['slug']]); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $area['Area']['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $area['Area']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $area['Area']['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -34,29 +34,29 @@
 	</table>
 	<p>
 	<?php
-	echo $this->Paginator->counter(array(
+	echo $this->Paginator->counter([
 		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
+	]);
 	?>	</p>
 	<div class="paging">
 	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->prev('< ' . __('previous'), [], null, ['class' => 'prev disabled']);
+		echo $this->Paginator->numbers(['separator' => '']);
+		echo $this->Paginator->next(__('next') . ' >', [], null, ['class' => 'next disabled']);
 	?>
 	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Area'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Selections'), array('controller' => 'selections', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Selection'), array('controller' => 'selections', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Articles'), array('controller' => 'articles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Article'), array('controller' => 'articles', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Regions'), array('controller' => 'regions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Region'), array('controller' => 'regions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Area'), ['action' => 'add']); ?></li>
+		<li><?php echo $this->Html->link(__('List Selections'), ['controller' => 'selections', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Selection'), ['controller' => 'selections', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Articles'), ['controller' => 'articles', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Article'), ['controller' => 'articles', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Regions'), ['controller' => 'regions', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Region'), ['controller' => 'regions', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

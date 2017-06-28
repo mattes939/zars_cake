@@ -25,7 +25,7 @@
 	<tr>
 		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
+			<?php echo $this->Html->link($user['Group']['name'], ['controller' => 'groups', 'action' => 'view', $user['Group']['id']]); ?>
 		</td>
 		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
@@ -40,9 +40,9 @@
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
+			<?php echo $this->Html->link(__('View'), ['action' => 'view', $user['User']['id']]); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $user['User']['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $user['User']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $user['User']['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -50,33 +50,33 @@
 	</table>
 	<p>
 	<?php
-	echo $this->Paginator->counter(array(
+	echo $this->Paginator->counter([
 		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
+	]);
 	?>	</p>
 	<div class="paging">
 	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->prev('< ' . __('previous'), [], null, ['class' => 'prev disabled']);
+		echo $this->Paginator->numbers(['separator' => '']);
+		echo $this->Paginator->next(__('next') . ' >', [], null, ['class' => 'next disabled']);
 	?>
 	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Addresses'), array('controller' => 'addresses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Address'), array('controller' => 'addresses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Logs'), array('controller' => 'logs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Log'), array('controller' => 'logs', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('controller' => 'orders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Reviews'), array('controller' => 'reviews', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Review'), array('controller' => 'reviews', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), ['action' => 'add']); ?></li>
+		<li><?php echo $this->Html->link(__('List Groups'), ['controller' => 'groups', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Group'), ['controller' => 'groups', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Addresses'), ['controller' => 'addresses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Address'), ['controller' => 'addresses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Logs'), ['controller' => 'logs', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Log'), ['controller' => 'logs', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Orders'), ['controller' => 'orders', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Order'), ['controller' => 'orders', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Reviews'), ['controller' => 'reviews', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Review'), ['controller' => 'reviews', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

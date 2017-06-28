@@ -16,12 +16,12 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Group'), array('action' => 'edit', $group['Group']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Group'), array('action' => 'delete', $group['Group']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $group['Group']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Group'), ['action' => 'edit', $group['Group']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Group'), ['action' => 'delete', $group['Group']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $group['Group']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Groups'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Group'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), ['controller' => 'users', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), ['controller' => 'users', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -62,9 +62,9 @@
 			<td><?php echo $user['created']; ?></td>
 			<td><?php echo $user['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'users', 'action' => 'view', $user['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'users', 'action' => 'edit', $user['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'users', 'action' => 'delete', $user['id']], ['confirm' => __('Are you sure you want to delete # %s?', $user['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -73,7 +73,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User'), ['controller' => 'users', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

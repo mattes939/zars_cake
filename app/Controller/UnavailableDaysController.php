@@ -15,7 +15,7 @@ class UnavailableDaysController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class UnavailableDaysController extends AppController {
 		if (!$this->UnavailableDay->exists($id)) {
 			throw new NotFoundException(__('Invalid unavailable day'));
 		}
-		$options = array('conditions' => array('UnavailableDay.' . $this->UnavailableDay->primaryKey => $id));
+		$options = ['conditions' => ['UnavailableDay.' . $this->UnavailableDay->primaryKey => $id]];
 		$this->set('unavailableDay', $this->UnavailableDay->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class UnavailableDaysController extends AppController {
 			$this->UnavailableDay->create();
 			if ($this->UnavailableDay->save($this->request->data)) {
 				$this->Flash->success(__('The unavailable day has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The unavailable day could not be saved. Please, try again.'));
 			}
@@ -72,15 +72,15 @@ class UnavailableDaysController extends AppController {
 		if (!$this->UnavailableDay->exists($id)) {
 			throw new NotFoundException(__('Invalid unavailable day'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->UnavailableDay->save($this->request->data)) {
 				$this->Flash->success(__('The unavailable day has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The unavailable day could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('UnavailableDay.' . $this->UnavailableDay->primaryKey => $id));
+			$options = ['conditions' => ['UnavailableDay.' . $this->UnavailableDay->primaryKey => $id]];
 			$this->request->data = $this->UnavailableDay->find('first', $options);
 		}
 		$houseDates = $this->UnavailableDay->HouseDate->find('list');
@@ -105,7 +105,7 @@ class UnavailableDaysController extends AppController {
 		} else {
 			$this->Flash->error(__('The unavailable day could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -129,7 +129,7 @@ class UnavailableDaysController extends AppController {
 		if (!$this->UnavailableDay->exists($id)) {
 			throw new NotFoundException(__('Invalid unavailable day'));
 		}
-		$options = array('conditions' => array('UnavailableDay.' . $this->UnavailableDay->primaryKey => $id));
+		$options = ['conditions' => ['UnavailableDay.' . $this->UnavailableDay->primaryKey => $id]];
 		$this->set('unavailableDay', $this->UnavailableDay->find('first', $options));
 	}
 
@@ -143,7 +143,7 @@ class UnavailableDaysController extends AppController {
 			$this->UnavailableDay->create();
 			if ($this->UnavailableDay->save($this->request->data)) {
 				$this->Flash->success(__('The unavailable day has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The unavailable day could not be saved. Please, try again.'));
 			}
@@ -163,15 +163,15 @@ class UnavailableDaysController extends AppController {
 		if (!$this->UnavailableDay->exists($id)) {
 			throw new NotFoundException(__('Invalid unavailable day'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->UnavailableDay->save($this->request->data)) {
 				$this->Flash->success(__('The unavailable day has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The unavailable day could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('UnavailableDay.' . $this->UnavailableDay->primaryKey => $id));
+			$options = ['conditions' => ['UnavailableDay.' . $this->UnavailableDay->primaryKey => $id]];
 			$this->request->data = $this->UnavailableDay->find('first', $options);
 		}
 		$houseDates = $this->UnavailableDay->HouseDate->find('list');
@@ -196,6 +196,6 @@ class UnavailableDaysController extends AppController {
 		} else {
 			$this->Flash->error(__('The unavailable day could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

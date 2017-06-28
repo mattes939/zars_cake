@@ -26,23 +26,23 @@ class Property extends AppModel {
      *
      * @var array
      */
-    public $belongsTo = array(
-        'PropertyType' => array(
+    public $belongsTo = [
+        'PropertyType' => [
             'className' => 'PropertyType',
             'foreignKey' => 'property_type_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'Selection' => array(
+    public $hasMany = [
+        'Selection' => [
             'className' => 'Selection',
             'foreignKey' => 'property_id',
             'dependent' => false,
@@ -54,8 +54,8 @@ class Property extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'Value' => array(
+        ],
+        'Value' => [
             'className' => 'Value',
             'foreignKey' => 'property_id',
             'dependent' => false,
@@ -67,10 +67,10 @@ class Property extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
-    );
+        ]
+    ];
 
-    public function beforeSave($options = array()) {
+    public function beforeSave($options = []) {
         parent::beforeSave($options);
 
         // If the title is not empty, create/update the slug.

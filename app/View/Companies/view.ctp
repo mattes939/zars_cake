@@ -46,12 +46,12 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Company'), array('action' => 'edit', $company['Company']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Company'), array('action' => 'delete', $company['Company']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $company['Company']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Companies'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Company'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('controller' => 'orders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Company'), ['action' => 'edit', $company['Company']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Company'), ['action' => 'delete', $company['Company']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $company['Company']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Companies'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Company'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Orders'), ['controller' => 'orders', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Order'), ['controller' => 'orders', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -120,9 +120,9 @@
 			<td><?php echo $order['notes']; ?></td>
 			<td><?php echo $order['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'orders', 'action' => 'view', $order['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'orders', 'action' => 'edit', $order['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'orders', 'action' => 'delete', $order['id']), array('confirm' => __('Are you sure you want to delete # %s?', $order['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'orders', 'action' => 'view', $order['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'orders', 'action' => 'edit', $order['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'orders', 'action' => 'delete', $order['id']], ['confirm' => __('Are you sure you want to delete # %s?', $order['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -131,7 +131,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Order'), ['controller' => 'orders', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

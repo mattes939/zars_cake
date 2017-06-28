@@ -19,28 +19,28 @@ class Order extends AppModel {
      *
      * @var array
      */
-    public $belongsTo = array(
-        'Company' => array(
+    public $belongsTo = [
+        'Company' => [
             'className' => 'Company',
             'foreignKey' => 'company_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'Portal' => array(
+        ],
+        'Portal' => [
             'className' => 'Portal',
             'foreignKey' => 'portal_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'User' => array(
+        ],
+        'User' => [
             'className' => 'User',
             'foreignKey' => 'user_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
+        ],
 //        'House' => array(
 //            'className' => 'House',
 //            'foreignKey' => 'house_id',
@@ -55,29 +55,29 @@ class Order extends AppModel {
 //            'fields' => '',
 //            'order' => ''
 //        ),
-        'HouseDate' => array(
+        'HouseDate' => [
             'className' => 'HouseDate',
             'foreignKey' => 'house_date_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'OrderStatus' => array(
+        ],
+        'OrderStatus' => [
             'className' => 'OrderStatus',
             'foreignKey' => 'order_status_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'Deposit' => array(
+    public $hasMany = [
+        'Deposit' => [
             'className' => 'Deposit',
             'foreignKey' => 'order_id',
             'dependent' => false,
@@ -89,8 +89,8 @@ class Order extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
-    );
+        ]
+    ];
 
     public function make($order) {
 
@@ -183,7 +183,7 @@ class Order extends AppModel {
 //        return $this->updateAll(['Order.code' => $company . $date->format('ymd') . $id % 100], ['Order.id' => $id]);
     }
 
-    public function beforeSave($options = array()) {
+    public function beforeSave($options = []) {
         parent::beforeSave($options);
 
         if ($this->id) {

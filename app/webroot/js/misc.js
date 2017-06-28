@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    //    $('table.datatable').DataTable();
+    $('#OrderEmployerContribution').change(function () {
+        $('#fksp').toggleClass('hidden');
+    });
     $('.datatable').DataTable({
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Czech.json"

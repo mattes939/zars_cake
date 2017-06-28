@@ -22,8 +22,8 @@ class DepositType extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'Deposit' => array(
+	public $hasMany = [
+		'Deposit' => [
 			'className' => 'Deposit',
 			'foreignKey' => 'deposit_type_id',
 			'dependent' => false,
@@ -35,7 +35,7 @@ class DepositType extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

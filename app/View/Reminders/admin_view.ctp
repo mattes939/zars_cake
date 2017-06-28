@@ -2,7 +2,7 @@
 		
 		<dt><?php echo __('Druh'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($reminder['ReminderType']['name'], array('controller' => 'reminder_types', 'action' => 'view', $reminder['ReminderType']['id'])); ?>
+			<?php echo $this->Html->link($reminder['ReminderType']['name'], ['controller' => 'reminder_types', 'action' => 'view', $reminder['ReminderType']['id']]); ?>
 			&nbsp;
 		</dd>
 

@@ -22,13 +22,13 @@ class Log extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'User' => array(
+	public $belongsTo = [
+		'User' => [
 			'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 }

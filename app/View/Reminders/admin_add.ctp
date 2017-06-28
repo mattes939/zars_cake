@@ -20,10 +20,10 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Reminders'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Reminder Types'), array('controller' => 'reminder_types', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Reminder Type'), array('controller' => 'reminder_types', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Reminders'), ['action' => 'index']); ?></li>
+		<li><?php echo $this->Html->link(__('List Reminder Types'), ['controller' => 'reminder_types', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Reminder Type'), ['controller' => 'reminder_types', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

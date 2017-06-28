@@ -22,8 +22,8 @@ class ReminderType extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'Reminder' => array(
+	public $hasMany = [
+		'Reminder' => [
 			'className' => 'Reminder',
 			'foreignKey' => 'reminder_type_id',
 			'dependent' => false,
@@ -35,7 +35,7 @@ class ReminderType extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

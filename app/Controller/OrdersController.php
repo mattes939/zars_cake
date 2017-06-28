@@ -18,7 +18,7 @@ class OrdersController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
 
     /**
      * index method
@@ -113,7 +113,7 @@ class OrdersController extends AppController {
         if (!$this->Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
         }
-        $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+        $options = ['conditions' => ['Order.' . $this->Order->primaryKey => $id]];
         $this->set('order', $this->Order->find('first', $options));
     }
 
@@ -150,7 +150,7 @@ class OrdersController extends AppController {
                         ->subject('ZARS - nová objednávka');
                 $email->send('Nová objednávka na portálu zars');
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('controller' => 'orders', 'action' => 'finished', $houseDate['House']['slug']));
+                return $this->redirect(['controller' => 'orders', 'action' => 'finished', $houseDate['House']['slug']]);
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
@@ -180,15 +180,15 @@ class OrdersController extends AppController {
         if (!$this->Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->Order->save($this->request->data)) {
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+            $options = ['conditions' => ['Order.' . $this->Order->primaryKey => $id]];
             $this->request->data = $this->Order->find('first', $options);
         }
         $companies = $this->Order->Company->find('list');
@@ -216,7 +216,7 @@ class OrdersController extends AppController {
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     /**
@@ -247,7 +247,7 @@ class OrdersController extends AppController {
         ];
         $this->set('orders', $this->Paginator->paginate());
         $this->set(compact('status'));
-        
+
         if ($status == 1) {
             $newOrders = $this->Order->find('all', [
                 'conditions' => [
@@ -279,7 +279,7 @@ class OrdersController extends AppController {
         if (!$this->Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
         }
-        $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+        $options = ['conditions' => ['Order.' . $this->Order->primaryKey => $id]];
         $this->set('order', $this->Order->find('first', $options));
     }
 
@@ -293,7 +293,7 @@ class OrdersController extends AppController {
             $this->Order->create();
             if ($this->Order->save($this->request->data)) {
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
@@ -316,7 +316,7 @@ class OrdersController extends AppController {
         if (!$this->Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if (empty($this->request->data['Order']['confirmed'])) {
                 $saved = $this->Order->confirm($this->request->data);
             } else {
@@ -326,7 +326,7 @@ class OrdersController extends AppController {
             }
             if ($saved) {
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('action' => 'edit', $id));
+                return $this->redirect(['action' => 'edit', $id]);
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
@@ -390,7 +390,7 @@ class OrdersController extends AppController {
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function admin_confirm($id = null) {
@@ -404,7 +404,7 @@ class OrdersController extends AppController {
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function admin_cancel($id = null) {
@@ -418,7 +418,7 @@ class OrdersController extends AppController {
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function admin_confirmation($id = null, $param = null) {
@@ -478,23 +478,54 @@ class OrdersController extends AppController {
                 ]);
                 $this->set(compact('properties'));
                 $this->render('admin_coupon');
-            case 'majitel':
-                $this->render('admin_confirmation_owner');
+
+            case 'majitel-objednavka':
+                $this->render('admin_owner_confirmation');
                 break;
-            case 'majitel-email':
+
+            case 'majitel-objednavka-email':
+                $this->autoRender = false;
+                $email = new CakeEmail('smtp');
+                $email->to($order['HouseDate']['House']['User']['email'], $order['HouseDate']['House']['User']['full_name'])
+                        ->viewVars(['order' => $order])
+                        ->helpers(['Html', 'Time'])
+                        ->emailFormat('html')
+                        ->template('owner_order', 'default')
+                        ->subject('ZARS - objednávka pobytu');
+                $email->send();
+                $this->Order->updateAll(['Order.owner_email' => 'CURDATE()'], ['Order.id' => $id]);
+                $this->Flash->set('Potvrzení odesláno.');
+                return $this->redirect(['action' => 'edit', $id]);
+
+            case 'majitel-platba':
+                $this->render('admin_payment_owner');
                 break;
+            case 'majitel-platba-email':
+                $this->autoRender = false;
+                $email = new CakeEmail('smtp');
+                $email->to($order['HouseDate']['House']['User']['email'], $order['HouseDate']['House']['User']['full_name'])
+                        ->viewVars(['order' => $order])
+                        ->helpers(['Html', 'Time'])
+                        ->emailFormat('html')
+                        ->template('owner_order', 'default')
+                        ->subject('ZARS - zaplacení pobytu');
+                $email->send();
+                $this->Order->updateAll(['Order.owner_paydate' => 'CURDATE()'], ['Order.id' => $id]);
+                $this->Flash->set('Potvrzení odesláno.');
+                return $this->redirect(['action' => 'edit', $id]);
         }
     }
 
-    public function admin_changeStatus($id = null, $status = 1){
+    public function admin_changeStatus($id = null, $status = 1) {
         $this->autoRender = false;
         $this->Order->id = $id;
         if (!$this->Order->exists()) {
             throw new NotFoundException(__('Invalid order'));
         }
-        
-        if($this->Order->updateAll(['Order.order_status_id' => $status], ['Order.id' => $id])){
+
+        if ($this->Order->updateAll(['Order.order_status_id' => $status], ['Order.id' => $id])) {
             return $this->redirect($this->referer());
         }
     }
+
 }

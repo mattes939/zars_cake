@@ -18,37 +18,37 @@ class HouseDate extends AppModel {
      *
      * @var array
      */
-    public $belongsTo = array(
-        'House' => array(
+    public $belongsTo = [
+        'House' => [
             'className' => 'House',
             'foreignKey' => 'house_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'TravelDate' => array(
+        ],
+        'TravelDate' => [
             'className' => 'TravelDate',
             'foreignKey' => 'travel_date_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'DateCondition' => array(
+        ],
+        'DateCondition' => [
             'className' => 'DateCondition',
             'foreignKey' => 'date_condition_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'UnavailableDay' => array(
+    public $hasMany = [
+        'UnavailableDay' => [
             'className' => 'UnavailableDay',
             'foreignKey' => 'house_date_id',
             'dependent' => false,
@@ -60,8 +60,8 @@ class HouseDate extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'Order' => array(
+        ],
+        'Order' => [
             'className' => 'Order',
             'foreignKey' => 'house_date_id',
             'dependent' => false,
@@ -73,8 +73,8 @@ class HouseDate extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-    );
+        ],
+    ];
 
     public function generate($house_id = null, $travelDateId = null) {
         if (!empty($house_id)) {

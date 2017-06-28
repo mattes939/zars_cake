@@ -22,8 +22,8 @@ class DateCondition extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'HousesTravelDate' => array(
+	public $hasMany = [
+		'HousesTravelDate' => [
 			'className' => 'HousesTravelDate',
 			'foreignKey' => 'date_condition_id',
 			'dependent' => false,
@@ -35,7 +35,7 @@ class DateCondition extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

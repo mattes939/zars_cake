@@ -15,7 +15,7 @@ class LogsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * admin_index method
@@ -38,7 +38,7 @@ class LogsController extends AppController {
 		if (!$this->Log->exists($id)) {
 			throw new NotFoundException(__('Invalid log'));
 		}
-		$options = array('conditions' => array('Log.' . $this->Log->primaryKey => $id));
+		$options = ['conditions' => ['Log.' . $this->Log->primaryKey => $id]];
 		$this->set('log', $this->Log->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class LogsController extends AppController {
 			$this->Log->create();
 			if ($this->Log->save($this->request->data)) {
 				$this->Flash->success(__('The log has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The log could not be saved. Please, try again.'));
 			}
@@ -72,15 +72,15 @@ class LogsController extends AppController {
 		if (!$this->Log->exists($id)) {
 			throw new NotFoundException(__('Invalid log'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Log->save($this->request->data)) {
 				$this->Flash->success(__('The log has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The log could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Log.' . $this->Log->primaryKey => $id));
+			$options = ['conditions' => ['Log.' . $this->Log->primaryKey => $id]];
 			$this->request->data = $this->Log->find('first', $options);
 		}
 		$users = $this->Log->User->find('list');
@@ -105,6 +105,6 @@ class LogsController extends AppController {
 		} else {
 			$this->Flash->error(__('The log could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

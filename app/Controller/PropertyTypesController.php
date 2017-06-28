@@ -15,7 +15,7 @@ class PropertyTypesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class PropertyTypesController extends AppController {
 		if (!$this->PropertyType->exists($id)) {
 			throw new NotFoundException(__('Invalid property type'));
 		}
-		$options = array('conditions' => array('PropertyType.' . $this->PropertyType->primaryKey => $id));
+		$options = ['conditions' => ['PropertyType.' . $this->PropertyType->primaryKey => $id]];
 		$this->set('propertyType', $this->PropertyType->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class PropertyTypesController extends AppController {
 			$this->PropertyType->create();
 			if ($this->PropertyType->save($this->request->data)) {
 				$this->Flash->success(__('The property type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The property type could not be saved. Please, try again.'));
 			}
@@ -70,15 +70,15 @@ class PropertyTypesController extends AppController {
 		if (!$this->PropertyType->exists($id)) {
 			throw new NotFoundException(__('Invalid property type'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->PropertyType->save($this->request->data)) {
 				$this->Flash->success(__('The property type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The property type could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('PropertyType.' . $this->PropertyType->primaryKey => $id));
+			$options = ['conditions' => ['PropertyType.' . $this->PropertyType->primaryKey => $id]];
 			$this->request->data = $this->PropertyType->find('first', $options);
 		}
 	}
@@ -101,7 +101,7 @@ class PropertyTypesController extends AppController {
 		} else {
 			$this->Flash->error(__('The property type could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -125,7 +125,7 @@ class PropertyTypesController extends AppController {
 		if (!$this->PropertyType->exists($id)) {
 			throw new NotFoundException(__('Invalid property type'));
 		}
-		$options = array('conditions' => array('PropertyType.' . $this->PropertyType->primaryKey => $id));
+		$options = ['conditions' => ['PropertyType.' . $this->PropertyType->primaryKey => $id]];
 		$this->set('propertyType', $this->PropertyType->find('first', $options));
 	}
 
@@ -139,7 +139,7 @@ class PropertyTypesController extends AppController {
 			$this->PropertyType->create();
 			if ($this->PropertyType->save($this->request->data)) {
 				$this->Flash->success(__('The property type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The property type could not be saved. Please, try again.'));
 			}
@@ -157,15 +157,15 @@ class PropertyTypesController extends AppController {
 		if (!$this->PropertyType->exists($id)) {
 			throw new NotFoundException(__('Invalid property type'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->PropertyType->save($this->request->data)) {
 				$this->Flash->success(__('The property type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The property type could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('PropertyType.' . $this->PropertyType->primaryKey => $id));
+			$options = ['conditions' => ['PropertyType.' . $this->PropertyType->primaryKey => $id]];
 			$this->request->data = $this->PropertyType->find('first', $options);
 		}
 	}
@@ -188,6 +188,6 @@ class PropertyTypesController extends AppController {
 		} else {
 			$this->Flash->error(__('The property type could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

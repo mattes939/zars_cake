@@ -8,12 +8,12 @@
 		</dd>
 		<dt><?php echo __('Area'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($selection['Area']['name'], array('controller' => 'areas', 'action' => 'view', $selection['Area']['id'])); ?>
+			<?php echo $this->Html->link($selection['Area']['name'], ['controller' => 'areas', 'action' => 'view', $selection['Area']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Property'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($selection['Property']['name'], array('controller' => 'properties', 'action' => 'view', $selection['Property']['id'])); ?>
+			<?php echo $this->Html->link($selection['Property']['name'], ['controller' => 'properties', 'action' => 'view', $selection['Property']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -61,13 +61,13 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Selection'), array('action' => 'edit', $selection['Selection']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Selection'), array('action' => 'delete', $selection['Selection']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $selection['Selection']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Selections'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Selection'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Areas'), array('controller' => 'areas', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Area'), array('controller' => 'areas', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Properties'), array('controller' => 'properties', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Property'), array('controller' => 'properties', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Selection'), ['action' => 'edit', $selection['Selection']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Selection'), ['action' => 'delete', $selection['Selection']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $selection['Selection']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Selections'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Selection'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Areas'), ['controller' => 'areas', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Area'), ['controller' => 'areas', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Properties'), ['controller' => 'properties', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Property'), ['controller' => 'properties', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

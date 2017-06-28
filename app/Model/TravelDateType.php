@@ -22,8 +22,8 @@ class TravelDateType extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'TravelDate' => array(
+	public $hasMany = [
+		'TravelDate' => [
 			'className' => 'TravelDate',
 			'foreignKey' => 'travel_date_type_id',
 			'dependent' => false,
@@ -35,7 +35,7 @@ class TravelDateType extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

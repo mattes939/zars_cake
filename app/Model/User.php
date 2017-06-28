@@ -33,23 +33,23 @@ class User extends AppModel {
      *
      * @var array
      */
-    public $belongsTo = array(
-        'Group' => array(
+    public $belongsTo = [
+        'Group' => [
             'className' => 'Group',
             'foreignKey' => 'group_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'Address' => array(
+    public $hasMany = [
+        'Address' => [
             'className' => 'Address',
             'foreignKey' => 'user_id',
             'dependent' => false,
@@ -61,8 +61,8 @@ class User extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'House' => array(
+        ],
+        'House' => [
             'className' => 'House',
             'foreignKey' => 'user_id',
             'dependent' => false,
@@ -74,8 +74,8 @@ class User extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'Log' => array(
+        ],
+        'Log' => [
             'className' => 'Log',
             'foreignKey' => 'user_id',
             'dependent' => false,
@@ -87,8 +87,8 @@ class User extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'Order' => array(
+        ],
+        'Order' => [
             'className' => 'Order',
             'foreignKey' => 'user_id',
             'dependent' => false,
@@ -100,8 +100,8 @@ class User extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'Review' => array(
+        ],
+        'Review' => [
             'className' => 'Review',
             'foreignKey' => 'user_id',
             'dependent' => false,
@@ -113,15 +113,15 @@ class User extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * Validation rules
      *
      * @var array
      */
-    public $validate = array(
+    public $validate = [
 //        'username' => array(
 //            'alphaNumeric' => array(
 //                'rule' => 'alphaNumeric',
@@ -133,16 +133,16 @@ class User extends AppModel {
 //                'message' => 'Uživatelské jméno musí obsahovat nejméně 5 a nejvíce 15 znaků'
 //            )
 //        ),
-        'password' => array(
-            'notBlank' => array(
-                'rule' => array('notBlank'),
+        'password' => [
+            'notBlank' => [
+                'rule' => ['notBlank'],
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
+            ],
+        ],
 //            'pwd' => array(
 //			'notBlank' => array(
 //				'rule' => array('notBlank'),
@@ -153,16 +153,16 @@ class User extends AppModel {
 //				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 //			),
 //		),
-        'group_id' => array(
-            'numeric' => array(
-                'rule' => array('numeric'),
+        'group_id' => [
+            'numeric' => [
+                'rule' => ['numeric'],
             //'message' => 'Your custom message here',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
             //'on' => 'create', // Limit validation to 'create' or 'update' operations
-            ),
-        ),
+            ],
+        ],
 //                'current_password' => array(
 //        'rule' => array('checkCurrentPassword'),
 //        'message' => 'Nesprávné heslo!'
@@ -175,8 +175,8 @@ class User extends AppModel {
 //        'rule' => 'passwordsMatch',
 //        'message' => '...',
 //    )
-    );
-    public $actsAs = array('Acl' => array('type' => 'requester', 'enabled' => false));
+    ];
+    public $actsAs = ['Acl' => ['type' => 'requester', 'enabled' => false]];
 
     public function parentNode() {
         if (!$this->id && empty($this->data)) {
@@ -190,22 +190,22 @@ class User extends AppModel {
         if (!$groupId) {
             return null;
         } else {
-            return array('Group' => array('id' => $groupId));
+            return ['Group' => ['id' => $groupId]];
         }
     }
 
     public function bindNode($user) {
-        return array('model' => 'Group', 'foreign_key' => $user['User']['group_id']);
+        return ['model' => 'Group', 'foreign_key' => $user['User']['group_id']];
     }
 
     public function majitelExists($id = null) {
-        return (bool) $this->find('count', array(
-                    'conditions' => array(
+        return (bool) $this->find('count', [
+                    'conditions' => [
                         $this->alias . '.majitel' => $id
-                    ),
+                    ],
                     'recursive' => -1,
                     'callbacks' => false
-        ));
+        ]);
     }
 
     public function hideOldCustomers($email = null) {

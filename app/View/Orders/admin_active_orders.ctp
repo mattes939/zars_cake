@@ -25,8 +25,9 @@ if (!empty($overdueOrders['depositOverdue'])) {
                         <th><?php echo 'Do nástupu'; ?></th>
                         <th><?php echo 'Kontrola'; ?></th>
                         <th><?php echo 'Zpoždění'; ?></th>
+                        <th></th>
 
-            <!--<th class="actions">Upomínky</th>-->
+                <!--<th class="actions">Upomínky</th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -34,9 +35,9 @@ if (!empty($overdueOrders['depositOverdue'])) {
                     foreach ($overdueOrders['depositOverdue'] as $order) {
                         ?>
                         <tr>
-                            <td><?php echo $this->Html->link($order['Order']['code'], array('action' => 'edit', $order['Order']['id']), ['escape' => false]); ?></td>
-                            <td> <?php echo $this->Html->link($order['User']['full_name'], array('action' => 'edit', $order['Order']['id']), ['escape' => false]); ?></td>
-                            <td> <?php echo $this->Html->link($order['HouseDate']['House']['full_name'], array('action' => 'edit', $order['Order']['id']), ['escape' => false]); ?></td>
+                            <td><?php echo $this->Html->link($order['Order']['code'], ['action' => 'edit', $order['Order']['id']], ['escape' => false]); ?></td>
+                            <td> <?php echo $this->Html->link($order['User']['full_name'], ['action' => 'edit', $order['Order']['id']], ['escape' => false]); ?></td>
+                            <td> <?php echo $this->Html->link($order['HouseDate']['House']['full_name'], ['action' => 'edit', $order['Order']['id']], ['escape' => false]); ?></td>
                             <td>
                                 <?php
                                 echo $this->Time->format($order['Order']['start_day'], '%e. %m. %y') . ' - ' . $this->Time->format($order['Order']['end_day'], '%e. %m. %y');
@@ -73,7 +74,8 @@ if (!empty($overdueOrders['depositOverdue'])) {
                                     }
                                 }
                                 ?></td>
-
+                            <td><?php echo $this->Html->link(__('Otevřít'), ['action' => 'edit', $order['Order']['id']], ['class' => 'btn btn-xs btn-primary', 'escape' => false]); ?>
+                                <?php echo $this->Html->link(__('Platby'), ['action' => 'edit', $order['Order']['id'], '#' => 'payment-section'], ['class' => 'btn btn-xs btn-success', 'escape' => false]); ?></td>
 
                         </tr>
                         <?php
@@ -100,7 +102,7 @@ if (!empty($overdueOrders['ownerOverdue'])) {
                         <th><?php echo 'Termín'; ?></th>
                         <th><?php echo 'Do nástupu'; ?></th>
                         <th><?php echo 'Zpoždění'; ?></th>
-
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -108,9 +110,9 @@ if (!empty($overdueOrders['ownerOverdue'])) {
                     foreach ($overdueOrders['ownerOverdue'] as $order) {
                         ?>
                         <tr>
-                            <td><?php echo $this->Html->link($order['Order']['code'], array('action' => 'edit', $order['Order']['id']), ['escape' => false]); ?></td>
-                            <td> <?php echo $this->Html->link($order['User']['full_name'], array('action' => 'edit', $order['Order']['id']), ['escape' => false]); ?></td>
-                            <td> <?php echo $this->Html->link($order['HouseDate']['House']['full_name'], array('action' => 'edit', $order['Order']['id']), ['escape' => false]); ?></td>
+                            <td><?php echo $this->Html->link($order['Order']['code'], ['action' => 'edit', $order['Order']['id']], ['escape' => false]); ?></td>
+                            <td> <?php echo $this->Html->link($order['User']['full_name'], ['action' => 'edit', $order['Order']['id']], ['escape' => false]); ?></td>
+                            <td> <?php echo $this->Html->link($order['HouseDate']['House']['full_name'], ['action' => 'edit', $order['Order']['id']], ['escape' => false]); ?></td>
                             <td>
                                 <?php
                                 echo $this->Time->format($order['Order']['start_day'], '%e. %m. %y') . ' - ' . $this->Time->format($order['Order']['end_day'], '%e. %m. %y');
@@ -124,7 +126,10 @@ if (!empty($overdueOrders['ownerOverdue'])) {
                             <td><?php
                                 echo $order['Order']['owner_overdue'];
                                 ?></td>
-
+                            <td>
+                                <?php echo $this->Html->link(__('Otevřít'), ['action' => 'edit', $order['Order']['id']], ['class' => 'btn btn-xs btn-primary', 'escape' => false]); ?>
+                                <?php echo $this->Html->link(__('Platby'), ['action' => 'edit', $order['Order']['id'], '#' => 'payment-section'], ['class' => 'btn btn-xs btn-success', 'escape' => false]); ?>
+                            </td>
                         </tr>
                         <?php
                     }

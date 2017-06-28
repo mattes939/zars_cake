@@ -8,12 +8,12 @@
 		</dd>
 		<dt><?php echo __('Order'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($deposit['Order']['id'], array('controller' => 'orders', 'action' => 'view', $deposit['Order']['id'])); ?>
+			<?php echo $this->Html->link($deposit['Order']['id'], ['controller' => 'orders', 'action' => 'view', $deposit['Order']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Deposit Type'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($deposit['DepositType']['name'], array('controller' => 'deposit_types', 'action' => 'view', $deposit['DepositType']['id'])); ?>
+			<?php echo $this->Html->link($deposit['DepositType']['name'], ['controller' => 'deposit_types', 'action' => 'view', $deposit['DepositType']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Price'); ?></dt>
@@ -46,13 +46,13 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Deposit'), array('action' => 'edit', $deposit['Deposit']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Deposit'), array('action' => 'delete', $deposit['Deposit']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $deposit['Deposit']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Deposits'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Deposit'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('controller' => 'orders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Deposit Types'), array('controller' => 'deposit_types', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Deposit Type'), array('controller' => 'deposit_types', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Deposit'), ['action' => 'edit', $deposit['Deposit']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Deposit'), ['action' => 'delete', $deposit['Deposit']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $deposit['Deposit']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Deposits'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Deposit'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Orders'), ['controller' => 'orders', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Order'), ['controller' => 'orders', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Deposit Types'), ['controller' => 'deposit_types', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Deposit Type'), ['controller' => 'deposit_types', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
