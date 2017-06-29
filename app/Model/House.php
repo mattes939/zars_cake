@@ -79,6 +79,13 @@ class House extends AppModel {
             'conditions' => '',
             'fields' => '',
             'order' => ''
+        ],
+        'Pricelist' => [
+            'className' => 'Pricelist',
+            'foreignKey' => 'pricelist_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
         ]
     ];
 

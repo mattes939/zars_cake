@@ -23,8 +23,8 @@ class Pricelist extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Price' => array(
-			'className' => 'Price',
+		'House' => array(
+			'className' => 'House',
 			'foreignKey' => 'pricelist_id',
 			'dependent' => false,
 			'conditions' => '',
