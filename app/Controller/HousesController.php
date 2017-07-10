@@ -531,6 +531,7 @@ class HousesController extends AppController {
         $parents = $this->House->generateTreeList([
             'parent_id' => null
         ]);
+        $pricelists = $this->House->Pricelist->find('list');
 //        debug($parentHouses);
 //        $portals = $this->House->Portal->find('list');
 //        $travelDates = $this->House->TravelDate->find('list');
@@ -565,7 +566,7 @@ class HousesController extends AppController {
 //            'contain' => $containValues
 //        ]);    
 //        debug($values);die;
-        $this->set(compact('regions', 'districts', 'areas', 'id', 'dateConditions', 'parents'));
+        $this->set(compact('regions', 'districts', 'areas', 'id', 'dateConditions', 'parents', 'pricelists'));
 //          $this->render('admin_edit2');
     }
 

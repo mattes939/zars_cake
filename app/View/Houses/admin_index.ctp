@@ -18,6 +18,8 @@
                 <tr>
                     <td><?php echo h($house['House']['code']); ?></td>
                     <td><?php 
+//                    echo $this->Html->link('<span class="glyphicon glyphicon-list-alt"></span> Do ceníku', ['controller' => 'prices', 'action' => 'edit', $house['House']['id']], ['class' => 'btn btn-default btn-xs', 'escape' => false]);
+//                    echo '&nbsp;';
                     echo $this->Html->link(h($house['House']['name']), ['action' => 'edit', $house['House']['id']]);
                     
                     ?></td>

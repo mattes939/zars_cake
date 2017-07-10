@@ -1,3 +1,8 @@
+function calculateBillingPrice() {
+    $('#OrderFinalPrice').val($('#OrderPrice').val() - $('#OrderDiscount').val());
+    $('#OrderBillingPrice').val($('#OrderFinalPrice').val()*(1 + $('#OrderProvision').val()/100));
+}
+
 $(document).ready(function () {
     $('#OrderEmployerContribution').change(function () {
         $('#fksp').toggleClass('hidden');
@@ -15,6 +20,11 @@ $(document).ready(function () {
         todayHighlight: true,
         weekStart: 1
     });
+
+
+    calculateBillingPrice();
+
+
 //    $('table.dt').DataTable({
 //        "language": {
 //            "sEmptyTable": "Tabulka neobsahuje žádná data",
@@ -85,7 +95,8 @@ $(document).ready(function () {
                 .andSelf()
                 .show();
     });
-    $('select').selectpicker({hideDisabled: false});
+//    $('select').selectpicker({hideDisabled: false});
 
 
 });
+

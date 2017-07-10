@@ -59,7 +59,7 @@
                             <?php // echo $this->Html->link(__('View'), array('action' => 'view', $order['Order']['id'])); ?>
                             <?php echo $this->Html->link(__('Otevřít'), ['action' => 'edit', $order['Order']['id']], ['class' => 'btn btn-xs btn-primary', 'escape' => false]); ?>
                              <?php echo $this->Html->link(__('Platby'), ['action' => 'edit', $order['Order']['id'], '#' => 'payment-section'], ['class' => 'btn btn-xs btn-success'.$this->Code->classDisabled($order['Order']['confirmed']), 'escape' => false]); ?>
-                            <?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $order['Order']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $order['Order']['id']), 'class' => 'btn btn-xs btn-danger']); ?>
+                            <?php echo $this->Form->postLink(__('Smazat'), ['action' => 'delete', $order['Order']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $order['Order']['id']), 'class' => 'btn btn-xs btn-danger']); ?>
                         </td>
 <!--                        <td><?php
                             foreach ($order['Deposit'] as $deposit) {

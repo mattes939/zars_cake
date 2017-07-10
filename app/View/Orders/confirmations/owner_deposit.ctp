@@ -24,4 +24,4 @@ if(!empty($order['Order']['owner_deposit'])){
 //}
 ?>
 <strong>bankovní spojení: </strong><?php echo $order['HouseDate']['House']['User']['account']; ?>
-<br /><br />Těšíme se na další spolupráci a jsme s pozdravem, CA ZARS, Příbor
+<br /><br />Těšíme se na další spolupráci<br><br>S pozdravem, CA ZARS, Příbor

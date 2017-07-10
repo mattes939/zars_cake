@@ -172,6 +172,19 @@ class House extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
+        ],
+          'Price' => [
+            'className' => 'Price',
+            'foreignKey' => 'house_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
         ]
     ];
 

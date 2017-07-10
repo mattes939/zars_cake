@@ -27,7 +27,7 @@
  */
 //Router::connect('/', array('controller' => 'houses', 'action' => 'view', 'valassko-a-beskydy','moravskoslezsky-kraj','novy-jicin','trojanovice-2008054'));
 Router::connect('/', ['controller' => 'houses', 'action' => 'index']);
-Router::connect('/admin', ['controller' => 'houses', 'action' => 'index', 'admin' => true]);
+Router::connect('/admin', ['controller' => 'orders', 'action' => 'index', 'admin' => true]);
 Router::connect('/oblasti', ['controller' => 'areas', 'action' => 'index']);
 Router::connect('/oblast/**', ['controller' => 'areas', 'action' => 'view'], ['pass' => ['slug']]);
 Router::connect('/kraje', ['controller' => 'regions', 'action' => 'index']);
