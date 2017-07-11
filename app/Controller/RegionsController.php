@@ -15,7 +15,7 @@ class RegionsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -74,7 +74,7 @@ public function view($slug = null) {
 			$this->Region->create();
 			if ($this->Region->save($this->request->data)) {
 				$this->Flash->success(__('The region has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The region could not be saved. Please, try again.'));
 			}
@@ -95,15 +95,15 @@ public function view($slug = null) {
 		if (!$this->Region->exists($id)) {
 			throw new NotFoundException(__('Invalid region'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Region->save($this->request->data)) {
 				$this->Flash->success(__('The region has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The region could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Region.' . $this->Region->primaryKey => $id));
+			$options = ['conditions' => ['Region.' . $this->Region->primaryKey => $id]];
 			$this->request->data = $this->Region->find('first', $options);
 		}
 		$countries = $this->Region->Country->find('list');
@@ -129,7 +129,7 @@ public function view($slug = null) {
 		} else {
 			$this->Flash->error(__('The region could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -153,7 +153,7 @@ public function view($slug = null) {
 		if (!$this->Region->exists($id)) {
 			throw new NotFoundException(__('Invalid region'));
 		}
-		$options = array('conditions' => array('Region.' . $this->Region->primaryKey => $id));
+		$options = ['conditions' => ['Region.' . $this->Region->primaryKey => $id]];
 		$this->set('region', $this->Region->find('first', $options));
 	}
 
@@ -167,7 +167,7 @@ public function view($slug = null) {
 			$this->Region->create();
 			if ($this->Region->save($this->request->data)) {
 				$this->Flash->success(__('The region has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The region could not be saved. Please, try again.'));
 			}
@@ -188,15 +188,15 @@ public function view($slug = null) {
 		if (!$this->Region->exists($id)) {
 			throw new NotFoundException(__('Invalid region'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Region->save($this->request->data)) {
 				$this->Flash->success(__('The region has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The region could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Region.' . $this->Region->primaryKey => $id));
+			$options = ['conditions' => ['Region.' . $this->Region->primaryKey => $id]];
 			$this->request->data = $this->Region->find('first', $options);
 		}
 		$countries = $this->Region->Country->find('list');
@@ -222,6 +222,6 @@ public function view($slug = null) {
 		} else {
 			$this->Flash->error(__('The region could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

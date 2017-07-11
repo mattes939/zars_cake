@@ -25,22 +25,22 @@ class Deposit extends AppModel {
      *
      * @var array
      */
-    public $belongsTo = array(
-        'Order' => array(
+    public $belongsTo = [
+        'Order' => [
             'className' => 'Order',
             'foreignKey' => 'order_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'DepositType' => array(
+        ],
+        'DepositType' => [
             'className' => 'DepositType',
             'foreignKey' => 'deposit_type_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * hasMany associations
@@ -48,7 +48,7 @@ class Deposit extends AppModel {
      * @var array
      */
     public $hasMany = [
-        'Reminder' => array(
+        'Reminder' => [
             'className' => 'Reminder',
             'foreignKey' => 'deposit_id',
             'dependent' => false,
@@ -60,7 +60,7 @@ class Deposit extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
+        ],
     ];
 
     public function initialize($deposit, $confirmed, $startDate, $billingPrice) {

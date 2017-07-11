@@ -17,7 +17,7 @@ class AreasController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
 
     /**
      * index method
@@ -77,7 +77,7 @@ class AreasController extends AppController {
             $this->Area->create();
             if ($this->Area->save($this->request->data)) {
                 $this->Flash->success(__('The area has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The area could not be saved. Please, try again.'));
             }
@@ -99,15 +99,15 @@ class AreasController extends AppController {
         if (!$this->Area->exists($id)) {
             throw new NotFoundException(__('Invalid area'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->Area->save($this->request->data)) {
                 $this->Flash->success(__('The area has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The area could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('Area.' . $this->Area->primaryKey => $id));
+            $options = ['conditions' => ['Area.' . $this->Area->primaryKey => $id]];
             $this->request->data = $this->Area->find('first', $options);
         }
         $articles = $this->Area->Article->find('list');
@@ -134,7 +134,7 @@ class AreasController extends AppController {
         } else {
             $this->Flash->error(__('The area could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     /**
@@ -158,7 +158,7 @@ class AreasController extends AppController {
         if (!$this->Area->exists($id)) {
             throw new NotFoundException(__('Invalid area'));
         }
-        $options = array('conditions' => array('Area.' . $this->Area->primaryKey => $id));
+        $options = ['conditions' => ['Area.' . $this->Area->primaryKey => $id]];
         $this->set('area', $this->Area->find('first', $options));
     }
 
@@ -172,7 +172,7 @@ class AreasController extends AppController {
             $this->Area->create();
             if ($this->Area->save($this->request->data)) {
                 $this->Flash->success(__('The area has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The area could not be saved. Please, try again.'));
             }
@@ -194,15 +194,15 @@ class AreasController extends AppController {
         if (!$this->Area->exists($id)) {
             throw new NotFoundException(__('Invalid area'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->Area->save($this->request->data)) {
                 $this->Flash->success(__('The area has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The area could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('Area.' . $this->Area->primaryKey => $id));
+            $options = ['conditions' => ['Area.' . $this->Area->primaryKey => $id]];
             $this->request->data = $this->Area->find('first', $options);
         }
         $articles = $this->Area->Article->find('list');
@@ -229,7 +229,7 @@ class AreasController extends AppController {
         } else {
             $this->Flash->error(__('The area could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
 }

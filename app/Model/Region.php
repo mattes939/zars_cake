@@ -25,23 +25,23 @@ class Region extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'Country' => array(
+	public $belongsTo = [
+		'Country' => [
 			'className' => 'Country',
 			'foreignKey' => 'country_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 
 /**
  * hasMany associations
  *
  * @var array
  */
-	public $hasMany = array(
-		'District' => array(
+	public $hasMany = [
+		'District' => [
 			'className' => 'District',
 			'foreignKey' => 'region_id',
 			'dependent' => false,
@@ -53,8 +53,8 @@ class Region extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
-		'House' => array(
+		],
+		'House' => [
 			'className' => 'House',
 			'foreignKey' => 'region_id',
 			'dependent' => false,
@@ -66,8 +66,8 @@ class Region extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 
 /**
@@ -75,8 +75,8 @@ class Region extends AppModel {
  *
  * @var array
  */
-	public $hasAndBelongsToMany = array(
-		'Area' => array(
+	public $hasAndBelongsToMany = [
+		'Area' => [
 			'className' => 'Area',
 			'joinTable' => 'areas_regions',
 			'foreignKey' => 'region_id',
@@ -88,7 +88,7 @@ class Region extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		)
-	);
+		]
+	];
 
 }

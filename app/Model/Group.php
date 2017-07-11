@@ -22,8 +22,8 @@ class Group extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'User' => array(
+	public $hasMany = [
+		'User' => [
 			'className' => 'User',
 			'foreignKey' => 'group_id',
 			'dependent' => false,
@@ -35,7 +35,7 @@ class Group extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

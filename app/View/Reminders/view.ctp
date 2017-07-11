@@ -13,7 +13,7 @@
 		</dd>
 		<dt><?php echo __('Reminder Type'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($reminder['ReminderType']['name'], array('controller' => 'reminder_types', 'action' => 'view', $reminder['ReminderType']['id'])); ?>
+			<?php echo $this->Html->link($reminder['ReminderType']['name'], ['controller' => 'reminder_types', 'action' => 'view', $reminder['ReminderType']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Date'); ?></dt>
@@ -36,13 +36,13 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Reminder'), array('action' => 'edit', $reminder['Reminder']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Reminder'), array('action' => 'delete', $reminder['Reminder']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $reminder['Reminder']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Reminders'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Reminder'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Reminder Types'), array('controller' => 'reminder_types', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Reminder Type'), array('controller' => 'reminder_types', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Reminder'), ['action' => 'edit', $reminder['Reminder']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Reminder'), ['action' => 'delete', $reminder['Reminder']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $reminder['Reminder']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Reminders'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Reminder'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Reminder Types'), ['controller' => 'reminder_types', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Reminder Type'), ['controller' => 'reminder_types', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
-$config = array(
-    'Elfinder' => array(
+$config = [
+    'Elfinder' => [
         'title' => __('Elfinder File Manager'),
         'width' => 900,
         'height' => 500,
@@ -32,25 +32,25 @@ $config = array(
          * visit https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
          *  		
          */
-        'options' => array(
+        'options' => [
             //'debug' => true,
-            'roots' => array(
-                array(
+            'roots' => [
+                [
                     'driver' => 'LocalFileSystem', // driver for accessing file system (REQUIRED)
                     'URL' => Router::url('/', true) . '/files', // upload main folder
 //                    'path' => IMAGES . 'Uploads', // path to files (REQUIRED)
                     'path' => WWW_ROOT . 'files',
                     'accessControl' => 'access', // disable and hide dot starting files (OPTIONAL)
-                    'attributes' => array(
-                        array(
+                    'attributes' => [
+                        [
                             'pattern' => '!\.html$!',
                             'hidden' => true
-                        )
-                    ),
+                        ]
+                    ],
                     'tmbPath' => 'tumbnails',
                     'uploadOverwrite' => false,
-                )
-            )
-        )
-    )
-);
+                ]
+            ]
+        ]
+    ]
+];

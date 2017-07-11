@@ -22,10 +22,10 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Articles'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Articles'), array('controller' => 'articles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Article'), array('controller' => 'articles', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Areas'), array('controller' => 'areas', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Area'), array('controller' => 'areas', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Articles'), ['action' => 'index']); ?></li>
+		<li><?php echo $this->Html->link(__('List Articles'), ['controller' => 'articles', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Parent Article'), ['controller' => 'articles', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Areas'), ['controller' => 'areas', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Area'), ['controller' => 'areas', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

@@ -23,8 +23,8 @@ class Country extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'Address' => array(
+	public $hasMany = [
+		'Address' => [
 			'className' => 'Address',
 			'foreignKey' => 'country_id',
 			'dependent' => false,
@@ -36,8 +36,8 @@ class Country extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
-		'Region' => array(
+		],
+		'Region' => [
 			'className' => 'Region',
 			'foreignKey' => 'country_id',
 			'dependent' => false,
@@ -49,7 +49,7 @@ class Country extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

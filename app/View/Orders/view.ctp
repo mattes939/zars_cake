@@ -8,37 +8,37 @@
 		</dd>
 		<dt><?php echo __('Order Status'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($order['OrderStatus']['name'], array('controller' => 'order_statuses', 'action' => 'view', $order['OrderStatus']['id'])); ?>
+			<?php echo $this->Html->link($order['OrderStatus']['name'], ['controller' => 'order_statuses', 'action' => 'view', $order['OrderStatus']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('House Date'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($order['HouseDate']['id'], array('controller' => 'house_dates', 'action' => 'view', $order['HouseDate']['id'])); ?>
+			<?php echo $this->Html->link($order['HouseDate']['id'], ['controller' => 'house_dates', 'action' => 'view', $order['HouseDate']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Company'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($order['Company']['name'], array('controller' => 'companies', 'action' => 'view', $order['Company']['id'])); ?>
+			<?php echo $this->Html->link($order['Company']['name'], ['controller' => 'companies', 'action' => 'view', $order['Company']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Portal'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($order['Portal']['name'], array('controller' => 'portals', 'action' => 'view', $order['Portal']['id'])); ?>
+			<?php echo $this->Html->link($order['Portal']['name'], ['controller' => 'portals', 'action' => 'view', $order['Portal']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('User'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($order['User']['username'], array('controller' => 'users', 'action' => 'view', $order['User']['id'])); ?>
+			<?php echo $this->Html->link($order['User']['username'], ['controller' => 'users', 'action' => 'view', $order['User']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('House'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($order['House']['name'], array('controller' => 'houses', 'action' => 'view', $order['House']['id'])); ?>
+			<?php echo $this->Html->link($order['House']['name'], ['controller' => 'houses', 'action' => 'view', $order['House']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Travel Date'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($order['TravelDate']['id'], array('controller' => 'travel_dates', 'action' => 'view', $order['TravelDate']['id'])); ?>
+			<?php echo $this->Html->link($order['TravelDate']['id'], ['controller' => 'travel_dates', 'action' => 'view', $order['TravelDate']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Attendants'); ?></dt>
@@ -176,26 +176,26 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Order'), array('action' => 'edit', $order['Order']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Order'), array('action' => 'delete', $order['Order']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $order['Order']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Companies'), array('controller' => 'companies', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Company'), array('controller' => 'companies', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Portals'), array('controller' => 'portals', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Portal'), array('controller' => 'portals', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Travel Dates'), array('controller' => 'travel_dates', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Travel Date'), array('controller' => 'travel_dates', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List House Dates'), array('controller' => 'house_dates', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House Date'), array('controller' => 'house_dates', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Order Statuses'), array('controller' => 'order_statuses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order Status'), array('controller' => 'order_statuses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Reminders'), array('controller' => 'reminders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Reminder'), array('controller' => 'reminders', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Order'), ['action' => 'edit', $order['Order']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Order'), ['action' => 'delete', $order['Order']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $order['Order']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Orders'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Order'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Companies'), ['controller' => 'companies', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Company'), ['controller' => 'companies', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Portals'), ['controller' => 'portals', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Portal'), ['controller' => 'portals', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), ['controller' => 'users', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), ['controller' => 'users', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Travel Dates'), ['controller' => 'travel_dates', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Travel Date'), ['controller' => 'travel_dates', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List House Dates'), ['controller' => 'house_dates', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House Date'), ['controller' => 'house_dates', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Order Statuses'), ['controller' => 'order_statuses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Order Status'), ['controller' => 'order_statuses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Reminders'), ['controller' => 'reminders', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Reminder'), ['controller' => 'reminders', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -220,9 +220,9 @@
 			<td><?php echo $reminder['created']; ?></td>
 			<td><?php echo $reminder['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'reminders', 'action' => 'view', $reminder['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'reminders', 'action' => 'edit', $reminder['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'reminders', 'action' => 'delete', $reminder['id']), array('confirm' => __('Are you sure you want to delete # %s?', $reminder['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'reminders', 'action' => 'view', $reminder['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'reminders', 'action' => 'edit', $reminder['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'reminders', 'action' => 'delete', $reminder['id']], ['confirm' => __('Are you sure you want to delete # %s?', $reminder['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -231,7 +231,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Reminder'), array('controller' => 'reminders', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Reminder'), ['controller' => 'reminders', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

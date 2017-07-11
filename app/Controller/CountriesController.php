@@ -15,7 +15,7 @@ class CountriesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class CountriesController extends AppController {
 		if (!$this->Country->exists($id)) {
 			throw new NotFoundException(__('Invalid country'));
 		}
-		$options = array('conditions' => array('Country.' . $this->Country->primaryKey => $id));
+		$options = ['conditions' => ['Country.' . $this->Country->primaryKey => $id]];
 		$this->set('country', $this->Country->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class CountriesController extends AppController {
 			$this->Country->create();
 			if ($this->Country->save($this->request->data)) {
 				$this->Flash->success(__('The country has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The country could not be saved. Please, try again.'));
 			}
@@ -70,15 +70,15 @@ class CountriesController extends AppController {
 		if (!$this->Country->exists($id)) {
 			throw new NotFoundException(__('Invalid country'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Country->save($this->request->data)) {
 				$this->Flash->success(__('The country has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The country could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Country.' . $this->Country->primaryKey => $id));
+			$options = ['conditions' => ['Country.' . $this->Country->primaryKey => $id]];
 			$this->request->data = $this->Country->find('first', $options);
 		}
 	}
@@ -101,7 +101,7 @@ class CountriesController extends AppController {
 		} else {
 			$this->Flash->error(__('The country could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -125,7 +125,7 @@ class CountriesController extends AppController {
 		if (!$this->Country->exists($id)) {
 			throw new NotFoundException(__('Invalid country'));
 		}
-		$options = array('conditions' => array('Country.' . $this->Country->primaryKey => $id));
+		$options = ['conditions' => ['Country.' . $this->Country->primaryKey => $id]];
 		$this->set('country', $this->Country->find('first', $options));
 	}
 
@@ -139,7 +139,7 @@ class CountriesController extends AppController {
 			$this->Country->create();
 			if ($this->Country->save($this->request->data)) {
 				$this->Flash->success(__('The country has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The country could not be saved. Please, try again.'));
 			}
@@ -157,15 +157,15 @@ class CountriesController extends AppController {
 		if (!$this->Country->exists($id)) {
 			throw new NotFoundException(__('Invalid country'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Country->save($this->request->data)) {
 				$this->Flash->success(__('The country has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The country could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Country.' . $this->Country->primaryKey => $id));
+			$options = ['conditions' => ['Country.' . $this->Country->primaryKey => $id]];
 			$this->request->data = $this->Country->find('first', $options);
 		}
 	}
@@ -188,6 +188,6 @@ class CountriesController extends AppController {
 		} else {
 			$this->Flash->error(__('The country could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

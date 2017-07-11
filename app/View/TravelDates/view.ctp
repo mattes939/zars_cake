@@ -26,14 +26,14 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Travel Date'), array('action' => 'edit', $travelDate['TravelDate']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Travel Date'), array('action' => 'delete', $travelDate['TravelDate']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $travelDate['TravelDate']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Travel Dates'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Travel Date'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Orders'), array('controller' => 'orders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Travel Date'), ['action' => 'edit', $travelDate['TravelDate']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Travel Date'), ['action' => 'delete', $travelDate['TravelDate']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $travelDate['TravelDate']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Travel Dates'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Travel Date'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Orders'), ['controller' => 'orders', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Order'), ['controller' => 'orders', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -102,9 +102,9 @@
 			<td><?php echo $order['notes']; ?></td>
 			<td><?php echo $order['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'orders', 'action' => 'view', $order['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'orders', 'action' => 'edit', $order['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'orders', 'action' => 'delete', $order['id']), array('confirm' => __('Are you sure you want to delete # %s?', $order['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'orders', 'action' => 'view', $order['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'orders', 'action' => 'edit', $order['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'orders', 'action' => 'delete', $order['id']], ['confirm' => __('Are you sure you want to delete # %s?', $order['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -113,7 +113,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Order'), array('controller' => 'orders', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Order'), ['controller' => 'orders', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>
@@ -183,9 +183,9 @@
 			<td><?php echo $house['cenaz']; ?></td>
 			<td><?php echo $house['area']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'houses', 'action' => 'view', $house['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'houses', 'action' => 'edit', $house['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'houses', 'action' => 'delete', $house['id']), array('confirm' => __('Are you sure you want to delete # %s?', $house['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'houses', 'action' => 'view', $house['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'houses', 'action' => 'edit', $house['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'houses', 'action' => 'delete', $house['id']], ['confirm' => __('Are you sure you want to delete # %s?', $house['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -194,7 +194,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

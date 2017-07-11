@@ -32,20 +32,20 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    public $components = array(
+    public $components = [
         'Acl',
-        'Auth' => array(
-            'authorize' => array(
-                'Actions' => array('actionPath' => 'controllers')
-            )
-        ),
+        'Auth' => [
+            'authorize' => [
+                'Actions' => ['actionPath' => 'controllers']
+            ]
+        ],
         'Session',
         'Tools.Common',
         'TinymceElfinder.TinymceElfinder',
 //        'DebugKit.Toolbar',
 //        'Security'
-    );
-    public $helpers = array('Tools.Common', 'Tools.Tree', 'TinymceElfinder.TinymceElfinder');
+    ];
+    public $helpers = ['Tools.Common', 'Tools.Tree', 'TinymceElfinder.TinymceElfinder'];
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -53,32 +53,38 @@ class AppController extends Controller {
         $this->_authorize();
 
         $this->_setLayout();
+
+        if (!empty($this->request->data) && empty($this->request->data[$this->Auth->userModel])) {
+            $user = [];
+            $user['User']['id'] = $this->Auth->user('id');
+            $this->request->data[$this->Auth->userModel] = $user;
+        }
     }
 
     protected function _authorize() {
 //        $this->Auth->allow();
         // password hasher
-        $this->Auth->authenticate = array(
-            'Form' => array(
-                'passwordHasher' => 'Blowfish'));
+        $this->Auth->authenticate = [
+            'Form' => [
+                'passwordHasher' => 'Blowfish']];
         // přihlášení, odhlášení
-        $this->Auth->loginAction = array(
+        $this->Auth->loginAction = [
             'controller' => 'users',
             'action' => 'login',
             'admin' => FALSE
-        );
-        $this->Auth->logoutRedirect = array(
+        ];
+        $this->Auth->logoutRedirect = [
             'controller' => 'users',
             'action' => 'login',
             'admin' => FALSE
-        );
-        $this->Auth->loginRedirect = array(
+        ];
+        $this->Auth->loginRedirect = [
             'controller' => 'houses',
             'action' => 'index',
             'admin' => TRUE
-        );
+        ];
         //povolené akce pro veřejnost
-        $this->Auth->allow(array(
+        $this->Auth->allow([
             'index',
             'view',
             'search',
@@ -86,7 +92,7 @@ class AppController extends Controller {
             'login',
             'add',
             'finished'
-        ));
+        ]);
     }
 
     protected function _setLayout() {

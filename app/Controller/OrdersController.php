@@ -18,7 +18,7 @@ class OrdersController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
 
     /**
      * index method
@@ -113,7 +113,7 @@ class OrdersController extends AppController {
         if (!$this->Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
         }
-        $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+        $options = ['conditions' => ['Order.' . $this->Order->primaryKey => $id]];
         $this->set('order', $this->Order->find('first', $options));
     }
 
@@ -127,7 +127,10 @@ class OrdersController extends AppController {
             'conditions' => ['HouseDate.id' => $houseDateId],
             'contain' => [
                 'House' => [
-                    'fields' => ['slug', 'id']
+                    'fields' => ['slug', 'id', 'full_name']
+                ],
+                'TravelDate' => [
+                    'fields' => ['start', 'end']
                 ]
             ]
         ]);
@@ -150,14 +153,14 @@ class OrdersController extends AppController {
                         ->subject('ZARS - nová objednávka');
                 $email->send('Nová objednávka na portálu zars');
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('controller' => 'orders', 'action' => 'finished', $houseDate['House']['slug']));
+                return $this->redirect(['controller' => 'orders', 'action' => 'finished', $houseDate['House']['slug']]);
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
         }
 //        $depositTypes = $this->Order->Deposit->Deposit
         $countries = $this->Order->User->Address->Country->find('list');
-        $this->set(compact('countries'));
+        $this->set(compact('countries', 'houseDate'));
 //		$companies = $this->Order->Company->find('list');
 //		$users = $this->Order->User->find('list');
 //		$houses = $this->Order->House->find('list');
@@ -180,15 +183,15 @@ class OrdersController extends AppController {
         if (!$this->Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->Order->save($this->request->data)) {
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+            $options = ['conditions' => ['Order.' . $this->Order->primaryKey => $id]];
             $this->request->data = $this->Order->find('first', $options);
         }
         $companies = $this->Order->Company->find('list');
@@ -216,7 +219,7 @@ class OrdersController extends AppController {
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     /**
@@ -247,23 +250,44 @@ class OrdersController extends AppController {
         ];
         $this->set('orders', $this->Paginator->paginate());
         $this->set(compact('status'));
-        
+
         if ($status == 1) {
-            $newOrders = $this->Order->find('all', [
-                'conditions' => [
-                    'order_status_id' => $status,
-                    'confirmed' => null
-                ],
-                'order' => [
-                    'Order.created' => 'DESC'
-                ],
-                'contain' => $contain
-            ]);
+            
+        }
 
-            $overdueOrders = $this->Order->overdueOrders();
+        switch ($status) {
+            case 1:
+                $newOrders = $this->Order->find('all', [
+                    'conditions' => [
+                        'order_status_id' => $status,
+                        'confirmed' => null
+                    ],
+                    'order' => [
+                        'Order.created' => 'DESC'
+                    ],
+                    'contain' => $contain
+                ]);
 
-            $this->set(compact('newOrders', 'overdueOrders'));
-            $this->render('admin_active_orders');
+                $overdueOrders = $this->Order->overdueOrders();
+
+                $this->set(compact('newOrders', 'overdueOrders'));
+                $this->render('admin_active_orders');
+                break;
+            case 2:
+                $unfinishedOrders = $this->Order->find('all', [
+                    'conditions' => [
+                        'order_status_id' => $status,
+                        'closed' => NULL
+                    ],
+                    'order' => [
+                        'Order.canceled' => 'DESC'
+                    ],
+                    'contain' => $contain,
+                    'limit' => 25
+                ]);
+                $this->set(compact('unfinishedOrders'));
+                $this->render('admin_canceled_orders');
+                break;
         }
 //            
     }
@@ -279,7 +303,7 @@ class OrdersController extends AppController {
         if (!$this->Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
         }
-        $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $id));
+        $options = ['conditions' => ['Order.' . $this->Order->primaryKey => $id]];
         $this->set('order', $this->Order->find('first', $options));
     }
 
@@ -293,7 +317,7 @@ class OrdersController extends AppController {
             $this->Order->create();
             if ($this->Order->save($this->request->data)) {
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
@@ -316,7 +340,7 @@ class OrdersController extends AppController {
         if (!$this->Order->exists($id)) {
             throw new NotFoundException(__('Invalid order'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if (empty($this->request->data['Order']['confirmed'])) {
                 $saved = $this->Order->confirm($this->request->data);
             } else {
@@ -326,32 +350,19 @@ class OrdersController extends AppController {
             }
             if ($saved) {
                 $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(array('action' => 'edit', $id));
+                return $this->redirect(['action' => 'edit', $id]);
             } else {
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
         } else {
+            $order = $this->Order->getOrder($id);
+//            if(em)
+//            $order = $this->Order->defaultPrice($order);
+//            
+            $this->request->data = $order;
 
-            $this->request->data = $this->Order->find('first', [
-                'conditions' => ['Order.id' => $id],
-                'contain' => [
-                    'HouseDate' => [
-                        'House' => [
-                            'User'
-                        ],
-                        'TravelDate'
-                    ],
-                    'User' => [
-                        'Address' => [
-                            'Country'
-                        ]
-                    ],
-                    'Company',
-                    'Deposit' => [
-                        'order' => ['deposit_type_id' => 'ASC']
-                    ]
-                ]
-            ]);
+
+//            debug($price);
 //            debug($this->request->data);
         }
         $companies = $this->Order->Company->find('list');
@@ -390,7 +401,7 @@ class OrdersController extends AppController {
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function admin_confirm($id = null) {
@@ -404,7 +415,7 @@ class OrdersController extends AppController {
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function admin_cancel($id = null) {
@@ -418,7 +429,7 @@ class OrdersController extends AppController {
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function admin_confirmation($id = null, $param = null) {
@@ -463,10 +474,10 @@ class OrdersController extends AppController {
                 return $this->redirect(['action' => 'edit', $id]);
 //                break;
             case 'platba':
-                $this->render('admin_customer_confirmation', 'simple');
+                $this->render('confirmations/customer_confirmation', 'simple');
                 break;
             case 'zars':
-                $this->render('admin_customer_confirmation_zars', 'simple');
+                $this->render('confirmations/customer_confirmation_zars', 'simple');
                 break;
 
             case 'poukaz-tisk':
@@ -477,24 +488,130 @@ class OrdersController extends AppController {
                     ]
                 ]);
                 $this->set(compact('properties'));
-                $this->render('admin_coupon');
-            case 'majitel':
-                $this->render('admin_confirmation_owner');
+                $this->render('confirmations/coupon');
+
+            case 'majitel-objednavka':
+                $this->render('confirmations/owner_confirmation');
                 break;
-            case 'majitel-email':
+
+            case 'majitel-objednavka-email':
+                $this->autoRender = false;
+                $email = new CakeEmail('smtp');
+                $email->to($order['HouseDate']['House']['User']['email'], $order['HouseDate']['House']['User']['full_name'])
+                        ->viewVars(['order' => $order])
+                        ->helpers(['Html', 'Time'])
+                        ->emailFormat('html')
+                        ->template('owner_order', 'default')
+                        ->subject('ZARS - objednávka pobytu');
+                $email->send();
+                $this->Order->updateAll(['Order.owner_email' => 'CURDATE()'], ['Order.id' => $id]);
+                $this->Flash->set('Potvrzení odesláno.');
+                return $this->redirect(['action' => 'edit', $id]);
+
+            case 'majitel-platba':
+                $this->render('confirmations/owner_payment');
                 break;
+            case 'majitel-platba-email':
+                $this->autoRender = false;
+                $email = new CakeEmail('smtp');
+                $email->to($order['HouseDate']['House']['User']['email'], $order['HouseDate']['House']['User']['full_name'])
+                        ->viewVars(['order' => $order])
+                        ->helpers(['Html', 'Time'])
+                        ->emailFormat('html')
+                        ->template('owner_order', 'default')
+                        ->subject('ZARS - zaplacení pobytu');
+                $email->send();
+                $this->Order->updateAll(['Order.owner_paydate' => 'CURDATE()'], ['Order.id' => $id]);
+                $this->Flash->set('Potvrzení odesláno.');
+                return $this->redirect(['action' => 'edit', $id]);
+
+            case 'majitel-zaloha':
+                $this->render('confirmations/owner_deposit');
+                break;
+            case 'majitel-zaloha-email':
+                $this->autoRender = false;
+                $email = new CakeEmail('smtp');
+                $email->to($order['HouseDate']['House']['User']['email'], $order['HouseDate']['House']['User']['full_name'])
+                        ->viewVars(['order' => $order])
+                        ->helpers(['Html', 'Time'])
+                        ->emailFormat('html')
+                        ->template('owner_order', 'default')
+                        ->subject('ZARS - zaplacení pobytu');
+                $email->send();
+                $this->Order->updateAll(['Order.owner_paydate' => 'CURDATE()'], ['Order.id' => $id]);
+                $this->Flash->set('Potvrzení odesláno.');
+                return $this->redirect(['action' => 'edit', $id]);
+////////// STORNO
+            case 'storno':
+                $this->render('confirmations/customer_canceled_payment');
+                break;
+            case 'storno-email':
+                $this->autoRender = false;
+                $email = new CakeEmail('smtp');
+                $email->to($order['User']['email'], $order['User']['full_name'])
+                        ->viewVars(['order' => $order])
+                        ->helpers(['Html', 'Time'])
+                        ->emailFormat('html')
+                        ->template('owner_order', 'default')
+                        ->subject('ZARS - storno objednávky');
+                $email->send();
+                $this->Order->updateAll(['Order.customer_canceled_sent' => 'CURDATE()'], ['Order.id' => $id]);
+                $this->Flash->set('Potvrzení odesláno.');
+                return $this->redirect(['action' => 'edit', $id]);
+
+            case 'storno-zaplaceno':
+                $this->render('confirmations/customer_canceled_confirmed');
+                break;
+            case 'storno-zaplaceno-email':
+                $this->autoRender = false;
+                $email = new CakeEmail('smtp');
+                $email->to($order['User']['email'], $order['User']['full_name'])
+                        ->viewVars(['order' => $order])
+                        ->helpers(['Html', 'Time'])
+                        ->emailFormat('html')
+                        ->template('owner_order', 'default')
+                        ->subject('ZARS - zaplacení storno poplatku');
+                $email->send();
+                $this->Order->updateAll(['Order.customer_canceled_received' => 'CURDATE()'], ['Order.id' => $id]);
+                $this->Flash->set('Potvrzení odesláno.');
+                return $this->redirect(['action' => 'edit', $id]);
+
+            case 'storno-majitel':
+                $this->render('confirmations/owner_canceled_payment');
+                break;
+            case 'storno-majitel-email':
+                $this->autoRender = false;
+                $email = new CakeEmail('smtp');
+                $email->to($order['HouseDate']['House']['User']['email'], $order['HouseDate']['House']['User']['full_name'])
+                        ->viewVars(['order' => $order])
+                        ->helpers(['Html', 'Time'])
+                        ->emailFormat('html')
+                        ->template('owner_order', 'default')
+                        ->subject('ZARS - storno pobytu');
+                $email->send();
+                $this->Order->updateAll(['Order.owner_canceled_sent' => 'CURDATE()'], ['Order.id' => $id]);
+                $this->Flash->set('Potvrzení odesláno.');
+                return $this->redirect(['action' => 'edit', $id]);
         }
     }
 
-    public function admin_changeStatus($id = null, $status = 1){
+    public function admin_changeStatus($id = null, $status = 1) {
         $this->autoRender = false;
         $this->Order->id = $id;
         if (!$this->Order->exists()) {
             throw new NotFoundException(__('Invalid order'));
         }
-        
-        if($this->Order->updateAll(['Order.order_status_id' => $status], ['Order.id' => $id])){
+
+        if ($status == 3) {
+            $this->Order->updateAll(['Order.closed' => 'CURDATE()'], ['Order.id' => $id]);
+        }
+        if ($status == 2) {
+            $this->Order->updateAll(['Order.canceled' => 'CURDATE()'], ['Order.id' => $id]);
+        }
+
+        if ($this->Order->updateAll(['Order.order_status_id' => $status], ['Order.id' => $id])) {
             return $this->redirect($this->referer());
         }
     }
+
 }

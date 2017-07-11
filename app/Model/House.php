@@ -20,11 +20,11 @@ App::uses('AppModel', 'Model');
  */
 class House extends AppModel {
 
-    public $actsAs = array('Media.Media' => array(
+    public $actsAs = ['Media.Media' => [
             'path' => './files/images/houses/%id/%f',
-        ),
+        ],
         'Tree'
-    );
+    ];
 
     /**
      * Display field
@@ -43,52 +43,59 @@ class House extends AppModel {
      *
      * @var array
      */
-    public $hasOne = array(
-        'Address' => array(
+    public $hasOne = [
+        'Address' => [
             'className' => 'Address',
             'foreignKey' => 'house_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * belongsTo associations
      *
      * @var array
      */
-    public $belongsTo = array(
-        'User' => array(
+    public $belongsTo = [
+        'User' => [
             'className' => 'User',
             'foreignKey' => 'user_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'Region' => array(
+        ],
+        'Region' => [
             'className' => 'Region',
             'foreignKey' => 'region_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'District' => array(
+        ],
+        'District' => [
             'className' => 'District',
             'foreignKey' => 'district_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ],
+        'Pricelist' => [
+            'className' => 'Pricelist',
+            'foreignKey' => 'pricelist_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ]
+    ];
 
     /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'HouseDate' => array(
+    public $hasMany = [
+        'HouseDate' => [
             'className' => 'HouseDate',
             'foreignKey' => 'house_id',
             'dependent' => false,
@@ -100,7 +107,7 @@ class House extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
+        ],
 //        'Order' => array(
 //            'className' => 'Order',
 //            'foreignKey' => 'house_id',
@@ -114,7 +121,7 @@ class House extends AppModel {
 //            'finderQuery' => '',
 //            'counterQuery' => ''
 //        ),
-        'Review' => array(
+        'Review' => [
             'className' => 'Review',
             'foreignKey' => 'house_id',
             'dependent' => false,
@@ -126,8 +133,8 @@ class House extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'Room' => array(
+        ],
+        'Room' => [
             'className' => 'Room',
             'foreignKey' => 'house_id',
             'dependent' => false,
@@ -139,8 +146,8 @@ class House extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'SpecialOffer' => array(
+        ],
+        'SpecialOffer' => [
             'className' => 'SpecialOffer',
             'foreignKey' => 'house_id',
             'dependent' => false,
@@ -152,8 +159,8 @@ class House extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        ),
-        'Value' => array(
+        ],
+        'Value' => [
             'className' => 'Value',
             'foreignKey' => 'house_id',
             'dependent' => false,
@@ -165,16 +172,29 @@ class House extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
-    );
+        ],
+          'Price' => [
+            'className' => 'Price',
+            'foreignKey' => 'house_id',
+            'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        ]
+    ];
 
     /**
      * hasAndBelongsToMany associations
      *
      * @var array
      */
-    public $hasAndBelongsToMany = array(
-        'Area' => array(
+    public $hasAndBelongsToMany = [
+        'Area' => [
             'className' => 'Area',
             'joinTable' => 'areas_houses',
             'foreignKey' => 'house_id',
@@ -186,8 +206,8 @@ class House extends AppModel {
             'limit' => '',
             'offset' => '',
             'finderQuery' => '',
-        ),
-        'Portal' => array(
+        ],
+        'Portal' => [
             'className' => 'Portal',
             'joinTable' => 'houses_portals',
             'foreignKey' => 'house_id',
@@ -199,8 +219,8 @@ class House extends AppModel {
             'limit' => '',
             'offset' => '',
             'finderQuery' => '',
-        )
-    );
+        ]
+    ];
 
     public function search($country = null, $area = null, $travelDate = null, $persons = null, $bedrooms = null) {
 

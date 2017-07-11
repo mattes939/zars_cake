@@ -26,8 +26,8 @@ class Company extends AppModel {
      *
      * @var array
      */
-    public $hasMany = array(
-        'Order' => array(
+    public $hasMany = [
+        'Order' => [
             'className' => 'Order',
             'foreignKey' => 'company_id',
             'dependent' => false,
@@ -39,7 +39,7 @@ class Company extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
-    );
+        ]
+    ];
 
 }

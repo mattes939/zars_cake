@@ -15,7 +15,7 @@ class SpecialOffersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class SpecialOffersController extends AppController {
 		if (!$this->SpecialOffer->exists($id)) {
 			throw new NotFoundException(__('Invalid special offer'));
 		}
-		$options = array('conditions' => array('SpecialOffer.' . $this->SpecialOffer->primaryKey => $id));
+		$options = ['conditions' => ['SpecialOffer.' . $this->SpecialOffer->primaryKey => $id]];
 		$this->set('specialOffer', $this->SpecialOffer->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class SpecialOffersController extends AppController {
 			$this->SpecialOffer->create();
 			if ($this->SpecialOffer->save($this->request->data)) {
 				$this->Flash->success(__('The special offer has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The special offer could not be saved. Please, try again.'));
 			}
@@ -74,15 +74,15 @@ class SpecialOffersController extends AppController {
 		if (!$this->SpecialOffer->exists($id)) {
 			throw new NotFoundException(__('Invalid special offer'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->SpecialOffer->save($this->request->data)) {
 				$this->Flash->success(__('The special offer has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The special offer could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('SpecialOffer.' . $this->SpecialOffer->primaryKey => $id));
+			$options = ['conditions' => ['SpecialOffer.' . $this->SpecialOffer->primaryKey => $id]];
 			$this->request->data = $this->SpecialOffer->find('first', $options);
 		}
 		$parentSpecialOffers = $this->SpecialOffer->ParentSpecialOffer->find('list');
@@ -109,7 +109,7 @@ class SpecialOffersController extends AppController {
 		} else {
 			$this->Flash->error(__('The special offer could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -133,7 +133,7 @@ class SpecialOffersController extends AppController {
 		if (!$this->SpecialOffer->exists($id)) {
 			throw new NotFoundException(__('Invalid special offer'));
 		}
-		$options = array('conditions' => array('SpecialOffer.' . $this->SpecialOffer->primaryKey => $id));
+		$options = ['conditions' => ['SpecialOffer.' . $this->SpecialOffer->primaryKey => $id]];
 		$this->set('specialOffer', $this->SpecialOffer->find('first', $options));
 	}
 
@@ -147,7 +147,7 @@ class SpecialOffersController extends AppController {
 			$this->SpecialOffer->create();
 			if ($this->SpecialOffer->save($this->request->data)) {
 				$this->Flash->success(__('The special offer has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The special offer could not be saved. Please, try again.'));
 			}
@@ -169,15 +169,15 @@ class SpecialOffersController extends AppController {
 		if (!$this->SpecialOffer->exists($id)) {
 			throw new NotFoundException(__('Invalid special offer'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->SpecialOffer->save($this->request->data)) {
 				$this->Flash->success(__('The special offer has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The special offer could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('SpecialOffer.' . $this->SpecialOffer->primaryKey => $id));
+			$options = ['conditions' => ['SpecialOffer.' . $this->SpecialOffer->primaryKey => $id]];
 			$this->request->data = $this->SpecialOffer->find('first', $options);
 		}
 		$parentSpecialOffers = $this->SpecialOffer->ParentSpecialOffer->find('list');
@@ -204,6 +204,6 @@ class SpecialOffersController extends AppController {
 		} else {
 			$this->Flash->error(__('The special offer could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

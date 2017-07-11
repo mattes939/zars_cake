@@ -15,7 +15,7 @@ class DateConditionsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class DateConditionsController extends AppController {
 		if (!$this->DateCondition->exists($id)) {
 			throw new NotFoundException(__('Invalid date condition'));
 		}
-		$options = array('conditions' => array('DateCondition.' . $this->DateCondition->primaryKey => $id));
+		$options = ['conditions' => ['DateCondition.' . $this->DateCondition->primaryKey => $id]];
 		$this->set('dateCondition', $this->DateCondition->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class DateConditionsController extends AppController {
 			$this->DateCondition->create();
 			if ($this->DateCondition->save($this->request->data)) {
 				$this->Flash->success(__('The date condition has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The date condition could not be saved. Please, try again.'));
 			}
@@ -70,15 +70,15 @@ class DateConditionsController extends AppController {
 		if (!$this->DateCondition->exists($id)) {
 			throw new NotFoundException(__('Invalid date condition'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->DateCondition->save($this->request->data)) {
 				$this->Flash->success(__('The date condition has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The date condition could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('DateCondition.' . $this->DateCondition->primaryKey => $id));
+			$options = ['conditions' => ['DateCondition.' . $this->DateCondition->primaryKey => $id]];
 			$this->request->data = $this->DateCondition->find('first', $options);
 		}
 	}
@@ -101,7 +101,7 @@ class DateConditionsController extends AppController {
 		} else {
 			$this->Flash->error(__('The date condition could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -125,7 +125,7 @@ class DateConditionsController extends AppController {
 		if (!$this->DateCondition->exists($id)) {
 			throw new NotFoundException(__('Invalid date condition'));
 		}
-		$options = array('conditions' => array('DateCondition.' . $this->DateCondition->primaryKey => $id));
+		$options = ['conditions' => ['DateCondition.' . $this->DateCondition->primaryKey => $id]];
 		$this->set('dateCondition', $this->DateCondition->find('first', $options));
 	}
 
@@ -139,7 +139,7 @@ class DateConditionsController extends AppController {
 			$this->DateCondition->create();
 			if ($this->DateCondition->save($this->request->data)) {
 				$this->Flash->success(__('The date condition has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The date condition could not be saved. Please, try again.'));
 			}
@@ -157,15 +157,15 @@ class DateConditionsController extends AppController {
 		if (!$this->DateCondition->exists($id)) {
 			throw new NotFoundException(__('Invalid date condition'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->DateCondition->save($this->request->data)) {
 				$this->Flash->success(__('The date condition has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The date condition could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('DateCondition.' . $this->DateCondition->primaryKey => $id));
+			$options = ['conditions' => ['DateCondition.' . $this->DateCondition->primaryKey => $id]];
 			$this->request->data = $this->DateCondition->find('first', $options);
 		}
 	}
@@ -188,6 +188,6 @@ class DateConditionsController extends AppController {
 		} else {
 			$this->Flash->error(__('The date condition could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

@@ -51,6 +51,7 @@ echo $this->Html->nestedList([
 //             echo $this->Form->input('Value.' . $i . '.id', ['type' => 'hidden']);
 //            echo $this->Form->input('Value.' . $i . '.value', ['label' => $value['Property']['name']]);
 //        }
+                
                 ?>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -59,6 +60,8 @@ echo $this->Html->nestedList([
                 echo $this->Form->input('html_keywords');
                 echo $this->Form->input('html_description');
                 echo $this->Form->input('website', ['label' => 'Vlastní www stránky objektu']);
+                echo $this->Form->input('pricelist_id', ['label' => 'Typ ceníku']);
+                echo $this->Html->link('<span class="glyphicon glyphicon-list-alt"></span> Do ceníku', ['controller' => 'prices', 'action' => 'edit', $id], ['class' => 'btn btn-default', 'escape' => false]);
                 ?>
             </div>
         </div>

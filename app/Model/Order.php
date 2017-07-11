@@ -12,6 +12,8 @@ App::uses('AppModel', 'Model');
  * @property Reminder $Reminder
  */
 class Order extends AppModel {
+    
+//    public $actsAs = array('AuditLog.Auditable');
     // The Associations below have been created with all possible keys, those that are not needed can be removed
 
     /**
@@ -19,28 +21,28 @@ class Order extends AppModel {
      *
      * @var array
      */
-    public $belongsTo = array(
-        'Company' => array(
+    public $belongsTo = [
+        'Company' => [
             'className' => 'Company',
             'foreignKey' => 'company_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'Portal' => array(
+        ],
+        'Portal' => [
             'className' => 'Portal',
             'foreignKey' => 'portal_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'User' => array(
+        ],
+        'User' => [
             'className' => 'User',
             'foreignKey' => 'user_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
+        ],
 //        'House' => array(
 //            'className' => 'House',
 //            'foreignKey' => 'house_id',
@@ -55,29 +57,29 @@ class Order extends AppModel {
 //            'fields' => '',
 //            'order' => ''
 //        ),
-        'HouseDate' => array(
+        'HouseDate' => [
             'className' => 'HouseDate',
             'foreignKey' => 'house_date_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'OrderStatus' => array(
+        ],
+        'OrderStatus' => [
             'className' => 'OrderStatus',
             'foreignKey' => 'order_status_id',
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        )
-    );
+        ]
+    ];
 
     /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'Deposit' => array(
+    public $hasMany = [
+        'Deposit' => [
             'className' => 'Deposit',
             'foreignKey' => 'order_id',
             'dependent' => false,
@@ -89,8 +91,8 @@ class Order extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
-    );
+        ]
+    ];
 
     public function make($order) {
 
@@ -183,7 +185,7 @@ class Order extends AppModel {
 //        return $this->updateAll(['Order.code' => $company . $date->format('ymd') . $id % 100], ['Order.id' => $id]);
     }
 
-    public function beforeSave($options = array()) {
+    public function beforeSave($options = []) {
         parent::beforeSave($options);
 
         if ($this->id) {
@@ -272,11 +274,118 @@ class Order extends AppModel {
 //        die;
     }
 
-//public function afterDelete() {
-//    parent::afterDelete();
-//    
-//     $this->HouseDate->setCondition($this->data[$this->alias]['house_date_id'], 1);
-//     
-//     return true;
-//}
+    public function getOrder($id = null) {
+        $order = $this->find('first', [
+            'conditions' => ['Order.id' => $id],
+            'contain' => [
+                'HouseDate' => [
+                    'House' => [
+                        'User',
+                    ],
+                    'TravelDate'
+                ],
+                'User' => [
+                    'Address' => [
+                        'Country'
+                    ]
+                ],
+                'Company',
+                'Deposit' => [
+                    'order' => ['deposit_type_id' => 'ASC']
+                ]
+            ]
+        ]);
+
+        if (empty($order['Order']['confirmed'])) {
+            $order = $this->defaultPrice($order);
+        }
+
+//        debug($order);
+//        die;
+        return $order;
+    }
+
+    public function defaultPrice($order) {
+        $defaultDate = $order['Order']['start_day'] == $order['HouseDate']['TravelDate']['start'] && $order['Order']['end_day'] == $order['HouseDate']['TravelDate']['end'];
+
+        $price = $this->HouseDate->House->Price->find('first', [
+            'condition' => [
+                'house_id' => $order['HouseDate']['house_id'],
+                'travel_date_type_id' => $order['HouseDate']['TravelDate']['travel_date_type_id']
+            ]
+        ]);
+
+        switch ($order['HouseDate']['House']['pricelist_id']) {
+            case 1:
+                if ($defaultDate) {
+                    $order['Order']['owner_total'] = $price['Price']['owner_basic'];
+                    $order['Order']['price'] = $price['Price']['customer_basic'];
+                } else {
+                    $end = new DateTime($order['Order']['end_day']);
+                    $days = $end->diff(new DateTime($order['Order']['start_day']))->d;
+                    $order['Order']['owner_total'] = $price['Price']['owner_extra'] * $days;
+                    $order['Order']['price'] = $price['Price']['customer_extra'] * $days;
+                }
+
+                break;
+            case 2:
+                if ($defaultDate) {
+                    if ($order['Order']['attendants'] <= $price['Price']['treshold']) {
+                        $order['Order']['owner_total'] = $price['Price']['owner_basic'];
+                        $order['Order']['price'] = $price['Price']['customer_basic'];
+                    } else {
+                        $order['Order']['owner_total'] = $price['Price']['owner_beyond_basic'];
+                        $order['Order']['price'] = $price['Price']['customer_beyond_basic'];
+                    }
+                } else {
+                    $end = new DateTime($order['Order']['end_day']);
+                    $days = $end->diff(new DateTime($order['Order']['start_day']))->d;
+                    if ($order['Order']['attendants'] <= $price['Price']['treshold']) {
+                        $order['Order']['owner_total'] = $price['Price']['owner_extra'] * $days;
+                        $order['Order']['price'] = $price['Price']['customer_extra'] * $days;
+                    } else {
+                        $order['Order']['owner_total'] = $price['Price']['owner_beyond_extra'] * $days;
+                        $order['Order']['price'] = $price['Price']['customer_beyond_extra'] * $days;
+                    }
+                }
+                break;
+            case 3:
+                if ($defaultDate) {
+
+                    $order['Order']['owner_total'] = $price['Price']['owner_basic'];
+                    $order['Order']['price'] = $price['Price']['customer_basic'];
+
+                    if ($order['Order']['attendants'] > $price['Price']['treshold']) {
+                        $order['Order']['owner_total'] += $price['Price']['owner_beyond_basic'] * ($order['Order']['attendants'] - $price['Price']['treshold']);
+                        $order['Order']['price'] += $price['Price']['customer_beyond_basic'] * ($order['Order']['attendants'] - $price['Price']['treshold']);
+                    }
+                } else {
+                    $end = new DateTime($order['Order']['end_day']);
+                    $days = $end->diff(new DateTime($order['Order']['start_day']))->d;
+                    $order['Order']['owner_total'] = $price['Price']['owner_extra'] * $days;
+                    $order['Order']['price'] = $price['Price']['customer_extra'] * $days;
+
+                    if ($order['Order']['attendants'] > $price['Price']['treshold']) {
+                        $order['Order']['owner_total'] += $price['Price']['owner_beyond_extra'] * ($order['Order']['attendants'] - $price['Price']['treshold']) * $days;
+                        $order['Order']['price'] += $price['Price']['customer_beyond_basic'] * ($order['Order']['attendants'] - $price['Price']['treshold']) * $days;
+                    }
+//                  
+                }
+                break;
+            case 4:
+                if ($defaultDate) {
+                    $order['Order']['owner_total'] = $price['Price']['owner_basic'] * $order['Order']['attendants'];
+                    $order['Order']['price'] = $price['Price']['customer_basic'] * $order['Order']['attendants'];
+                } else {
+                    $end = new DateTime($order['Order']['end_day']);
+                    $days = $end->diff(new DateTime($order['Order']['start_day']))->d;
+                    $order['Order']['owner_total'] = $price['Price']['owner_extra'] * $days * $order['Order']['attendants'];
+                    $order['Order']['price'] = $price['Price']['customer_extra'] * $days * $order['Order']['attendants'];
+                }
+                break;
+        }
+
+        return $order;
+    }
+
 }

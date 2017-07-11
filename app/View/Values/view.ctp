@@ -8,12 +8,12 @@
 		</dd>
 		<dt><?php echo __('House'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($value['House']['name'], array('controller' => 'houses', 'action' => 'view', $value['House']['id'])); ?>
+			<?php echo $this->Html->link($value['House']['name'], ['controller' => 'houses', 'action' => 'view', $value['House']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Property'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($value['Property']['name'], array('controller' => 'properties', 'action' => 'view', $value['Property']['id'])); ?>
+			<?php echo $this->Html->link($value['Property']['name'], ['controller' => 'properties', 'action' => 'view', $value['Property']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('True'); ?></dt>
@@ -41,13 +41,13 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Value'), array('action' => 'edit', $value['Value']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Value'), array('action' => 'delete', $value['Value']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $value['Value']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Values'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Value'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Properties'), array('controller' => 'properties', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Property'), array('controller' => 'properties', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Value'), ['action' => 'edit', $value['Value']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Value'), ['action' => 'delete', $value['Value']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $value['Value']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Values'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Value'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Properties'), ['controller' => 'properties', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Property'), ['controller' => 'properties', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

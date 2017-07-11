@@ -15,7 +15,7 @@ class SelectionsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class SelectionsController extends AppController {
 		if (!$this->Selection->exists($id)) {
 			throw new NotFoundException(__('Invalid selection'));
 		}
-		$options = array('conditions' => array('Selection.' . $this->Selection->primaryKey => $id));
+		$options = ['conditions' => ['Selection.' . $this->Selection->primaryKey => $id]];
 		$this->set('selection', $this->Selection->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class SelectionsController extends AppController {
 			$this->Selection->create();
 			if ($this->Selection->save($this->request->data)) {
 				$this->Flash->success(__('The selection has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The selection could not be saved. Please, try again.'));
 			}
@@ -73,15 +73,15 @@ class SelectionsController extends AppController {
 		if (!$this->Selection->exists($id)) {
 			throw new NotFoundException(__('Invalid selection'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Selection->save($this->request->data)) {
 				$this->Flash->success(__('The selection has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The selection could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Selection.' . $this->Selection->primaryKey => $id));
+			$options = ['conditions' => ['Selection.' . $this->Selection->primaryKey => $id]];
 			$this->request->data = $this->Selection->find('first', $options);
 		}
 		$areas = $this->Selection->Area->find('list');
@@ -107,7 +107,7 @@ class SelectionsController extends AppController {
 		} else {
 			$this->Flash->error(__('The selection could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -131,7 +131,7 @@ class SelectionsController extends AppController {
 		if (!$this->Selection->exists($id)) {
 			throw new NotFoundException(__('Invalid selection'));
 		}
-		$options = array('conditions' => array('Selection.' . $this->Selection->primaryKey => $id));
+		$options = ['conditions' => ['Selection.' . $this->Selection->primaryKey => $id]];
 		$this->set('selection', $this->Selection->find('first', $options));
 	}
 
@@ -145,7 +145,7 @@ class SelectionsController extends AppController {
 			$this->Selection->create();
 			if ($this->Selection->save($this->request->data)) {
 				$this->Flash->success(__('The selection has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The selection could not be saved. Please, try again.'));
 			}
@@ -166,15 +166,15 @@ class SelectionsController extends AppController {
 		if (!$this->Selection->exists($id)) {
 			throw new NotFoundException(__('Invalid selection'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Selection->save($this->request->data)) {
 				$this->Flash->success(__('The selection has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The selection could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Selection.' . $this->Selection->primaryKey => $id));
+			$options = ['conditions' => ['Selection.' . $this->Selection->primaryKey => $id]];
 			$this->request->data = $this->Selection->find('first', $options);
 		}
 		$areas = $this->Selection->Area->find('list');
@@ -200,6 +200,6 @@ class SelectionsController extends AppController {
 		} else {
 			$this->Flash->error(__('The selection could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

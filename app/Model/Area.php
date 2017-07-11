@@ -25,8 +25,8 @@ class Area extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'Selection' => array(
+	public $hasMany = [
+		'Selection' => [
 			'className' => 'Selection',
 			'foreignKey' => 'area_id',
 			'dependent' => false,
@@ -38,8 +38,8 @@ class Area extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 
 /**
@@ -47,8 +47,8 @@ class Area extends AppModel {
  *
  * @var array
  */
-	public $hasAndBelongsToMany = array(
-		'Article' => array(
+	public $hasAndBelongsToMany = [
+		'Article' => [
 			'className' => 'Article',
 			'joinTable' => 'areas_articles',
 			'foreignKey' => 'area_id',
@@ -60,8 +60,8 @@ class Area extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		),
-		'House' => array(
+		],
+		'House' => [
 			'className' => 'House',
 			'joinTable' => 'areas_houses',
 			'foreignKey' => 'area_id',
@@ -73,8 +73,8 @@ class Area extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		),
-		'Region' => array(
+		],
+		'Region' => [
 			'className' => 'Region',
 			'joinTable' => 'areas_regions',
 			'foreignKey' => 'area_id',
@@ -86,7 +86,7 @@ class Area extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		)
-	);
+		]
+	];
 
 }

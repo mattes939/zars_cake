@@ -17,7 +17,7 @@ class DepositsController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
 
     /**
      * admin_index method
@@ -40,7 +40,7 @@ class DepositsController extends AppController {
         if (!$this->Deposit->exists($id)) {
             throw new NotFoundException(__('Invalid deposit'));
         }
-        $options = array('conditions' => array('Deposit.' . $this->Deposit->primaryKey => $id));
+        $options = ['conditions' => ['Deposit.' . $this->Deposit->primaryKey => $id]];
         $this->set('deposit', $this->Deposit->find('first', $options));
     }
 
@@ -54,7 +54,7 @@ class DepositsController extends AppController {
             $this->Deposit->create();
             if ($this->Deposit->save($this->request->data)) {
                 $this->Flash->success(__('The deposit has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The deposit could not be saved. Please, try again.'));
             }
@@ -75,15 +75,15 @@ class DepositsController extends AppController {
         if (!$this->Deposit->exists($id)) {
             throw new NotFoundException(__('Invalid deposit'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             if ($this->Deposit->save($this->request->data)) {
                 $this->Flash->success(__('The deposit has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The deposit could not be saved. Please, try again.'));
             }
         } else {
-            $options = array('conditions' => array('Deposit.' . $this->Deposit->primaryKey => $id));
+            $options = ['conditions' => ['Deposit.' . $this->Deposit->primaryKey => $id]];
             $this->request->data = $this->Deposit->find('first', $options);
         }
         $orders = $this->Deposit->Order->find('list');
@@ -109,7 +109,7 @@ class DepositsController extends AppController {
         } else {
             $this->Flash->error(__('The deposit could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     public function admin_confirm($id = null) {
@@ -138,7 +138,7 @@ class DepositsController extends AppController {
                 ->template('customer_deposit', 'default')
                 ->subject('Potvrzení platby - '. $deposit['DepositType']['name']);
         $email->send();
-//        $this->Order->updateAll(['Order.customer_confirmation_sent' => 'CURDATE()'], ['Order.id' => $id]);
+        $this->Deposit->updateAll(['Deposit.confirmed' => 'CURDATE()'], ['Deposit.id' => $id]);
         $this->Flash->set('Potvrzení odesláno.');
         
         return $this->redirect(['controller' => 'orders', 'action' => 'edit', $deposit['Order']['id']]);

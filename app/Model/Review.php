@@ -16,20 +16,20 @@ class Review extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'House' => array(
+	public $belongsTo = [
+		'House' => [
 			'className' => 'House',
 			'foreignKey' => 'house_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'User' => array(
+		],
+		'User' => [
 			'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 }

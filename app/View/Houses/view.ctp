@@ -30,7 +30,7 @@
                         <h5>Do areálu patří následující objekty:</h5>
                         <?php
 //                        debug($travelDates[0]['HouseDate']);
-                        $list = array();
+                        $list = [];
                         foreach ($childrenTravelDates[0]['HouseDate'] as $houseDate) {
                             $list[] = $this->Html->link($houseDate['House']['code'] . '-' . $houseDate['House']['name'], ['controller' => 'houses', 'action' => 'view', $houseDate['House']['slug']], ['target' => 'blank']);
                         }

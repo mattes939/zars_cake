@@ -14,9 +14,9 @@
 		<td><?php echo h($travelDateType['TravelDateType']['id']); ?>&nbsp;</td>
 		<td><?php echo h($travelDateType['TravelDateType']['name']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $travelDateType['TravelDateType']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $travelDateType['TravelDateType']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $travelDateType['TravelDateType']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $travelDateType['TravelDateType']['id']))); ?>
+			<?php echo $this->Html->link(__('View'), ['action' => 'view', $travelDateType['TravelDateType']['id']]); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $travelDateType['TravelDateType']['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $travelDateType['TravelDateType']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $travelDateType['TravelDateType']['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -24,23 +24,23 @@
 	</table>
 	<p>
 	<?php
-	echo $this->Paginator->counter(array(
+	echo $this->Paginator->counter([
 		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
+	]);
 	?>	</p>
 	<div class="paging">
 	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->prev('< ' . __('previous'), [], null, ['class' => 'prev disabled']);
+		echo $this->Paginator->numbers(['separator' => '']);
+		echo $this->Paginator->next(__('next') . ' >', [], null, ['class' => 'next disabled']);
 	?>
 	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Travel Date Type'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Travel Dates'), array('controller' => 'travel_dates', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Travel Date'), array('controller' => 'travel_dates', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Travel Date Type'), ['action' => 'add']); ?></li>
+		<li><?php echo $this->Html->link(__('List Travel Dates'), ['controller' => 'travel_dates', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Travel Date'), ['controller' => 'travel_dates', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

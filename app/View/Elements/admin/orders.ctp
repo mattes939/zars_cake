@@ -23,22 +23,22 @@
                     <tr class="<?php echo empty($order['Order']['confirmed']) ? 'warning' : ''; ?>">
                         <td class="text-center"><?php
                             $orderCode = empty($order['Order']['confirmed']) ? '<span class="glyphicon glyphicon-star text-warning"></span>' : $order['Order']['code'];
-                            echo $this->Html->link($orderCode, array('action' => 'edit', $order['Order']['id']), ['escape' => false]);
+                            echo $this->Html->link($orderCode, ['action' => 'edit', $order['Order']['id']], ['escape' => false]);
                             ?></td>
                         <td>
-                            <?php echo $this->Html->link($order['User']['full_name'], array('action' => 'edit', $order['Order']['id']), ['escape' => false]); ?>
+                            <?php echo $this->Html->link($order['User']['full_name'], ['action' => 'edit', $order['Order']['id']], ['escape' => false]); ?>
                         </td>
                         <td>
                             <?php
                             if (!empty($order['HouseDate']['House']['id'])) {
-                                echo $this->Html->link($order['HouseDate']['House']['full_name'], array('controller' => 'houses', 'action' => 'edit', $order['HouseDate']['House']['id']));
+                                echo $this->Html->link($order['HouseDate']['House']['full_name'], ['controller' => 'houses', 'action' => 'edit', $order['HouseDate']['House']['id']]);
                             }
                             ?>
                         </td>
                         <td>
                             <?php
                             if (!empty($order['HouseDate']['TravelDate']['id'])) {
-                                echo $this->Html->link($this->Time->format($order['HouseDate']['TravelDate']['start'], '%e. %m. %y') . ' - ' . $this->Time->format($order['HouseDate']['TravelDate']['end'], '%e. %m. %y'), array('controller' => 'travel_dates', 'action' => 'view', $order['HouseDate']['TravelDate']['id']));
+                                echo $this->Html->link($this->Time->format($order['HouseDate']['TravelDate']['start'], '%e. %m. %y') . ' - ' . $this->Time->format($order['HouseDate']['TravelDate']['end'], '%e. %m. %y'), ['controller' => 'travel_dates', 'action' => 'view', $order['HouseDate']['TravelDate']['id']]);
                             }
                             ?>
                         </td>
@@ -57,8 +57,9 @@
 //echo $this->Form->postLink(__('Potvrdit'), array('action' => 'accept', $order['Order']['id']), array('confirm' => __('Potvrdit objednávku # %s?', $order['Order']['id']), 'class' => 'btn btn-xs btn-success', 'escape' => false));                            
                             ?>
                             <?php // echo $this->Html->link(__('View'), array('action' => 'view', $order['Order']['id'])); ?>
-                            <?php echo $this->Html->link(__('Otevřít'), array('action' => 'edit', $order['Order']['id']), ['class' => 'btn btn-xs btn-primary', 'escape' => false]); ?>
-                            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $order['Order']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $order['Order']['id']))); ?>
+                            <?php echo $this->Html->link(__('Otevřít'), ['action' => 'edit', $order['Order']['id']], ['class' => 'btn btn-xs btn-primary', 'escape' => false]); ?>
+                             <?php echo $this->Html->link(__('Platby'), ['action' => 'edit', $order['Order']['id'], '#' => 'payment-section'], ['class' => 'btn btn-xs btn-success'.$this->Code->classDisabled($order['Order']['confirmed']), 'escape' => false]); ?>
+                            <?php echo $this->Form->postLink(__('Smazat'), ['action' => 'delete', $order['Order']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $order['Order']['id']), 'class' => 'btn btn-xs btn-danger']); ?>
                         </td>
 <!--                        <td><?php
                             foreach ($order['Deposit'] as $deposit) {

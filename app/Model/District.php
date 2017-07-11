@@ -23,23 +23,23 @@ class District extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'Region' => array(
+	public $belongsTo = [
+		'Region' => [
 			'className' => 'Region',
 			'foreignKey' => 'region_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 
 /**
  * hasMany associations
  *
  * @var array
  */
-	public $hasMany = array(
-		'House' => array(
+	public $hasMany = [
+		'House' => [
 			'className' => 'House',
 			'foreignKey' => 'district_id',
 			'dependent' => false,
@@ -51,7 +51,7 @@ class District extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

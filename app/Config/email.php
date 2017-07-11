@@ -43,9 +43,9 @@ class EmailConfig {
 //		//'headerCharset' => 'utf-8',
 //	);
 
-	public $smtp = array(
+	public $smtp = [
 		'transport' => 'Smtp',
-		'from' => array('info-zars@email.cz' => 'ZARS'),
+		'from' => ['info-zars@email.cz' => 'ZARS'],
 		'host' => 'smtp.teranet.cz',
 		'port' => 25,
 		'timeout' => 30,
@@ -55,9 +55,9 @@ class EmailConfig {
 		'log' => false,
 		'charset' => 'utf-8',
 		'headerCharset' => 'utf-8',
-	);
+	];
 
-	public $fast = array(
+	public $fast = [
 		'from' => 'you@localhost',
 		'sender' => null,
 		'to' => null,
@@ -86,6 +86,6 @@ class EmailConfig {
 		'log' => true,
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
-	);
+	];
 
 }

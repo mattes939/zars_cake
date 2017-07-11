@@ -22,8 +22,8 @@ class PropertyType extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'Property' => array(
+	public $hasMany = [
+		'Property' => [
 			'className' => 'Property',
 			'foreignKey' => 'property_type_id',
 			'dependent' => false,
@@ -35,7 +35,7 @@ class PropertyType extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

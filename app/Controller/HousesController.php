@@ -17,7 +17,7 @@ class HousesController extends AppController {
      *
      * @var array
      */
-    public $components = array('Paginator', 'Session', 'Flash');
+    public $components = ['Paginator', 'Session', 'Flash'];
     public $helpers = ['Media.Media', 'Code'];
 
     /**
@@ -29,7 +29,7 @@ class HousesController extends AppController {
         ini_set('memory_limit', '-1');
         ini_set('max_execution_time', 0);
 
-        $medias = array();
+        $medias = [];
         $i = 0;
         $houses = $this->House->find('all', [
             'conditions' => [
@@ -141,8 +141,8 @@ class HousesController extends AppController {
 //        if (!$this->House->exists($id)) {
 //            throw new NotFoundException(__('Invalid house'));
 //        }
-        $options = array(
-            'conditions' => array('House.slug' => $slug),
+        $options = [
+            'conditions' => ['House.slug' => $slug],
             'contain' => [
 //                    'User' => ['fields' => ['id', 'username']],
                 'Region' => ['fields' => ['id', 'name']],
@@ -174,7 +174,7 @@ class HousesController extends AppController {
 //                        'Portal'
 //                    ]
             ],
-        );
+        ];
         $house = $this->House->find('first', $options);
 //debug($house['Thumb']);
 //        $properties = $this->House->Value->Property->find('all', [
@@ -276,7 +276,7 @@ class HousesController extends AppController {
             $this->House->create();
             if ($this->House->save($this->request->data)) {
                 $this->Flash->success(__('The house has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house could not be saved. Please, try again.'));
             }
@@ -301,19 +301,19 @@ class HousesController extends AppController {
         if (!$this->House->exists($id)) {
             throw new NotFoundException(__('Invalid house'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
             debug($this->request->data);
             die;
             if ($this->House->save($this->request->data)) {
                 $this->Flash->success(__('The house has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house could not be saved. Please, try again.'));
             }
         } else {
 
-            $options = array(
-                'conditions' => array('House.' . $this->House->primaryKey => $id),
+            $options = [
+                'conditions' => ['House.' . $this->House->primaryKey => $id],
                 'contain' => [
                     'Area',
                     'District',
@@ -321,7 +321,7 @@ class HousesController extends AppController {
                     'HouseDate',
                     'Portal',
                 ]
-            );
+            ];
             $this->request->data = $this->House->find('first', $options);
         }
         $users = $this->House->User->find('list');
@@ -351,7 +351,7 @@ class HousesController extends AppController {
         } else {
             $this->Flash->error(__('The house could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     /**
@@ -386,7 +386,7 @@ class HousesController extends AppController {
         if (!$this->House->exists($id)) {
             throw new NotFoundException(__('Invalid house'));
         }
-        $options = array('conditions' => array('House.' . $this->House->primaryKey => $id));
+        $options = ['conditions' => ['House.' . $this->House->primaryKey => $id]];
         $this->set('house', $this->House->find('first', $options));
     }
 
@@ -401,7 +401,7 @@ class HousesController extends AppController {
             $this->House->create();
             if ($this->House->saveAll($this->request->data)) {
                 $this->Flash->success(__('The house has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house could not be saved. Please, try again.'));
             }
@@ -423,19 +423,19 @@ class HousesController extends AppController {
         ini_set('suhosin.post.max_vars', 2000);
         ini_set('suhosin.request.max_vars', 2000);
 //        phpinfo();
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
 //             debug($_POST);
             debug($this->request->data);
             die;
             if ($this->House->saveAll($this->request->data)) {
                 $this->Flash->success(__('The house has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house could not be saved. Please, try again.'));
             }
         } else {
-            $options = array(
-                'conditions' => array('House.' . $this->House->primaryKey => $id),
+            $options = [
+                'conditions' => ['House.' . $this->House->primaryKey => $id],
                 'contain' => [
 //                    'User' => ['fields' => ['id', 'username']],
 //                    'Region' => ['fields' => ['id', 'name']],
@@ -459,7 +459,7 @@ class HousesController extends AppController {
 //                        'Portal'
 //                    ]
                 ],
-            );
+            ];
             $this->request->data = $this->House->find('first', $options);
             debug($this->request->data);
             die;
@@ -482,18 +482,18 @@ class HousesController extends AppController {
         if (!$this->House->exists($id)) {
             throw new NotFoundException(__('Invalid house'));
         }
-        if ($this->request->is(array('post', 'put'))) {
+        if ($this->request->is(['post', 'put'])) {
 //            debug($this->request->data);die;
             if ($this->House->saveAll($this->request->data)) {
                 $this->Flash->success(__('The house has been saved.'));
 //                return $this->redirect(array('action' => 'edit', $id));
-                return $this->redirect(array('action' => 'index'));
+                return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The house could not be saved. Please, try again.'));
             }
         } else {
-            $options = array(
-                'conditions' => array('House.' . $this->House->primaryKey => $id),
+            $options = [
+                'conditions' => ['House.' . $this->House->primaryKey => $id],
                 'contain' => [
 //                    'User' => ['fields' => ['id', 'username']],
                     'Region' => ['fields' => ['id', 'Region.name']],
@@ -520,7 +520,7 @@ class HousesController extends AppController {
                         'Portal'
                     ]
                 ],
-            );
+            ];
             $this->request->data = $this->House->find('first', $options);
         }
 //        debug(($this->request->data['HouseDate']));
@@ -531,6 +531,7 @@ class HousesController extends AppController {
         $parents = $this->House->generateTreeList([
             'parent_id' => null
         ]);
+        $pricelists = $this->House->Pricelist->find('list');
 //        debug($parentHouses);
 //        $portals = $this->House->Portal->find('list');
 //        $travelDates = $this->House->TravelDate->find('list');
@@ -565,7 +566,7 @@ class HousesController extends AppController {
 //            'contain' => $containValues
 //        ]);    
 //        debug($values);die;
-        $this->set(compact('regions', 'districts', 'areas', 'id', 'dateConditions', 'parents'));
+        $this->set(compact('regions', 'districts', 'areas', 'id', 'dateConditions', 'parents', 'pricelists'));
 //          $this->render('admin_edit2');
     }
 
@@ -587,12 +588,12 @@ class HousesController extends AppController {
         } else {
             $this->Flash->error(__('The house could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(['action' => 'index']);
     }
 
     protected function convertGetQueryString2named($param_names = null) {
 //            debug($param_names);
-        $parameters_strings = array();
+        $parameters_strings = [];
         if (is_array($param_names)) {
             foreach ($param_names as $i => $param_name) {
 //                debug($param_name);

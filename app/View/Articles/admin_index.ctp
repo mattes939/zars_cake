@@ -26,7 +26,7 @@
 		<td><?php echo h($article['Article']['lft']); ?>&nbsp;</td>
 		<td><?php echo h($article['Article']['rght']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($article['ParentArticle']['title'], array('controller' => 'articles', 'action' => 'view', $article['ParentArticle']['id'])); ?>
+			<?php echo $this->Html->link($article['ParentArticle']['title'], ['controller' => 'articles', 'action' => 'view', $article['ParentArticle']['id']]); ?>
 		</td>
 		<td><?php echo h($article['Article']['title']); ?>&nbsp;</td>
 		<td><?php echo h($article['Article']['content']); ?>&nbsp;</td>
@@ -38,9 +38,9 @@
 		<td><?php echo h($article['Article']['created']); ?>&nbsp;</td>
 		<td><?php echo h($article['Article']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $article['Article']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $article['Article']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $article['Article']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $article['Article']['id']))); ?>
+			<?php echo $this->Html->link(__('View'), ['action' => 'view', $article['Article']['id']]); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $article['Article']['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $article['Article']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $article['Article']['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -48,25 +48,25 @@
 	</table>
 	<p>
 	<?php
-	echo $this->Paginator->counter(array(
+	echo $this->Paginator->counter([
 		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
+	]);
 	?>	</p>
 	<div class="paging">
 	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->prev('< ' . __('previous'), [], null, ['class' => 'prev disabled']);
+		echo $this->Paginator->numbers(['separator' => '']);
+		echo $this->Paginator->next(__('next') . ' >', [], null, ['class' => 'next disabled']);
 	?>
 	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Article'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Articles'), array('controller' => 'articles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Article'), array('controller' => 'articles', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Areas'), array('controller' => 'areas', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Area'), array('controller' => 'areas', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Article'), ['action' => 'add']); ?></li>
+		<li><?php echo $this->Html->link(__('List Articles'), ['controller' => 'articles', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Parent Article'), ['controller' => 'articles', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Areas'), ['controller' => 'areas', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Area'), ['controller' => 'areas', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

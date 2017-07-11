@@ -15,7 +15,7 @@ class PropertiesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class PropertiesController extends AppController {
 		if (!$this->Property->exists($id)) {
 			throw new NotFoundException(__('Invalid property'));
 		}
-		$options = array('conditions' => array('Property.' . $this->Property->primaryKey => $id));
+		$options = ['conditions' => ['Property.' . $this->Property->primaryKey => $id]];
 		$this->set('property', $this->Property->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class PropertiesController extends AppController {
 			$this->Property->create();
 			if ($this->Property->save($this->request->data)) {
 				$this->Flash->success(__('The property has been saved.'));
-				return $this->redirect(array('action' => 'add'));
+				return $this->redirect(['action' => 'add']);
 			} else {
 				$this->Flash->error(__('The property could not be saved. Please, try again.'));
 			}
@@ -72,15 +72,15 @@ class PropertiesController extends AppController {
 		if (!$this->Property->exists($id)) {
 			throw new NotFoundException(__('Invalid property'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Property->save($this->request->data)) {
 				$this->Flash->success(__('The property has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The property could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Property.' . $this->Property->primaryKey => $id));
+			$options = ['conditions' => ['Property.' . $this->Property->primaryKey => $id]];
 			$this->request->data = $this->Property->find('first', $options);
 		}
 		$propertyTypes = $this->Property->PropertyType->find('list');
@@ -105,7 +105,7 @@ class PropertiesController extends AppController {
 		} else {
 			$this->Flash->error(__('The property could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -129,7 +129,7 @@ class PropertiesController extends AppController {
 		if (!$this->Property->exists($id)) {
 			throw new NotFoundException(__('Invalid property'));
 		}
-		$options = array('conditions' => array('Property.' . $this->Property->primaryKey => $id));
+		$options = ['conditions' => ['Property.' . $this->Property->primaryKey => $id]];
 		$this->set('property', $this->Property->find('first', $options));
 	}
 
@@ -143,7 +143,7 @@ class PropertiesController extends AppController {
 			$this->Property->create();
 			if ($this->Property->save($this->request->data)) {
 				$this->Flash->success(__('The property has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The property could not be saved. Please, try again.'));
 			}
@@ -163,15 +163,15 @@ class PropertiesController extends AppController {
 		if (!$this->Property->exists($id)) {
 			throw new NotFoundException(__('Invalid property'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Property->save($this->request->data)) {
 				$this->Flash->success(__('The property has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The property could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Property.' . $this->Property->primaryKey => $id));
+			$options = ['conditions' => ['Property.' . $this->Property->primaryKey => $id]];
 			$this->request->data = $this->Property->find('first', $options);
 		}
 		$propertyTypes = $this->Property->PropertyType->find('list');
@@ -196,6 +196,6 @@ class PropertiesController extends AppController {
 		} else {
 			$this->Flash->error(__('The property could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

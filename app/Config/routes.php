@@ -26,17 +26,17 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 //Router::connect('/', array('controller' => 'houses', 'action' => 'view', 'valassko-a-beskydy','moravskoslezsky-kraj','novy-jicin','trojanovice-2008054'));
-Router::connect('/', array('controller' => 'houses', 'action' => 'index'));
-Router::connect('/admin', array('controller' => 'houses', 'action' => 'index', 'admin' => true));
-Router::connect('/oblasti', array('controller' => 'areas', 'action' => 'index'));
-Router::connect('/oblast/**', array('controller' => 'areas', 'action' => 'view'), array('pass' => array('slug')));
-Router::connect('/kraje', array('controller' => 'regions', 'action' => 'index'));
-Router::connect('/kraj/**', array('controller' => 'regions', 'action' => 'view'), array('pass' => array('slug')));
-Router::connect('/kraje', array('controller' => 'regions', 'action' => 'index'));
+Router::connect('/', ['controller' => 'houses', 'action' => 'index']);
+Router::connect('/admin', ['controller' => 'orders', 'action' => 'index', 'admin' => true]);
+Router::connect('/oblasti', ['controller' => 'areas', 'action' => 'index']);
+Router::connect('/oblast/**', ['controller' => 'areas', 'action' => 'view'], ['pass' => ['slug']]);
+Router::connect('/kraje', ['controller' => 'regions', 'action' => 'index']);
+Router::connect('/kraj/**', ['controller' => 'regions', 'action' => 'view'], ['pass' => ['slug']]);
+Router::connect('/kraje', ['controller' => 'regions', 'action' => 'index']);
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
-Router::connect('/hledat-ubytovani/*', array('controller' => 'houses', 'action' => 'search'));
+Router::connect('/hledat-ubytovani/*', ['controller' => 'houses', 'action' => 'search']);
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

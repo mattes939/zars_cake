@@ -15,7 +15,7 @@ class GroupsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * admin_index method
@@ -38,7 +38,7 @@ class GroupsController extends AppController {
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
-		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
+		$options = ['conditions' => ['Group.' . $this->Group->primaryKey => $id]];
 		$this->set('group', $this->Group->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class GroupsController extends AppController {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {
 				$this->Flash->success(__('The group has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The group could not be saved. Please, try again.'));
 			}
@@ -70,15 +70,15 @@ class GroupsController extends AppController {
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Group->save($this->request->data)) {
 				$this->Flash->success(__('The group has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The group could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
+			$options = ['conditions' => ['Group.' . $this->Group->primaryKey => $id]];
 			$this->request->data = $this->Group->find('first', $options);
 		}
 	}
@@ -101,6 +101,6 @@ class GroupsController extends AppController {
 		} else {
 			$this->Flash->error(__('The group could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

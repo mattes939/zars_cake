@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application model for CakePHP.
  *
@@ -18,7 +19,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Model', 'Model');
 
 /**
@@ -30,6 +30,24 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
     public $recursive = -1;
-    public $actsAs = array('Containable');
+    public $actsAs = ['Containable', 'AuditLog.Auditable'];
+
+    /**
+     * Get the current user
+     *
+     * Necessary for logging the "owner" of a change set,
+     * when using the AuditLog behavior.
+     *
+     * @return mixed|null User record. or null if no user is logged in.
+     */
+    public function currentUser() {
+        App::uses('AuthComponent', 'Controller/Component');
+        return array(
+            'id' => AuthComponent::user('id'),
+            'description' => AuthComponent::user('username'),
+        );
+    }
+
 }

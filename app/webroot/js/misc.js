@@ -1,5 +1,12 @@
+function calculateBillingPrice() {
+    $('#OrderFinalPrice').val($('#OrderPrice').val() - $('#OrderDiscount').val());
+    $('#OrderBillingPrice').val($('#OrderFinalPrice').val()*(1 + $('#OrderProvision').val()/100));
+}
+
 $(document).ready(function () {
-    //    $('table.datatable').DataTable();
+    $('#OrderEmployerContribution').change(function () {
+        $('#fksp').toggleClass('hidden');
+    });
     $('.datatable').DataTable({
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Czech.json"
@@ -13,6 +20,11 @@ $(document).ready(function () {
         todayHighlight: true,
         weekStart: 1
     });
+
+
+    calculateBillingPrice();
+
+
 //    $('table.dt').DataTable({
 //        "language": {
 //            "sEmptyTable": "Tabulka neobsahuje žádná data",
@@ -83,7 +95,8 @@ $(document).ready(function () {
                 .andSelf()
                 .show();
     });
-    $('select').selectpicker({hideDisabled: false});
+//    $('select').selectpicker({hideDisabled: false});
 
 
 });
+

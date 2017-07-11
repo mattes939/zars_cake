@@ -16,12 +16,12 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Reminder Type'), array('action' => 'edit', $reminderType['ReminderType']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Reminder Type'), array('action' => 'delete', $reminderType['ReminderType']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $reminderType['ReminderType']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Reminder Types'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Reminder Type'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Reminders'), array('controller' => 'reminders', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Reminder'), array('controller' => 'reminders', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Reminder Type'), ['action' => 'edit', $reminderType['ReminderType']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Reminder Type'), ['action' => 'delete', $reminderType['ReminderType']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $reminderType['ReminderType']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Reminder Types'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Reminder Type'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Reminders'), ['controller' => 'reminders', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Reminder'), ['controller' => 'reminders', 'action' => 'add']); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -46,9 +46,9 @@
 			<td><?php echo $reminder['created']; ?></td>
 			<td><?php echo $reminder['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'reminders', 'action' => 'view', $reminder['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'reminders', 'action' => 'edit', $reminder['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'reminders', 'action' => 'delete', $reminder['id']), array('confirm' => __('Are you sure you want to delete # %s?', $reminder['id']))); ?>
+				<?php echo $this->Html->link(__('View'), ['controller' => 'reminders', 'action' => 'view', $reminder['id']]); ?>
+				<?php echo $this->Html->link(__('Edit'), ['controller' => 'reminders', 'action' => 'edit', $reminder['id']]); ?>
+				<?php echo $this->Form->postLink(__('Delete'), ['controller' => 'reminders', 'action' => 'delete', $reminder['id']], ['confirm' => __('Are you sure you want to delete # %s?', $reminder['id'])]); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -57,7 +57,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Reminder'), array('controller' => 'reminders', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Reminder'), ['controller' => 'reminders', 'action' => 'add']); ?> </li>
 		</ul>
 	</div>
 </div>

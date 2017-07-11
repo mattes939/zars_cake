@@ -17,20 +17,20 @@
 	<tr>
 		<td><?php echo h($houseDate['HouseDate']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($houseDate['House']['name'], array('controller' => 'houses', 'action' => 'view', $houseDate['House']['id'])); ?>
+			<?php echo $this->Html->link($houseDate['House']['name'], ['controller' => 'houses', 'action' => 'view', $houseDate['House']['id']]); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($houseDate['TravelDate']['id'], array('controller' => 'travel_dates', 'action' => 'view', $houseDate['TravelDate']['id'])); ?>
+			<?php echo $this->Html->link($houseDate['TravelDate']['id'], ['controller' => 'travel_dates', 'action' => 'view', $houseDate['TravelDate']['id']]); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($houseDate['DateCondition']['name'], array('controller' => 'date_conditions', 'action' => 'view', $houseDate['DateCondition']['id'])); ?>
+			<?php echo $this->Html->link($houseDate['DateCondition']['name'], ['controller' => 'date_conditions', 'action' => 'view', $houseDate['DateCondition']['id']]); ?>
 		</td>
 		<td><?php echo h($houseDate['HouseDate']['created']); ?>&nbsp;</td>
 		<td><?php echo h($houseDate['HouseDate']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $houseDate['HouseDate']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $houseDate['HouseDate']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $houseDate['HouseDate']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $houseDate['HouseDate']['id']))); ?>
+			<?php echo $this->Html->link(__('View'), ['action' => 'view', $houseDate['HouseDate']['id']]); ?>
+			<?php echo $this->Html->link(__('Edit'), ['action' => 'edit', $houseDate['HouseDate']['id']]); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $houseDate['HouseDate']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $houseDate['HouseDate']['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -38,27 +38,27 @@
 	</table>
 	<p>
 	<?php
-	echo $this->Paginator->counter(array(
+	echo $this->Paginator->counter([
 		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
+	]);
 	?>	</p>
 	<div class="paging">
 	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->prev('< ' . __('previous'), [], null, ['class' => 'prev disabled']);
+		echo $this->Paginator->numbers(['separator' => '']);
+		echo $this->Paginator->next(__('next') . ' >', [], null, ['class' => 'next disabled']);
 	?>
 	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New House Date'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Travel Dates'), array('controller' => 'travel_dates', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Travel Date'), array('controller' => 'travel_dates', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Date Conditions'), array('controller' => 'date_conditions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Date Condition'), array('controller' => 'date_conditions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New House Date'), ['action' => 'add']); ?></li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Travel Dates'), ['controller' => 'travel_dates', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Travel Date'), ['controller' => 'travel_dates', 'action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Date Conditions'), ['controller' => 'date_conditions', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Date Condition'), ['controller' => 'date_conditions', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

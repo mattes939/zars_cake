@@ -23,8 +23,8 @@ class Portal extends AppModel {
  *
  * @var array
  */
-	public $hasAndBelongsToMany = array(
-		'House' => array(
+	public $hasAndBelongsToMany = [
+		'House' => [
 			'className' => 'House',
 			'joinTable' => 'houses_portals',
 			'foreignKey' => 'portal_id',
@@ -36,8 +36,8 @@ class Portal extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		),
-		'SpecialOffer' => array(
+		],
+		'SpecialOffer' => [
 			'className' => 'SpecialOffer',
 			'joinTable' => 'portals_special_offers',
 			'foreignKey' => 'portal_id',
@@ -49,16 +49,16 @@ class Portal extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		)
-	);
+		]
+	];
         
             /**
      * hasMany associations
      *
      * @var array
      */
-    public $hasMany = array(
-        'Order' => array(
+    public $hasMany = [
+        'Order' => [
             'className' => 'Order',
             'foreignKey' => 'portal_id',
             'dependent' => false,
@@ -70,7 +70,7 @@ class Portal extends AppModel {
             'exclusive' => '',
             'finderQuery' => '',
             'counterQuery' => ''
-        )
-    );
+        ]
+    ];
 
 }

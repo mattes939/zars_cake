@@ -15,7 +15,7 @@ class ArticlesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class ArticlesController extends AppController {
 		if (!$this->Article->exists($id)) {
 			throw new NotFoundException(__('Invalid article'));
 		}
-		$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
+		$options = ['conditions' => ['Article.' . $this->Article->primaryKey => $id]];
 		$this->set('article', $this->Article->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class ArticlesController extends AppController {
 			$this->Article->create();
 			if ($this->Article->save($this->request->data)) {
 				$this->Flash->success(__('The article has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The article could not be saved. Please, try again.'));
 			}
@@ -73,15 +73,15 @@ class ArticlesController extends AppController {
 		if (!$this->Article->exists($id)) {
 			throw new NotFoundException(__('Invalid article'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Article->save($this->request->data)) {
 				$this->Flash->success(__('The article has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The article could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
+			$options = ['conditions' => ['Article.' . $this->Article->primaryKey => $id]];
 			$this->request->data = $this->Article->find('first', $options);
 		}
 		$parentArticles = $this->Article->ParentArticle->find('list');
@@ -107,7 +107,7 @@ class ArticlesController extends AppController {
 		} else {
 			$this->Flash->error(__('The article could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -131,7 +131,7 @@ class ArticlesController extends AppController {
 		if (!$this->Article->exists($id)) {
 			throw new NotFoundException(__('Invalid article'));
 		}
-		$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
+		$options = ['conditions' => ['Article.' . $this->Article->primaryKey => $id]];
 		$this->set('article', $this->Article->find('first', $options));
 	}
 
@@ -145,7 +145,7 @@ class ArticlesController extends AppController {
 			$this->Article->create();
 			if ($this->Article->save($this->request->data)) {
 				$this->Flash->success(__('The article has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The article could not be saved. Please, try again.'));
 			}
@@ -166,15 +166,15 @@ class ArticlesController extends AppController {
 		if (!$this->Article->exists($id)) {
 			throw new NotFoundException(__('Invalid article'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->Article->save($this->request->data)) {
 				$this->Flash->success(__('The article has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The article could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('Article.' . $this->Article->primaryKey => $id));
+			$options = ['conditions' => ['Article.' . $this->Article->primaryKey => $id]];
 			$this->request->data = $this->Article->find('first', $options);
 		}
 		$parentArticles = $this->Article->ParentArticle->find('list');
@@ -200,6 +200,6 @@ class ArticlesController extends AppController {
 		} else {
 			$this->Flash->error(__('The article could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

@@ -8,7 +8,7 @@
 		</dd>
 		<dt><?php echo __('House'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($room['House']['name'], array('controller' => 'houses', 'action' => 'view', $room['House']['id'])); ?>
+			<?php echo $this->Html->link($room['House']['name'], ['controller' => 'houses', 'action' => 'view', $room['House']['id']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Name'); ?></dt>
@@ -71,11 +71,11 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit Room'), array('action' => 'edit', $room['Room']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Room'), array('action' => 'delete', $room['Room']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $room['Room']['id']))); ?> </li>
-		<li><?php echo $this->Html->link(__('List Rooms'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Room'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Houses'), array('controller' => 'houses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New House'), array('controller' => 'houses', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Room'), ['action' => 'edit', $room['Room']['id']]); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Room'), ['action' => 'delete', $room['Room']['id']], ['confirm' => __('Are you sure you want to delete # %s?', $room['Room']['id'])]); ?> </li>
+		<li><?php echo $this->Html->link(__('List Rooms'), ['action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New Room'), ['action' => 'add']); ?> </li>
+		<li><?php echo $this->Html->link(__('List Houses'), ['controller' => 'houses', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link(__('New House'), ['controller' => 'houses', 'action' => 'add']); ?> </li>
 	</ul>
 </div>

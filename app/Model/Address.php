@@ -25,34 +25,34 @@ class Address extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'AddressType' => array(
+	public $belongsTo = [
+		'AddressType' => [
 			'className' => 'AddressType',
 			'foreignKey' => 'address_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'User' => array(
+		],
+		'User' => [
 			'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'House' => array(
+		],
+		'House' => [
 			'className' => 'House',
 			'foreignKey' => 'house_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'Country' => array(
+		],
+		'Country' => [
 			'className' => 'Country',
 			'foreignKey' => 'country_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
+		]
+	];
 }

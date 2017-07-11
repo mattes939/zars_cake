@@ -15,7 +15,7 @@ class TravelDateTypesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class TravelDateTypesController extends AppController {
 		if (!$this->TravelDateType->exists($id)) {
 			throw new NotFoundException(__('Invalid travel date type'));
 		}
-		$options = array('conditions' => array('TravelDateType.' . $this->TravelDateType->primaryKey => $id));
+		$options = ['conditions' => ['TravelDateType.' . $this->TravelDateType->primaryKey => $id]];
 		$this->set('travelDateType', $this->TravelDateType->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class TravelDateTypesController extends AppController {
 			$this->TravelDateType->create();
 			if ($this->TravelDateType->save($this->request->data)) {
 				$this->Flash->success(__('The travel date type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The travel date type could not be saved. Please, try again.'));
 			}
@@ -70,15 +70,15 @@ class TravelDateTypesController extends AppController {
 		if (!$this->TravelDateType->exists($id)) {
 			throw new NotFoundException(__('Invalid travel date type'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->TravelDateType->save($this->request->data)) {
 				$this->Flash->success(__('The travel date type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The travel date type could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('TravelDateType.' . $this->TravelDateType->primaryKey => $id));
+			$options = ['conditions' => ['TravelDateType.' . $this->TravelDateType->primaryKey => $id]];
 			$this->request->data = $this->TravelDateType->find('first', $options);
 		}
 	}
@@ -101,7 +101,7 @@ class TravelDateTypesController extends AppController {
 		} else {
 			$this->Flash->error(__('The travel date type could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -125,7 +125,7 @@ class TravelDateTypesController extends AppController {
 		if (!$this->TravelDateType->exists($id)) {
 			throw new NotFoundException(__('Invalid travel date type'));
 		}
-		$options = array('conditions' => array('TravelDateType.' . $this->TravelDateType->primaryKey => $id));
+		$options = ['conditions' => ['TravelDateType.' . $this->TravelDateType->primaryKey => $id]];
 		$this->set('travelDateType', $this->TravelDateType->find('first', $options));
 	}
 
@@ -139,7 +139,7 @@ class TravelDateTypesController extends AppController {
 			$this->TravelDateType->create();
 			if ($this->TravelDateType->save($this->request->data)) {
 				$this->Flash->success(__('The travel date type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The travel date type could not be saved. Please, try again.'));
 			}
@@ -157,15 +157,15 @@ class TravelDateTypesController extends AppController {
 		if (!$this->TravelDateType->exists($id)) {
 			throw new NotFoundException(__('Invalid travel date type'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->TravelDateType->save($this->request->data)) {
 				$this->Flash->success(__('The travel date type has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The travel date type could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('TravelDateType.' . $this->TravelDateType->primaryKey => $id));
+			$options = ['conditions' => ['TravelDateType.' . $this->TravelDateType->primaryKey => $id]];
 			$this->request->data = $this->TravelDateType->find('first', $options);
 		}
 	}
@@ -188,6 +188,6 @@ class TravelDateTypesController extends AppController {
 		} else {
 			$this->Flash->error(__('The travel date type could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }

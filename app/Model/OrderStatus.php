@@ -22,8 +22,8 @@ class OrderStatus extends AppModel {
  *
  * @var array
  */
-	public $hasMany = array(
-		'Order' => array(
+	public $hasMany = [
+		'Order' => [
 			'className' => 'Order',
 			'foreignKey' => 'order_status_id',
 			'dependent' => false,
@@ -35,7 +35,7 @@ class OrderStatus extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
+		]
+	];
 
 }

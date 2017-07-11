@@ -15,7 +15,7 @@ class TravelDatesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Flash');
+	public $components = ['Paginator', 'Session', 'Flash'];
 
 /**
  * index method
@@ -38,7 +38,7 @@ class TravelDatesController extends AppController {
 		if (!$this->TravelDate->exists($id)) {
 			throw new NotFoundException(__('Invalid travel date'));
 		}
-		$options = array('conditions' => array('TravelDate.' . $this->TravelDate->primaryKey => $id));
+		$options = ['conditions' => ['TravelDate.' . $this->TravelDate->primaryKey => $id]];
 		$this->set('travelDate', $this->TravelDate->find('first', $options));
 	}
 
@@ -52,7 +52,7 @@ class TravelDatesController extends AppController {
 			$this->TravelDate->create();
 			if ($this->TravelDate->save($this->request->data)) {
 				$this->Flash->success(__('The travel date has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The travel date could not be saved. Please, try again.'));
 			}
@@ -72,15 +72,15 @@ class TravelDatesController extends AppController {
 		if (!$this->TravelDate->exists($id)) {
 			throw new NotFoundException(__('Invalid travel date'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->TravelDate->save($this->request->data)) {
 				$this->Flash->success(__('The travel date has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The travel date could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('TravelDate.' . $this->TravelDate->primaryKey => $id));
+			$options = ['conditions' => ['TravelDate.' . $this->TravelDate->primaryKey => $id]];
 			$this->request->data = $this->TravelDate->find('first', $options);
 		}
 		$houses = $this->TravelDate->House->find('list');
@@ -105,7 +105,7 @@ class TravelDatesController extends AppController {
 		} else {
 			$this->Flash->error(__('The travel date could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 /**
@@ -129,7 +129,7 @@ class TravelDatesController extends AppController {
 		if (!$this->TravelDate->exists($id)) {
 			throw new NotFoundException(__('Invalid travel date'));
 		}
-		$options = array('conditions' => array('TravelDate.' . $this->TravelDate->primaryKey => $id));
+		$options = ['conditions' => ['TravelDate.' . $this->TravelDate->primaryKey => $id]];
 		$this->set('travelDate', $this->TravelDate->find('first', $options));
 	}
 
@@ -143,7 +143,7 @@ class TravelDatesController extends AppController {
 			$this->TravelDate->create();
 			if ($this->TravelDate->save($this->request->data)) {
 				$this->Flash->success(__('The travel date has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The travel date could not be saved. Please, try again.'));
 			}
@@ -163,15 +163,15 @@ class TravelDatesController extends AppController {
 		if (!$this->TravelDate->exists($house_id)) {
 			throw new NotFoundException(__('Invalid travel date'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		if ($this->request->is(['post', 'put'])) {
 			if ($this->TravelDate->save($this->request->data)) {
 				$this->Flash->success(__('The travel date has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error(__('The travel date could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('TravelDate.' . $this->TravelDate->primaryKey => $id));
+			$options = ['conditions' => ['TravelDate.' . $this->TravelDate->primaryKey => $id]];
 			$this->request->data = $this->TravelDate->find('first', $options);
 		}
 		$houses = $this->TravelDate->House->find('list');
@@ -196,6 +196,6 @@ class TravelDatesController extends AppController {
 		} else {
 			$this->Flash->error(__('The travel date could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(['action' => 'index']);
 	}
 }
