@@ -12,6 +12,8 @@ App::uses('AppModel', 'Model');
  * @property Reminder $Reminder
  */
 class Order extends AppModel {
+    
+//    public $actsAs = array('AuditLog.Auditable');
     // The Associations below have been created with all possible keys, those that are not needed can be removed
 
     /**

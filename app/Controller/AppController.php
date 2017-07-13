@@ -53,6 +53,12 @@ class AppController extends Controller {
         $this->_authorize();
 
         $this->_setLayout();
+
+        if (!empty($this->request->data) && empty($this->request->data[$this->Auth->userModel])) {
+            $user = [];
+            $user['User']['id'] = $this->Auth->user('id');
+            $this->request->data[$this->Auth->userModel] = $user;
+        }
     }
 
     protected function _authorize() {
