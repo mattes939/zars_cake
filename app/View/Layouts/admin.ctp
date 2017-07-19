@@ -47,9 +47,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <!--<li><?php echo $this->Html->link('Objednávky', ['controller' => 'orders', 'action' => 'index']); ?></li>-->
                         <li><?php echo $this->Html->link('Objekty', ['controller' => 'houses', 'action' => 'index']); ?></li>
                         <li><?php echo $this->Html->link('Objednávky', ['controller' => 'orders', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Články', ['controller' => 'articles', 'action' => 'index']); ?></li>
+                        <li><?php echo $this->Html->link('Log činností', ['controller' => 'audits', 'action' => 'index']); ?></li>
                         <!--                        <li class="dropdown">
                                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                                                     <ul class="dropdown-menu">
@@ -103,8 +104,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     selector: 'textarea',
                     plugins: 'advlist autolink link image lists charmap print preview code',
                     language: 'cs',
-                    file_browser_callback: elFinderBrowser
-                            //     toolbar: false
+                    file_browser_callback: elFinderBrowser,
+                    content_css: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css, http://zars.cz/css/main.css, http://zars.cz/css/blog.css",
+                     height : 150,
+                    toolbar: 'code, bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, styleselect, formatselect, cut, copy, paste, bullist, numlist, outdent, indent, blockquote, removeformat, subscript, superscript',
+                    menubar: false
+
                 });
             </script>
     </body>

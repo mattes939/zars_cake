@@ -552,7 +552,7 @@ class OrdersController extends AppController {
                         ->viewVars(['order' => $order])
                         ->helpers(['Html', 'Time'])
                         ->emailFormat('html')
-                        ->template('owner_order', 'default')
+                        ->template('customer_canceled_payment', 'default')
                         ->subject('ZARS - storno objednávky');
                 $email->send();
                 $this->Order->updateAll(['Order.customer_canceled_sent' => 'CURDATE()'], ['Order.id' => $id]);
@@ -569,7 +569,7 @@ class OrdersController extends AppController {
                         ->viewVars(['order' => $order])
                         ->helpers(['Html', 'Time'])
                         ->emailFormat('html')
-                        ->template('owner_order', 'default')
+                        ->template('customer_canceled_confirmed', 'default')
                         ->subject('ZARS - zaplacení storno poplatku');
                 $email->send();
                 $this->Order->updateAll(['Order.customer_canceled_received' => 'CURDATE()'], ['Order.id' => $id]);
@@ -586,7 +586,7 @@ class OrdersController extends AppController {
                         ->viewVars(['order' => $order])
                         ->helpers(['Html', 'Time'])
                         ->emailFormat('html')
-                        ->template('owner_order', 'default')
+                        ->template('owner_canceled_payment', 'default')
                         ->subject('ZARS - storno pobytu');
                 $email->send();
                 $this->Order->updateAll(['Order.owner_canceled_sent' => 'CURDATE()'], ['Order.id' => $id]);

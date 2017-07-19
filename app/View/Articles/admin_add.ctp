@@ -1,31 +1,31 @@
-<div class="articles form">
-<?php echo $this->Form->create('Article'); ?>
+<?php echo $this->Form->create('Article', [
+    'inputDefaults' => [
+        'div' => ['class' => 'form-group'],
+        'class' => 'form-control'
+    ]
+]); ?>
 	<fieldset>
-		<legend><?php echo __('Admin Add Article'); ?></legend>
+		<legend><?php echo __('Vložit článek'); ?></legend>
 	<?php
-		echo $this->Form->input('lft');
-		echo $this->Form->input('rght');
-		echo $this->Form->input('parent_id');
-		echo $this->Form->input('title');
-		echo $this->Form->input('content');
-		echo $this->Form->input('hidden');
-		echo $this->Form->input('slug');
+		
+		echo $this->Form->input('parent_id', ['label' => 'Nadřazená položka', 'empty' => '---', 'selected' => $parentId]);
+		echo $this->Form->input('title', ['label' => 'Název']);
+                echo $this->Form->input('menu_title', ['label' => 'Název v menu', 'placeholder' => 'Pro stejný název zanechte prázdné']);
+		echo $this->Form->input('intro', ['label' => 'Úvodní text']);
+                echo $this->Form->input('content', ['label' => 'Obsah článku']);
+		
 		echo $this->Form->input('html_title');
 		echo $this->Form->input('html_keywords');
 		echo $this->Form->input('html_description');
-		echo $this->Form->input('Area');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+		
+        $this->Form->inputDefaults([
+            'div' => ['class' => 'checkbox row'],
+            'class' => [' col-xs-3'],
+            'label' => false
+        ]);
+        ?>
 
-		<li><?php echo $this->Html->link(__('List Articles'), ['action' => 'index']); ?></li>
-		<li><?php echo $this->Html->link(__('List Articles'), ['controller' => 'articles', 'action' => 'index']); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Article'), ['controller' => 'articles', 'action' => 'add']); ?> </li>
-		<li><?php echo $this->Html->link(__('List Areas'), ['controller' => 'areas', 'action' => 'index']); ?> </li>
-		<li><?php echo $this->Html->link(__('New Area'), ['controller' => 'areas', 'action' => 'add']); ?> </li>
-	</ul>
-</div>
+        <div class="row"><div class="col-xs-12"><h4>Přidružené oblasti</h4></div><?php echo $this->Form->input('Area', ['multiple' => 'checkbox']); ?></div>
+        <?php echo $this->Form->input('hidden', ['label' => 'Skrytý', 'div' => ['class' => 'checkbox'], 'class' => 'checkbox']);?>
+	</fieldset>
+<?php echo $this->Form->submit('Uložit', ['class' => ['btn btn-success'], 'escape' => false]); 

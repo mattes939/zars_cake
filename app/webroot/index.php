@@ -19,10 +19,12 @@
 /**
  * Use the DS to separate the directories in other defines
  */
+//if (!defined('DS')) {
+//	define('DS', DIRECTORY_SEPARATOR);
+//}
 if (!defined('DS')) {
-	define('DS', DIRECTORY_SEPARATOR);
+    define('DS', '/');
 }
-
 /**
  * These defines should only be edited if you have CakePHP installed in
  * a directory layout other than the way it is distributed.
