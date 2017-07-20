@@ -4,7 +4,7 @@ Cake Gallery
 
 CakeGallery is a cakephp plugin to manage galleries, albums and pictures
 
-![Album page](http://i.imgur.com/rRaubYw.png)
+![Album page](https://dl.dropboxusercontent.com/u/17997827/Screenshot%202015-01-12%2010.34.55.png)
 
 
 With CakeGallery you can:
@@ -21,9 +21,11 @@ With CakeGallery you can:
 
 Installing: [https://www.youtube.com/watch?v=OEgVQQTaWkE](https://www.youtube.com/watch?v=OEgVQQTaWkE) - Portuguese
 
-Features: [https://www.youtube.com/watch?v=3gHRnCI2vHE](https://www.youtube.com/watch?v=3gHRnCI2vHE)
+Features: [https://www.youtube.com/watch?v=kxKRSY4Tdjc](https://www.youtube.com/watch?v=kxKRSY4Tdjc) - Portuguese
 
-DEMO (Old version): [http://galleryopenshift-cakeupload.rhcloud.com/gallery](http://galleryopenshift-cakeupload.rhcloud.com/gallery)
+DEMO: [http://galleryopenshift-cakeupload.rhcloud.com/gallery](http://galleryopenshift-cakeupload.rhcloud.com/gallery)
+
+DEMO2 (Video): [https://www.youtube.com/watch?v=AhU16ji_i9g](https://www.youtube.com/watch?v=AhU16ji_i9g)
 
 ---
 
@@ -38,7 +40,7 @@ To use CakeGallery you need the following requirements
 ---
 
 ### Version
-2.0.0
+1.2.1
 
 ---
 
@@ -54,11 +56,11 @@ To use CakeGallery you need the following requirements
 * Open your `app/Config/bootstrap.php` file and add the following code
 
 ```php
-CakePlugin::load(array(
-	'Gallery' => array(
+CakePlugin::loadAll(array(
+'Gallery' => array(
     'bootstrap' => true,
     'routes' => true
-)));
+    )));
 ```
 * To finish the installation go to your browser and type `http://your-app-url/gallery` and follow the wizzard
 
@@ -72,24 +74,20 @@ CakePlugin::load(array(
 * Open your `app/Config/bootstrap.php` file and add the following code
 
 ```php
-CakePlugin::load(array(
-	'Gallery' => array(
-   	'bootstrap' => true,
+CakePlugin::loadAll(array(
+'Gallery' => array(
+    'bootstrap' => true,
     'routes' => true
-)));
+    )));
 ```
 * Create a **gallery** folder inside `app/webroot/files` and give it writable permissions. (`app/webroot/files/gallery`)
 
 * Check at `http://your-app-url/gallery` to see your plugin working.
 
 ---
-### FAQ
+### Features
 
 ---
-
-#### The images are not showing up
-
-If you are using windows , have a chance of the images are not being rendered. This will happen because of windows directory separator. To fix it you can use this solution: [http://stackoverflow.com/a/4095765/708385](http://stackoverflow.com/a/4095765/708385)
 
 #### How to attach a gallery to a model?
 
@@ -219,7 +217,6 @@ $config = array(
 	Configure::write('GalleryOptions', $config);
 ```
 
-You can create as many styles you want, just add in the styles array, and future versions will be created on uploading.
+You can create more styles on styles array of modify the default size of the defaults
 
-PS: DO NOT modify the default names as **medium** or **small**. You can safely modify the width, height and action but the names
-are used by the plugin, so don't change then.
+PS: don't modify the default names as **medium** or **small**. This files are used by the plugin.

@@ -1,11 +1,10 @@
 <?php
-
 App::uses('AppHelper', 'View/Helper');
 App::uses('FormHelper', 'View/Helper');
 App::uses('Album', 'Gallery.Model');
 
-class GalleryHelper extends AppHelper {
-
+class GalleryHelper extends AppHelper
+{
     /**
      * Gallery link helper
      *
@@ -24,61 +23,45 @@ class GalleryHelper extends AppHelper {
      * @param array $html_options
      * @return string
      */
-    public function link($model = null, $model_id = null, $html_options = array(), $title = 'Nahrát obrázky') {
+    public function link($model = null, $model_id = null, $html_options = array())
+    {
         return $this->_View->Html->link(
-                        $title, array(
-                    'controller' => 'albums',
-                    'action' => 'upload',
-                    'plugin' => 'gallery',
-                    $model,
-                    $model_id,
-                    'admin' => false
-                        ), $html_options
+            'Upload pictures',
+            array(
+                'controller' => 'albums',
+                'action' => 'upload',
+                'plugin' => 'gallery',
+                $model,
+                $model_id
+            ),
+            $html_options
         );
-    }
-
-    /**
-     * Get cover picture from an album (The first picture)
-     *
-     * @example
-     * <?php echo $this->Gallery->cover('product', 10) ?>
-     *
-     * @param null $model
-     * @param null $model_id
-     * @param null $album_id
-     * @param string $style
-     * @return string
-     */
-    public function cover($model = null, $model_id = null, $album_id = null, $style = 'medium') {
-        if ($album = $this->getAlbum($model, $model_id, $album_id)) {
-            if (!empty($album['Picture'][0])) {
-                return '<img src="' . $album['Picture'][0]['styles'][$style] . '" alt="">';
-            }
-        }
     }
 
     /**
      * Render a gallery with thumbnails
      *
-     * @example
-     * <?php $this->Gallery->showroom('product', 10) ?>
-     *
      * @param null $model
      * @param null $model_id
      * @param null $album_id
      * @return string
      */
-    public function showroom(
-    $model = null, $model_id = null, $album_id = null, $style = 'medium', $html_options = array('jquery' => true, 'swipebox' => true)) {
+    public function showroom($model = null, $model_id = null, $album_id = null, $html_options = array('jquery' => true, 'bootstrap' => true, 'swipebox' => true))
+    {
+        $Album = new Album();
 
-        $album = $this->getAlbum($model, $model_id, $album_id);
+        if ($album_id) {
+            $album = $Album->findById($album_id);
+        } else if ($model && $model_id) {
+            $album = $Album->getAttachedAlbum($model, $model_id);
+        }
 
         if (!empty($album)) {
             # Load scripts for the showroom (jquery, bootstrap, swipebox)
             $this->_loadScripts($html_options);
 
             # Render the showroom
-            $this->showroomTmpl($album, $style);
+            $this->showroomTmpl($album);
         } else {
             # Album doesn't exists
             $this->_noPhotosMessageTmpl();
@@ -93,30 +76,14 @@ class GalleryHelper extends AppHelper {
      *
      * @param $album
      */
-    public function showroomTmpl($album, $style = 'medium') {
+    public function showroomTmpl($album)
+    {
         if (empty($album['Picture'])) {
             $this->_noPhotosMessageTmpl();
         } else {
             foreach ($album['Picture'] as $picture) {
-                $this->_thumbnailTmpl($picture, $style);
+                $this->_thumbnailTmpl($picture);
             }
-        }
-    }
-
-    /**
-     * Get an album from $model & $model_id or $album_id
-     *
-     * @param null $model
-     * @param null $model_id
-     * @param null $album_id
-     */
-    private function getAlbum($model = null, $model_id = null, $album_id = null) {
-        $Album = new Album();
-
-        if ($album_id) {
-            return $Album->findById($album_id);
-        } else if ($model && $model_id) {
-            return $Album->getAttachedAlbum($model, $model_id);
         }
     }
 
@@ -125,19 +92,28 @@ class GalleryHelper extends AppHelper {
      *
      * @param bool $jquery
      */
-    private function _loadScripts($scripts = array('jquery' => true, 'swipebox' => true)) {
+    private function _loadScripts($scripts = array('jquery' => true, 'bootstrap' => true, 'swipebox' => true))
+    {
         if (!isset($scripts['jquery']) || (isset($scripts['jquery']) && $scripts['jquery'] == true)) {
             echo $this->_View->Html->script(
-                    'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', array('block' => 'script'));
+                'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js',
+                array('block' => 'script'));
+        }
+
+        if (!isset($scripts['bootstrap']) || (isset($scripts['bootstrap']) && $scripts['bootstrap'] == true)) {
+            echo $this->_View->Html->css('http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css',
+                array('block' => 'css'));
         }
 
         if (!isset($scripts['swipebox']) || (isset($scripts['swipebox']) && $scripts['swipebox'] == true)) {
             echo $this->_View->Html->css(
-                    'https://cdnjs.cloudflare.com/ajax/libs/jquery.swipebox/1.3.0.2/css/swipebox.min.css', array('block' => 'css'));
+                'https://cdnjs.cloudflare.com/ajax/libs/jquery.swipebox/1.3.0.2/css/swipebox.min.css',
+                array('block' => 'css'));
             echo $this->_View->Html->script(array(
                 'https://cdnjs.cloudflare.com/ajax/libs/jquery.swipebox/1.3.0.2/js/jquery.swipebox.min.js',
                 'Gallery.interface'
-                    ), array('block' => 'script'));
+            ),
+                array('block' => 'script'));
         }
     }
 
@@ -150,7 +126,8 @@ class GalleryHelper extends AppHelper {
      * @param $picture
      * @param string $style
      */
-    private function _thumbnailTmpl($picture, $style = 'medium') {
+    private function _thumbnailTmpl($picture, $style = 'medium')
+    {
         echo '
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
@@ -167,7 +144,8 @@ class GalleryHelper extends AppHelper {
      *
      * @param string $message
      */
-    private function _noPhotosMessageTmpl($message = 'This album has no photos yet.') {
+    private function _noPhotosMessageTmpl($message = 'This album has no photos yet.')
+    {
         echo '
             <div class="container-empty">
                 <div class="img"><i class="fa fa-picture-o"></i></div>
@@ -175,5 +153,4 @@ class GalleryHelper extends AppHelper {
             </div>
             ';
     }
-
 }

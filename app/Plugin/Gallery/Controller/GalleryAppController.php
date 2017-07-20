@@ -14,8 +14,7 @@ class GalleryAppController extends AppController
             # Set default theme for app
             $default_options = array(
                 'App' => array(
-                    'theme' => 'flatly',
-                    'interfaced' => true
+                    'theme' => 'superhero'
                 )
             );
             Configure::write('GalleryOptions', $default_options);

@@ -2,6 +2,7 @@
 
 class AlbumsController extends GalleryAppController
 {
+
     public $helpers = array('Form' => array('className' => 'Gallery.CakePHPFTPForm'));
 
     public $uses = array('Gallery.Album', 'Gallery.Picture');
@@ -17,7 +18,7 @@ class AlbumsController extends GalleryAppController
         $this->Album->id = $id;
 
         if (!$this->Album->exists()) {
-            throw new NotFoundException(__d('gallery', 'This album does not exist'));
+            throw new NotFoundException("This album does not exist");
         }
 
         $album = $this->Album->read(null);
@@ -31,7 +32,7 @@ class AlbumsController extends GalleryAppController
     {
         if ($this->request->is('post')) {
             if ($this->Album->save($this->request->data)) {
-                echo __d('gallery', 'You configurations are saved.');
+                echo "You configurations are saved.";
             }
         }
         $this->render(false, false);
@@ -45,13 +46,9 @@ class AlbumsController extends GalleryAppController
     public function upload($model = null, $model_id = null)
     {
         ini_set("memory_limit", "10000M");
-//$this->Album->recursive = 1;
+
         if (isset($this->params['gallery_id']) && !empty($this->params['gallery_id'])) {
             $album = $this->Album->findById($this->params['gallery_id']);
-//            $album = $this->Album->find('first', [
-//                'conditions' => ['id' => $this->params['gallery_id']],
-//                'contain' => ['Picture']
-//            ]);
         } else {
             # If the gallery doesnt exists, create a new one and redirect back to this page with the
             # gallery_id
@@ -65,7 +62,7 @@ class AlbumsController extends GalleryAppController
                 )
             );
         }
-//debug($album);
+
         $files = $album['Picture'];
 
         $this->set(compact('model', 'model_id', 'album', 'files'));
@@ -93,7 +90,7 @@ class AlbumsController extends GalleryAppController
             $album_dir = WWW_ROOT . 'files' . DS . 'gallery' . DS . $id . DS;
             $this->Util->deleteDir($album_dir);
 
-            $this->Session->setFlash(__d('gallery', 'Album deleted.'));
+            $this->Session->setFlash("Album deleted.");
 
             $this->redirect(array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery'));
         }

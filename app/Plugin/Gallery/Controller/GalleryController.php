@@ -12,11 +12,11 @@ class GalleryController extends GalleryAppController
     public function index()
     {
         $search_status = "published";
-        $page_title = __d('gallery', 'Published galleries');
+        $page_title = "Published albums";
 
-        if (isset($this->request->query['status']) && $this->request->query['status'] == 'draft') {
-            $search_status = $this->request->query['status'];
-            $page_title = __d('gallery', 'Drafts');
+        if (isset($_GET['status']) && $_GET['status'] == 'draft') {
+            $search_status = $_GET['status'];
+            $page_title = "Drafts";
         }
 
         $galleries = $this->Album->findAllByStatus($search_status);
@@ -24,4 +24,4 @@ class GalleryController extends GalleryAppController
         $this->set(compact('galleries', 'page_title', 'search_status'));
     }
 
-}
+} 

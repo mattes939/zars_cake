@@ -25,7 +25,7 @@
                     <div class="img"><i class="fa fa-picture-o"></i></div>
                     <h2>You don't have <?php echo $search_status ?> albums yet.</h2>
                     <br/>
-                    <?php echo $this->Gallery->link(null, null,
+                    <?php echo $this->Gallery->new_gallery_button(
                         array('class' => 'btn btn-primary', 'style' => 'margin-top: 10px')
                     ); ?>
                 </div>
@@ -78,13 +78,13 @@
     <div class="col-md-12">
         <?php if ($search_status == "draft") { ?>
             <?php echo $this->Html->link(
-                '<i class="fa fa-check"></i> ' . __d('gallery', 'Published albums'),
+                '<i class="fa fa-check"></i> Published albums',
                 '?status=published',
                 array('class' => 'btn btn-default', 'escape' => false)
             ) ?>
         <?php } else { ?>
             <?php echo $this->Html->link(
-                '<i class="fa fa-pagelines"></i> ' . __d('gallery', 'Drafts'),
+                '<i class="fa fa-pagelines"></i> Drafts',
                 '?status=draft',
                 array('class' => 'btn btn-default', 'escape' => false)
             ) ?>

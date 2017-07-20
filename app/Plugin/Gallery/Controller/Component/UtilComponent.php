@@ -2,9 +2,22 @@
 
 class UtilComponent extends Component
 {
+
+    public function crypto_rand_secure()
+    {
+        return md5(uniqid(mt_rand(), true));
+    }
+
     public function getToken($length = 32)
     {
-        return substr(md5(uniqid(mt_rand(), true)) , 0, 32);
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
+        $codeAlphabet .= "0123456789";
+        for ($i = 0; $i < $length; $i++) {
+            $token .= $codeAlphabet[$this->crypto_rand_secure(0, strlen($codeAlphabet))];
+        }
+        return $token;
     }
 
     public static function deleteDir($dirPath)
