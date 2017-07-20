@@ -251,10 +251,7 @@ class OrdersController extends AppController {
         $this->set('orders', $this->Paginator->paginate());
         $this->set(compact('status'));
 
-        if ($status == 1) {
-            
-        }
-
+    
         switch ($status) {
             case 1:
                 $newOrders = $this->Order->find('all', [

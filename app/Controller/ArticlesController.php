@@ -120,15 +120,26 @@ class ArticlesController extends AppController {
      *
      * @return void
      */
-    public function admin_index() {
+    public function admin_index($parentId = null) {
 
-        $tree = $this->Article->find('threaded', [
-            'fields' => [
-                'id', 'lft', 'rght', 'parent_id', 'title',
-            ],
+//        $tree = $this->Article->find('threaded', [
+//            'conditions' => ['parent_id' => $parentId],
+//            'fields' => [
+//                'id', 'lft', 'rght', 'parent_id', 'title',
+//            ],
+//            'order' => ['lft' => 'ASC']
+//        ]);
+        $tree = $this->Article->children(
+                $parentId,
+                false,
+                ['id', 'lft', 'rght', 'parent_id', 'title',],
+                ['lft' => 'ASC']
+            );
+        $roots = $this->Article->find('list', [
+            'conditions' => ['parent_id' => null],
             'order' => ['lft' => 'ASC']
         ]);
-        $this->set(compact('tree'));
+        $this->set(compact('tree', 'roots', 'parentId'));
     }
 
     /**

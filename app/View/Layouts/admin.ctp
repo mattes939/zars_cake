@@ -106,9 +106,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     language: 'cs',
                     file_browser_callback: elFinderBrowser,
                     content_css: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css, http://zars.cz/css/main.css, http://zars.cz/css/blog.css",
-                     height : 150,
-                    toolbar: 'code, bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, styleselect, formatselect, cut, copy, paste, bullist, numlist, outdent, indent, blockquote, removeformat, subscript, superscript',
-                    menubar: false
+//                     height : 150,
+//                    toolbar: 'code, bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, styleselect, formatselect, cut, copy, paste, bullist, numlist, outdent, indent, blockquote, removeformat, subscript, superscript',
+//                    menubar: false
 
                 });
             </script>

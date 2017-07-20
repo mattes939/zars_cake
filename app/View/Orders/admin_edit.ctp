@@ -11,10 +11,10 @@
         ?>
         <div class="col-xs-12 bg-danger">
             <fieldset class="">
-               
+
                 <div class="row">
                     <div class="col-xs-6 col-md-3">
-                         <h2>Storno objednávky</h2>
+                        <h2>Storno objednávky</h2>
                         <dl class="dl-horizontal">
                             <dt>Stornováno dne</dt>
                             <dd><?php echo $this->Time->format($this->request->data['Order']['canceled'], '%e. %m. %y'); ?></dd>
@@ -31,32 +31,32 @@
                                 } elseif ($diff >= 4) {
                                     $percentage = 0.8;
                                 }
-                                echo $diff . ' ('. $percentage*100 . '%)';
+                                echo $diff . ' (' . $percentage * 100 . '%)';
                                 ?></dd>
                             <dt>Výše storno poplatku</dt>
-                            <dd><?php echo $this->request->data['Order']['billing_price']*$percentage; ?> Kč</dd>
+                            <dd><?php echo $this->request->data['Order']['billing_price'] * $percentage; ?> Kč</dd>
                             <dt>Výše storna majiteli</dt>
-                            <dd><?php echo $this->request->data['Order']['owner_total']*$percentage; ?> Kč</dd>
+                            <dd><?php echo $this->request->data['Order']['owner_total'] * $percentage; ?> Kč</dd>
                             <dt>Zákazník již zaplatil</dt>
                             <dd>
-                                    <?php 
-                                    $customerPaid = 0;
-                                    foreach ($this->request->data['Deposit'] as $i => $deposit) {
-                                       $customerPaid += $deposit['price_paid'];
-                                    }
-                                    echo $customerPaid . ' Kč';
-                                    ?>
+                                <?php
+                                $customerPaid = 0;
+                                foreach ($this->request->data['Deposit'] as $i => $deposit) {
+                                    $customerPaid += $deposit['price_paid'];
+                                }
+                                echo $customerPaid . ' Kč';
+                                ?>
                             </dd>
                             <dt>Majitel již obdržel</dt>
-                            <dd><?php 
-                            $ownerReceived = 0;
-                            $ownerReceived += $this->request->data['Order']['owner_deposit'] + $this->request->data['Order']['owner_payment'];
-                            echo $ownerReceived . ' Kč'
-                            ?></dd>
+                            <dd><?php
+                                $ownerReceived = 0;
+                                $ownerReceived += $this->request->data['Order']['owner_deposit'] + $this->request->data['Order']['owner_payment'];
+                                echo $ownerReceived . ' Kč'
+                                ?></dd>
                             <dt>Zákazník zaplatí</dt>
-                            <dd><?php echo $this->request->data['Order']['billing_price']*$percentage - $customerPaid; ?> Kč</dd>
+                            <dd><?php echo $this->request->data['Order']['billing_price'] * $percentage - $customerPaid; ?> Kč</dd>
                             <dt>Majitel obdrží</dt>
-                            <dd><?php echo $this->request->data['Order']['owner_total']*$percentage - $ownerReceived; ?> Kč</dd>
+                            <dd><?php echo $this->request->data['Order']['owner_total'] * $percentage - $ownerReceived; ?> Kč</dd>
                         </dl>
                         <?php
 //                        echo $this->Form->input('canceled', ['label' => 'Stornováno dne', 'class' => 'datepicker form-control', 'type' => 'text']);
@@ -64,27 +64,30 @@
                     </div>
                     <div class="col-xs-6 col-md-3">
                         <h2>Zákazník - Výzva k platbě storna</h2>
-                            <?php 
-                            echo $this->Html->link('Náhled/tisk', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '_blank']);
-            echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Email', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-email'], ['escape' => false, 'class' => 'btn btn-primary' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '']);
-            echo $this->Form->input('customer_canceled_sent', ['label' => 'odesláno dne (emailem automaticky)', 'type' => 'text', 'class' => 'datepicker form-control ', 'placeholder' => 'vyplnit pouze v případě zaslání poštou']);
-                            ?>
+                        <?php
+                        echo $this->Html->link('Náhled/tisk', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '_blank']);
+                        echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Email', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-email'], ['escape' => false, 'class' => 'btn btn-primary' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '']);
+                        echo $this->Form->input('customer_canceled_sent', ['label' => 'odesláno dne (emailem automaticky)', 'type' => 'text', 'class' => 'datepicker form-control ', 'placeholder' => 'vyplnit pouze v případě zaslání poštou']);
+                        ?>
                     </div>
                     <div class="col-xs-6 col-md-3">
                         <h2>Zákazník - Potvrzení platby storna</h2>
-                            <?php 
-                            echo $this->Html->link('Náhled/tisk', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-zaplaceno'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '_blank']);
-            echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Email', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-zaplaceno-email'], ['escape' => false, 'class' => 'btn btn-primary' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '']);
-            echo $this->Form->input('customer_canceled_sent', ['label' => 'odesláno dne (emailem automaticky)', 'type' => 'text', 'class' => 'datepicker form-control ', 'placeholder' => 'vyplnit pouze v případě zaslání poštou']);
-                            ?>
+                        <?php
+                        echo $this->Html->link('Náhled/tisk', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-zaplaceno'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '_blank']);
+                        echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Email', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-zaplaceno-email'], ['escape' => false, 'class' => 'btn btn-primary' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '']);
+                        echo $this->Form->input('customer_canceled_sent', ['label' => 'odesláno dne (emailem automaticky)', 'type' => 'text', 'class' => 'datepicker form-control ', 'placeholder' => 'vyplnit pouze v případě zaslání poštou']);
+                        ?>
                     </div>
                     <div class="col-xs-6 col-md-3">
                         <h2>Majitel - Potvrzení platby storna</h2>
-                            <?php 
-                            echo $this->Html->link('Náhled/tisk', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-majitel'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '_blank']);
-            echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Email', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-majitel-email'], ['escape' => false, 'class' => 'btn btn-primary' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '']);
-            echo $this->Form->input('owner_canceled_sent', ['label' => 'odesláno dne (emailem automaticky)', 'type' => 'text', 'class' => 'datepicker form-control ', 'placeholder' => 'vyplnit pouze v případě zaslání poštou']);
-                            ?>
+                        <?php
+                        echo $this->Html->link('Náhled/tisk', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-majitel'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '_blank']);
+                        echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Email', ['controller' => 'orders', 'action' => 'confirmation', $id, 'storno-majitel-email'], ['escape' => false, 'class' => 'btn btn-primary' . $this->Code->classDisabled($this->request->data['Order']['canceled']), 'target' => '']);
+                        echo $this->Form->input('owner_canceled_sent', ['label' => 'odesláno dne (emailem automaticky)', 'type' => 'text', 'class' => 'datepicker form-control ', 'placeholder' => 'vyplnit pouze v případě zaslání poštou']);
+
+//                        echo $this->Html->link('Uzavřít storno', [], ['class' => 'btn btn-success']);
+                         echo $this->Form->input('closed', ['label' => 'uzavřeno dne', 'type' => 'text', 'class' => 'datepicker form-control ', 'placeholder' => 'vyplnit datum uzavření storna', 'div' => ['class' => 'bg-success', 'style' => 'padding: 5px 15px 15px 15px;']]);
+                        ?>
                     </div>
                 </div>
             </fieldset>
@@ -340,9 +343,9 @@
 
             echo $this->Html->link('Náhled/tisk výzvy k platbě - zákazník', ['controller' => 'orders', 'action' => 'confirmation', $id, 'platba'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['confirmed']), 'target' => '_blank']);
             echo $this->Html->link('<span class="glyphicon glyphicon-envelope"></span> Email výzvy k platbě - zákazník', ['controller' => 'orders', 'action' => 'confirmation', $id, 'platba-email'], ['escape' => false, 'class' => 'btn btn-primary' . $this->Code->classDisabled($this->request->data['Order']['confirmed']), 'target' => 'blank']);
-           
+
             echo $this->Form->input('customer_confirmation_sent', ['label' => 'odesláno dne (emailem automaticky)', 'type' => 'text', 'class' => 'datepicker form-control ', 'placeholder' => 'vyplnit pouze v případě zaslání poštou']);
-             echo $this->Html->link('Náhled/tisk faktury - ZARS pro účetní', ['controller' => 'orders', 'action' => 'confirmation', $id, 'zars'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['confirmed']), 'target' => '_blank']);
+            echo $this->Html->link('Náhled/tisk faktury - ZARS pro účetní', ['controller' => 'orders', 'action' => 'confirmation', $id, 'zars'], ['escape' => false, 'class' => 'btn btn-default' . $this->Code->classDisabled($this->request->data['Order']['confirmed']), 'target' => '_blank']);
             ?>
         </div>
         <div class="col-xs-12 col-md-6 buttons">
