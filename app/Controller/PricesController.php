@@ -100,7 +100,7 @@ class PricesController extends AppController {
         }
         $house = $this->Price->House->find('first', [
             'conditions' => [
-                'id' => $houseId
+                'House.id' => $houseId
             ],
             'contain' => [
                 'Pricelist'

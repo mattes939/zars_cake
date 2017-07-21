@@ -23,12 +23,12 @@ switch ($house['House']['pricelist_id']) {
     <thead>
         <tr>
             <th>Sezóna</th>
-            <th>Majitel základ</th>
-            <th>Zákazník základ</th>
+            <th>Cena majiteli za týden</th>
+            <th>Katalogová cena za týden</th>
             <th>Min. počet nocí kratší pobyty</th>
             <th>Min. počet osob</th>
-            <th>Zkrácený pobyt majitel za noc</th>
-            <th>Zkrácený pobyt zákazník za noc</th>
+            <th>Zkrácený pobyt objekt za noc</th>
+            <th>Zkrácený pobyt katalogová cena za noc</th>
         </tr>
     </thead>
     <tbody>
@@ -43,7 +43,7 @@ switch ($house['House']['pricelist_id']) {
                     ?></td>
                 <td><?php echo $this->Form->input('Price.' . $i . '.owner_basic', ['value' => $value['Price']['owner_basic']]); ?></td>
                 <td><?php echo $this->Form->input('Price.' . $i . '.customer_basic', ['value' => $value['Price']['customer_basic']]); ?></td>
-                <td><?php echo $this->Form->input('Price.' . $i . '.min_nights', ['value' => $value['Price']['min_nights']]); ?></td>
+                <td><?php echo $this->Form->input('Price.' . $i . '.min_nights', ['value' => $value['Price']['min_nights'], 'placeholder' => 'ne']); ?></td>
                 <td><?php echo $this->Form->input('Price.' . $i . '.min_persons', ['value' => $value['Price']['min_persons']]); ?></td>
                 <td><?php echo $this->Form->input('Price.' . $i . '.owner_extra', ['value' => $value['Price']['owner_extra']]); ?></td>
                 <td><?php echo $this->Form->input('Price.' . $i . '.customer_extra', ['value' => $value['Price']['customer_extra']]); ?></td>
@@ -53,7 +53,10 @@ switch ($house['House']['pricelist_id']) {
         ?>
     </tbody>
 </table>
+
 <?php
+$priceListId = $house['Pricelist']['id'];
+//debug($priceListId);
 if ($priceListId == 3 || $priceListId == 2) {
     if ($priceListId == 2) {
         echo 'Ceník za objekt nad X osob';

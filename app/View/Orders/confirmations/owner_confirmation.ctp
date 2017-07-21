@@ -4,8 +4,12 @@ echo $order['User']['full_name'] . ', ';
 echo $order['User']['Address'][0]['city'] . '<br>';
 ?>
 <br>Rekreační objekt: <?php echo $order['HouseDate']['House']['full_name']; ?>
-<br>Termín nástupu: <?php echo $this->Time->format($order['Order']['start_day'], '%e. %-m. %Y') . ', ' . $order['Order']['start_time']; ?>
-<br>Termín ukončení: <?php echo $this->Time->format($order['Order']['end_day'], '%e. %-m. %Y') . ', ' . $order['Order']['end_time']; ?>
+<br>
+<br>Termín nástupu: <?php echo $this->Time->format($order['Order']['start_day'], '%e. %-m. %Y'); ?>
+<br>Čas nástupu: <?php echo $order['Order']['start_time']; ?>
+<br>Termín ukončení: <?php echo $this->Time->format($order['Order']['end_day'], '%e. %-m. %Y'); ?>
+<br>Čas ukončení: <?php echo $order['Order']['end_time']; ?>
+<br>
 <br>Počet osob celkem: <?php echo $order['Order']['attendants']; ?>, z toho dospělých: <?php echo $order['Order']['adults']; 
 if(!empty($order['Order']['young'])){
     echo ', dětí 4-18 let: '.$order['Order']['young'];
@@ -20,10 +24,13 @@ if(!empty($order['Order']['children'])){
 Cena celkem: <?php echo $order['Order']['owner_total']; ?> Kč
 <br><br> <?php
 if (!empty($order['Order']['owner_notes'])) {
-    echo '<br>Poznámka: ' . $order['Order']['owner_notes'] . '<br>';
+    echo '<hr>';
+    echo 'Poznámka: ' . $order['Order']['owner_notes'] ;
+    echo '<hr>';
 }
 ?>
-Ubytovací služby. Prosím o potvrzení objednávky zpět na náš email. Děkuji a zůstávám s přáním pěkného dne. Monika Hadová za CA ZARS
+<b>Objednávku potvrďte emailem na adresu info-zars@email.cz nebo SMS zprávou na tel. 608775582.</b><br><br>
+S přáním pěkného dne, 
 <br><br />
 CA ZARS<br>
 

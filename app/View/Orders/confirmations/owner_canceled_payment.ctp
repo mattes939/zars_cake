@@ -27,12 +27,12 @@ $ownerReceived += $order['Order']['owner_deposit'] + $order['Order']['owner_paym
 if ($ownerReceived > 0) {
     echo 'Jelikož Vám k tomuto datu uhrazeno již ' . $ownerReceived . ' Kč, ';
 
-    $sum = $order['Order']['owner_price'] * $percentage - $ownerReceived;
+    $sum = $order['Order']['owner_total'] * $percentage - $ownerReceived;
 
     if ($sum > 0) {
         echo 'zašleme Vám pouze doplatek ve výši <b>' . $sum . ' Kč</b><br>';
     } elseif ($sum < 0) {
-        'zašlete nám prosím přeplatek ve výši <b>' . abs($sum) . ' Kč</b> na náš účet č. <b>' . $order['Company']['account'] . '</b> a použijte variabilní symbol <b>' . $order['Order']['code'] . '</b>.';
+       echo 'zašlete nám prosím přeplatek ve výši <b>' . abs($sum) . ' Kč</b> na náš účet č. <b>' . $order['Company']['account'] . '</b> a použijte variabilní symbol <b>' . $order['Order']['code'] . '</b>.';
     } else {
         'je storno poplatek již plně uhrazen.';
     }
