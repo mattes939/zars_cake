@@ -23,16 +23,17 @@ class GalleryHelper extends AppHelper
      * @param array $html_options
      * @return string
      */
-    public function link($model = null, $model_id = null, $html_options = array())
+    public function link($model = null, $model_id = null, $html_options = array(), $title = 'Nahrát obrázky')
     {
         return $this->_View->Html->link(
-            'Upload pictures',
+            $title,
             array(
                 'controller' => 'albums',
                 'action' => 'upload',
                 'plugin' => 'gallery',
                 $model,
-                $model_id
+                $model_id,
+                'admin' => false
             ),
             $html_options
         );
