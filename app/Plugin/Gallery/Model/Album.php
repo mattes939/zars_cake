@@ -1,9 +1,10 @@
 <?php
+
 App::uses('Folder', 'Utility');
 App::uses('GalleryAppModel', 'Gallery.Model');
 
-class Album extends GalleryAppModel
-{
+class Album extends GalleryAppModel {
+
     public $name = 'Album';
     public $tablePrefix = 'gallery_';
     public $order = 'Album.id DESC';
@@ -14,7 +15,6 @@ class Album extends GalleryAppModel
             'order' => array('Picture.order' => 'ASC')
         )
     );
-
     public $validate = array(
         'title' => array(
             array(
@@ -23,7 +23,6 @@ class Album extends GalleryAppModel
             )
         )
     );
-    
     public $recursive = 1;
 
     /**
@@ -32,59 +31,50 @@ class Album extends GalleryAppModel
      * @param $created
      * @param array $options
      */
-    public function afterSave($created, $options = array())
-    {
+    public function afterSave($created, $options = array()) {
         if ($created) {
             $this->createFolder($this->data['Album']['id']);
         }
     }
 
-
     /**
      * Get all published albums
      * @return mixed
      */
-    public function published($fields = null)
-    {
+    public function published($fields = null) {
         return $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'Album.status' => 'published'
-                ),
-                'recursive' => 2,
-                'fields' => $fields
-            )
+                        'all', array(
+                    'conditions' => array(
+                        'Album.status' => 'published'
+                    ),
+                    'recursive' => 2,
+                    'fields' => $fields
+                        )
         );
     }
-
 
     /**
      * Get all draft albums
      * @return array
      */
-    public function draft($fields = null)
-    {
+    public function draft($fields = null) {
         return $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'Album.status' => 'draft'
-                ),
-                'recursive' => 2,
-                'fields' => $fields
-            )
+                        'all', array(
+                    'conditions' => array(
+                        'Album.status' => 'draft'
+                    ),
+                    'recursive' => 2,
+                    'fields' => $fields
+                        )
         );
     }
-
 
     /**
      * Create an album record on database
      * @param $model
      * @param $model_id
      */
-    public function init($model = null, $model_id = null)
-    {
+    public function init($model = null, $model_id = null) {
         # If there is a Model and ModelID on parameters, get or create a folder for it
         if ($model && $model_id) {
             # Searching for folder that belongs to this particular $model and $model_id
@@ -106,18 +96,17 @@ class Album extends GalleryAppModel
      * @param null $model_id
      * @return mixed
      */
-    private function createInitAlbum($model = null, $model_id = null)
-    {
+    private function createInitAlbum($model = null, $model_id = null) {
         $this->save(
-            array(
-                'Album' => array(
-                    'model' => $model,
-                    'model_id' => $model_id,
-                    'status' => 'published',
-                    'tags' => '',
-                    'title' => $this->generateAlbumName($model, $model_id)
+                array(
+                    'Album' => array(
+                        'model' => $model,
+                        'model_id' => $model_id,
+                        'status' => 'published',
+                        'tags' => '',
+                        'title' => $this->generateAlbumName($model, $model_id)
+                    )
                 )
-            )
         );
         return $this->read(null);
     }
@@ -128,16 +117,14 @@ class Album extends GalleryAppModel
      * @param null $model_id
      * @return mixed
      */
-    public function getAttachedAlbum($model = null, $model_id = null)
-    {
+    public function getAttachedAlbum($model = null, $model_id = null) {
         return $this->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'Album.model' => $model,
-                    'Album.model_id' => $model_id
-                )
-            )
+                        'first', array(
+                    'conditions' => array(
+                        'Album.model' => $model,
+                        'Album.model_id' => $model_id
+                    )
+                        )
         );
     }
 
@@ -147,8 +134,7 @@ class Album extends GalleryAppModel
      * @param null $model_id
      * @return string
      */
-    private function generateAlbumName($model = null, $model_id = null)
-    {
+    private function generateAlbumName($model = null, $model_id = null) {
         $name = 'Album - ' . rand(111, 999);
 
         if ($model && $model_id) {
@@ -162,8 +148,7 @@ class Album extends GalleryAppModel
      * Create an folder at webroot/files/gallery to store album pictures
      * @param $folder_name
      */
-    private function createFolder($folder_name)
-    {
+    private function createFolder($folder_name) {
         # Folder to store galleries folders
         $galleries_path = WWW_ROOT . 'files' . DS . 'gallery';
 
@@ -184,6 +169,7 @@ class Album extends GalleryAppModel
             new Folder($folder_path, true, 0755);
         }
     }
+
 }
 
 ?>

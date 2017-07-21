@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <?php if (Configure::read('GalleryOptions.App.interfaced')) { ?>
         <?php echo $this->Html->css(
             array(
@@ -66,13 +66,12 @@
                        ) ?>">CakeGallery</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav pull-right">
+                    <ul class="nav navbar-nav">
                         <li>
-                            <?php 
-//                            echo $this->Html->link( 'Albums', array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')); 
-//                            echo $this->Html->link($title)
-                            ?>
-                            <a href="javascript:window.open('','_self').close();"><span class="glyphicon glyphicon-remove"></span>&nbsp;zavřít okno</a>
+                            <?php echo $this->Html->link(
+                                'Albums',
+                                array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                            ) ?>
                         </li>
                     </ul>
                 </div>
@@ -87,6 +86,6 @@
     <?php echo $this->Session->flash(); ?>
     <?php echo $this->fetch('content'); ?>
 <?php } ?>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </body>
 </html>
